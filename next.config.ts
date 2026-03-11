@@ -1,22 +1,33 @@
 import createMDX from "@next/mdx";
+import type { RehypeShikiOptions } from "@shikijs/rehype";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
   reactCompiler: true,
   output: "export",
 };
 
+const rehypeShikiOptions: RehypeShikiOptions = {
+  themes: {
+    light: "github-light-default",
+    dark: "github-dark-default",
+  },
+  defaultColor: "light-dark()",
+};
+
 const withMDX = createMDX({
   options: {
-    remarkPlugins: ["remark-gfm"],
+    remarkPlugins: [
+      "remark-frontmatter",
+      "remark-mdx-frontmatter",
+      "remark-gfm",
+    ],
     rehypePlugins: [
       "rehype-slug",
       "rehype-autolink-headings",
-      "rehype-highlight",
-
-      //"rehype-starry-night",
+      ["@shikijs/rehype", rehypeShikiOptions],
     ],
   },
 });

@@ -22,12 +22,18 @@ fix: (lint "--fix") format
 
 # Update dependencies
 [group("maintenance")]
-update: pnpm update
+update:
+  pnpm update
 
 # Start development server
 [group("development")]
-dev *ARGS:
+dev:
   pnpm dev
+
+# Build project
+[group("development")]
+build:
+  pnpm build
 
 # Build and serve
 [group("development")]

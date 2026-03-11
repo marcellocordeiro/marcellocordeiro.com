@@ -2,7 +2,7 @@ import {
   FolderKanbanIcon,
   HouseIcon,
   type LucideIcon,
-  NewspaperIcon,
+  NewspaperIcon, RssIcon,
 } from "lucide-react";
 import type { Route } from "next";
 
@@ -28,4 +28,9 @@ export const sidebarItems: Array<SidebarItem> = [
     label: "Projects",
     icon: FolderKanbanIcon,
   },
+  {
+    href: "/rss.xml",
+    label: "RSS",
+    icon: RssIcon
+  }
 ];

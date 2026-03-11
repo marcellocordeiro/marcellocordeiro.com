@@ -19,11 +19,19 @@ import {
 export function AppSidebar() {
   const pathname = usePathname();
 
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname.startsWith(href);
+  };
+
   const navigation = sidebarItems.map((item) => {
     return (
       <SidebarMenuItem key={item.href}>
         <SidebarMenuButton
-          isActive={item.href === pathname}
+          isActive={isActive(item.href)}
           render={<Link href={item.href} />}
         >
           <item.icon />

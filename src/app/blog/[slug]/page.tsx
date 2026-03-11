@@ -1,21 +1,41 @@
-import { getAllPosts } from "@/lib/blog";
+import type { Metadata } from "next";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+import {
+  type BlogPostFrontmatter,
+  BlogPostFrontmatterSchema,
+  getAllBlogPostInfos,
+} from "@/lib/blog";
+
+type Props = PageProps<"/blog/[slug]">;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const { default: Post } = await import(`@/content/blog/${slug}.mdx`);
+  const { frontmatter: rawFrontmatter } = await import(
+    `@/content/blog/${slug}.mdx`
+  );
 
-  return <Post />;
+  const frontmatter: BlogPostFrontmatter =
+    BlogPostFrontmatterSchema.parse(rawFrontmatter);
+
+  return {
+    title: frontmatter.title,
+  };
 }
 
-export function generateStaticParams() {
-  const posts = getAllPosts();
-  console.log(posts);
-  return getAllPosts();
-  //return [{ slug: 'welcome' }, { slug: 'about' }]
+export default async function Page({ params }: Props) {
+  const { slug } = await params;
+  const { default: MDXContent, frontmatter: rawFrontmatter } = await import(
+    `@/content/blog/${slug}.mdx`
+  );
+
+  const frontmatter: BlogPostFrontmatter =
+    BlogPostFrontmatterSchema.parse(rawFrontmatter);
+
+  return <MDXContent />;
+}
+
+export async function generateStaticParams() {
+  return await getAllBlogPostInfos();
 }
 
 export const dynamicParams = false;

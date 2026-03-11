@@ -1,7 +1,5 @@
 import type { MDXComponents } from "mdx/types";
 
-import { cn } from "@/lib/utils";
-
 const components: MDXComponents = {
   /*
   h1: ({ children }) => (
@@ -48,13 +46,9 @@ const components: MDXComponents = {
     </li>
   ),
   */
-
-  pre: ({ children, className }) => (
-    <pre className={cn("not-prose", className)}>{children}</pre>
-  ),
-  code: ({ className, children }) => (
-    <code className={cn("not-prose", className)}>{children}</code>
-  ),
+  // pre: ({ children, className, ...props }) => (
+  //   <pre className={cn("not-prose", className)} {...props}>{children}</pre>
+  // ),
 };
 
 export function useMDXComponents(): MDXComponents {

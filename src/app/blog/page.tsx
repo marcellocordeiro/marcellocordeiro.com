@@ -1,10 +1,8 @@
-import Link from "next/link";
+import { Link } from "@/components/link";
+import { getAllBlogPostInfos } from "@/lib/blog";
 
-import { getAllPosts } from "@/lib/blog";
-
-export default function Page() {
-  const posts = getAllPosts();
-  console.log(posts);
+export default async function Page() {
+  const posts = await getAllBlogPostInfos();
 
   const items = posts.map((post) => {
     return (
