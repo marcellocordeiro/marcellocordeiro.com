@@ -10,9 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: LayoutProps<"/blog/[slug]">) {
-  return (
-    <Typography>
-      {children}
-    </Typography>
-  );
+  return <Typography>{children}</Typography>;
 }

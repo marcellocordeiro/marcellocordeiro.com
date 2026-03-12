@@ -1,41 +1,29 @@
 import type { Metadata } from "next";
 
-import {
-  type BlogPostFrontmatter,
-  BlogPostFrontmatterSchema,
-  getAllBlogPostInfos,
-} from "@/lib/blog";
+import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
 
 type Props = PageProps<"/blog/[slug]">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const { frontmatter: rawFrontmatter } = await import(
-    `@/content/blog/${slug}.mdx`
-  );
-
-  const frontmatter: BlogPostFrontmatter =
-    BlogPostFrontmatterSchema.parse(rawFrontmatter);
+  const { title } = await getBlogPost(slug);
 
   return {
-    title: frontmatter.title,
+    title: title,
   };
 }
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const { default: MDXContent, frontmatter: rawFrontmatter } = await import(
-    `@/content/blog/${slug}.mdx`
-  );
-
-  const frontmatter: BlogPostFrontmatter =
-    BlogPostFrontmatterSchema.parse(rawFrontmatter);
+  const { MDXContent } = await getBlogPost(slug);
 
   return <MDXContent />;
 }
 
 export async function generateStaticParams() {
-  return await getAllBlogPostInfos();
+  const posts = await getAllBlogPosts();
+
+  return posts.map(({ slug }) => ({ slug }));
 }
 
 export const dynamicParams = false;

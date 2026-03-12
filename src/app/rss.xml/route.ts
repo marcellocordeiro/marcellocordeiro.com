@@ -1,12 +1,9 @@
-// app/rss.xml/route.ts
-import {Feed} from "feed";
+import { Feed } from "feed";
 
-import {getAllBlogPostInfos} from "@/lib/blog";
-
-//import { getAllPosts } from '@/lib/posts'
+import { getAllBlogPosts } from "@/lib/blog";
 
 export async function GET() {
-  const posts = await getAllBlogPostInfos();
+  const posts = await getAllBlogPosts();
   const siteUrl = "https://marcellocordeiro.com";
 
   const feed = new Feed({
@@ -29,19 +26,19 @@ export async function GET() {
 
   for (const post of posts) {
     feed.addItem({
-      title: post.frontmatter.title,
+      title: post.title,
       id: `${siteUrl}/blog/${post.slug}`,
       link: `${siteUrl}/blog/${post.slug}`,
-      description: post.frontmatter.description,
-      date: new Date(post.frontmatter.date),
+      description: post.description,
+      date: new Date(post.date),
       //author: [{ name: post.author ?? 'Your Name' }],
     });
   }
 
-  const rssFeed = feed.rss2()
-  const headers = new Headers({ 'content-type': 'application/xml' })
+  const rssFeed = feed.rss2();
+  const headers = new Headers({ "content-type": "application/xml" });
 
-  return new Response(rssFeed, {headers});
+  return new Response(rssFeed, { headers });
 }
 
 export const dynamic = "force-static";

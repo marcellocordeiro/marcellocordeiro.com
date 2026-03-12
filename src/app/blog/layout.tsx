@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: LayoutProps<"/blog">) {
-  return children
+  return children;
 }

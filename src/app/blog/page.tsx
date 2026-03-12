@@ -1,8 +1,8 @@
 import { Link } from "@/components/link";
-import { getAllBlogPostInfos } from "@/lib/blog";
+import { getAllBlogPosts } from "@/lib/blog";
 
 export default async function Page() {
-  const posts = await getAllBlogPostInfos();
+  const posts = await getAllBlogPosts();
 
   const items = posts.map((post) => {
     return (

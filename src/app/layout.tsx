@@ -20,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("font-sans", inter.variable)}
+      className={cn("font-sans antialiased", "font-sans", inter.variable)}
       suppressHydrationWarning
     >
       <body>

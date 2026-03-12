@@ -26,7 +26,6 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       "rehype-slug",
-      "rehype-autolink-headings",
       ["@shikijs/rehype", rehypeShikiOptions],
     ],
   },
