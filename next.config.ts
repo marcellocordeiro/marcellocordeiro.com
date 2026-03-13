@@ -24,10 +24,7 @@ const withMDX = createMDX({
       "remark-mdx-frontmatter",
       "remark-gfm",
     ],
-    rehypePlugins: [
-      "rehype-slug",
-      ["@shikijs/rehype", rehypeShikiOptions],
-    ],
+    rehypePlugins: ["rehype-slug", ["@shikijs/rehype", rehypeShikiOptions]],
   },
 });
 

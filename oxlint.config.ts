@@ -32,7 +32,7 @@ export default defineConfig({
   },
   settings: {
     "jsx-a11y": {
-      polymorphicPropName: null,
+      // polymorphicPropName: null,
       components: {},
       attributes: {},
     },
@@ -42,7 +42,7 @@ export default defineConfig({
     react: {
       formComponents: [],
       linkComponents: [],
-      version: null,
+      // version: null,
       componentWrapperFunctions: [],
     },
     jsdoc: {
