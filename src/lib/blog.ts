@@ -1,47 +1,23 @@
-import fs from "node:fs";
-import path from "node:path";
+import { allPosts, type Post } from "../../.content-collections/generated";
 
-import type { Element } from "mdx/types";
-import { z } from "zod";
+const sortedAllPosts = allPosts.toSorted(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
 
-const BlogPostFrontmatterSchema = z.object({
-  title: z.string(),
-  date: z.iso.date(),
-  description: z.string(),
-  tags: z.array(z.string()),
-  keywords: z.array(z.string()),
-});
-
-export type BlogPostFrontmatter = z.infer<typeof BlogPostFrontmatterSchema>;
-
-export interface BlogPost extends BlogPostFrontmatter {
-  slug: string;
-  MDXContent: Element;
+export function getBlogPosts(): Post[] {
+  return sortedAllPosts;
 }
 
-const extensions = new Set([".mdx"]);
-const postsDir = path.join(process.cwd(), "src", "content", "blog");
-
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const filenames = fs.readdirSync(postsDir);
-
-  const result = await Promise.all(
-    filenames
-      .filter((filename) => extensions.has(path.extname(filename)))
-      .map(async (filename) => {
-        const slug = path.basename(filename, path.extname(filename));
-        return await getBlogPost(slug);
-      }),
-  );
-  return result.toSorted(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+export function getBlogPost(slug: string): Post | undefined {
+  return getBlogPosts().find((p) => p.slug === slug);
 }
 
-export async function getBlogPost(slug: string): Promise<BlogPost> {
-  const { default: MDXContent, frontmatter: rawFrontmatter } = await import(
-    `@/content/blog/${slug}.mdx`
-  );
-  const frontmatter = BlogPostFrontmatterSchema.parse(rawFrontmatter);
-  return Object.assign(frontmatter, { slug, MDXContent });
+export function getBlogPostsSlugs(): { slug: string }[] {
+  const isDev = process.env.NODE_ENV === "development";
+
+  return getBlogPosts()
+    .filter((p) => (p.dev ? isDev : true))
+    .map(({ slug }) => ({ slug }));
 }
+
+export { type Post };

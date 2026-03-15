@@ -1,12 +1,13 @@
+import { withContentCollections } from "@content-collections/next";
 import createMDX from "@next/mdx";
 import type { RehypeShikiOptions } from "@shikijs/rehype";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  typedRoutes: true,
-  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
-  reactCompiler: true,
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   output: "export",
+  typedRoutes: true,
+  reactCompiler: true,
 };
 
 const rehypeShikiOptions: RehypeShikiOptions = {
@@ -18,6 +19,7 @@ const rehypeShikiOptions: RehypeShikiOptions = {
 };
 
 const withMDX = createMDX({
+  extension: /\.mdx?$/, // md and mdx
   options: {
     remarkPlugins: [
       "remark-frontmatter",
@@ -28,4 +30,4 @@ const withMDX = createMDX({
   },
 });
 
-export default withMDX(nextConfig);
+export default withContentCollections(withMDX(nextConfig));

@@ -1,9 +1,8 @@
 import { Feed } from "feed";
 
-import { getAllBlogPosts } from "@/lib/blog";
+import { getBlogPosts } from "@/lib/blog";
 
-export async function GET() {
-  const posts = await getAllBlogPosts();
+export function GET() {
   const siteUrl = "https://marcellocordeiro.com";
 
   const feed = new Feed({
@@ -24,7 +23,7 @@ export async function GET() {
     },
   });
 
-  for (const post of posts) {
+  for (const post of getBlogPosts()) {
     feed.addItem({
       title: post.title,
       id: `${siteUrl}/blog/${post.slug}`,

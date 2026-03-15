@@ -2,10 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { AppFooter } from "@/components/app-footer";
 import { AppHeader } from "@/components/app-header";
-import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
@@ -24,16 +23,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider disableTransitionOnChange>
+        <ThemeProvider>
           <TooltipProvider>
-            <SidebarProvider>
-              <AppSidebar />
+            <AppHeader />
 
-              <SidebarInset>
-                <AppHeader />
-                <div className="flex flex-1 flex-col gap-4 p-8">{children}</div>
-              </SidebarInset>
-            </SidebarProvider>
+            <main className="mx-auto flex max-w-4xl flex-1 flex-col gap-4 p-8">
+              {children}
+            </main>
+
+            <AppFooter />
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -1,4 +1,5 @@
 ---
+slug: markdown-tests
 title: Markdown tests
 description: Testing Markdown stuff
 date: 2026-03-10
@@ -8,6 +9,7 @@ tags:
 keywords:
   - markdown
   - test
+image: "../../assets/blog-placeholder.jpg"
 ---
 
 # Markdown tests

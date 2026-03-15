@@ -7,10 +7,14 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[.gitmodules]
+[.{gitattributes,gitconfig,gitmodules}]
 indent_style = tab
 
 [*.{bat,cmd}]
+end_of_line = crlf
+
+[*.reg]
+charset = utf-16le
 end_of_line = crlf
 
 [justfile]

@@ -1,29 +1,39 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
+import { Typography } from "@/components/ui/typography";
+import { getBlogPost, getBlogPostsSlugs } from "@/lib/blog";
 
 type Props = PageProps<"/blog/[slug]">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const { title } = await getBlogPost(slug);
+  const post = getBlogPost(slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return {
-    title: title,
+    title: `${post.title} | Marcello's blog`,
   };
 }
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const { MDXContent } = await getBlogPost(slug);
+  const post = getBlogPost(slug);
 
-  return <MDXContent />;
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <Typography className="max-w-full">
+      <post.Content />
+    </Typography>
+  );
 }
 
-export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
-
-  return posts.map(({ slug }) => ({ slug }));
+export function generateStaticParams() {
+  return getBlogPostsSlugs();
 }
-
-export const dynamicParams = false;
