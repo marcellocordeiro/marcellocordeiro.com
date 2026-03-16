@@ -11,7 +11,7 @@
     "lint": "oxlint",
     "lint:ci": "oxlint --format=github",
     "format": "oxfmt",
-    "lint:biome": "biome check",
+    "lint:biome": "biome lint",
     "format:biome": "biome format --write",
     "lint:eslint": "eslint",
     "analyze-bundle": "next build && next experimental-analyze"

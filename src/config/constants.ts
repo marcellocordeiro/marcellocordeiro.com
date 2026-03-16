@@ -33,7 +33,7 @@ interface SidebarItem {
   icon: IconType;
 }
 
-export const sidebarItems: Array<SidebarItem> = [
+export const sidebarItems: SidebarItem[] = [
   {
     href: "/",
     label: "Home",
