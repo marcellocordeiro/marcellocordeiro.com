@@ -25,10 +25,7 @@ export function AppHeader() {
   const navigation = sidebarItems.map((item) => {
     return (
       <NavigationMenuItem key={item.href}>
-        <NavigationMenuLink
-          active={isActive(item.href)}
-          render={<Link href={item.href} />}
-        >
+        <NavigationMenuLink active={isActive(item.href)} render={<Link href={item.href} />}>
           <item.icon />
           <span className="max-sm:hidden">{item.label}</span>
         </NavigationMenuLink>

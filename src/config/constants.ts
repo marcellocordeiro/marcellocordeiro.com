@@ -3,10 +3,10 @@ import type { Route } from "next";
 import {
   GitHubIcon,
   HouseIcon,
+  type IconType,
   LinkedInIcon,
   NewspaperIcon,
   RssIcon,
-  type IconType,
 } from "@/config/icons";
 
 export const info = {

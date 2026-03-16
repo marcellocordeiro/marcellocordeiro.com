@@ -18,4 +18,4 @@ export function getBlogPostsSlugs(): { slug: string }[] {
   return getBlogPosts().map(({ slug }) => ({ slug }));
 }
 
-export { type Post };
+export type { Post };

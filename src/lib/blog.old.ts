@@ -33,9 +33,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         return await getBlogPost(slug);
       }),
   );
-  return result.toSorted(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+  return result.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {

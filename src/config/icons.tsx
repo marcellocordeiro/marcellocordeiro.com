@@ -1,20 +1,20 @@
-import { type IconType as IconTypePrimitive } from "react-icons";
+import type { IconType as IconTypePrimitive } from "react-icons";
 import {
-  LuGithub,
-  LuLinkedin,
-  LuTwitter,
-  LuMonitor,
-  LuMoon,
-  LuSun,
-  LuChevronRight,
-  LuEllipsis,
   LuCheck,
   LuChevronDown,
-  LuX,
+  LuChevronRight,
+  LuEllipsis,
   LuFolderKanban,
+  LuGithub,
   LuHouse,
+  LuLinkedin,
+  LuMonitor,
+  LuMoon,
   LuNewspaper,
   LuRss,
+  LuSun,
+  LuTwitter,
+  LuX,
 } from "react-icons/lu";
 
 export type IconType = IconTypePrimitive;

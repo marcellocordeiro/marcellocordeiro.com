@@ -6,9 +6,5 @@ interface Props {
 }
 
 export function Typography({ className, children }: Props) {
-  return (
-    <article className={cn("prose dark:prose-invert", className)}>
-      {children}
-    </article>
-  );
+  return <article className={cn("prose dark:prose-invert", className)}>{children}</article>;
 }

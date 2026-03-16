@@ -27,9 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <TooltipProvider>
             <AppHeader />
 
-            <main className="mx-auto flex max-w-4xl flex-1 flex-col gap-4 p-8">
-              {children}
-            </main>
+            <main className="mx-auto flex max-w-4xl flex-1 flex-col gap-4 p-8">{children}</main>
 
             <AppFooter />
           </TooltipProvider>

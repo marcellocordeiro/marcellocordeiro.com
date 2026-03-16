@@ -24,11 +24,7 @@ const rehypeShikiOptions: RehypeShikiOptions = {
 const withMDX = createMDX({
   extension: /\.mdx?$/, // md and mdx
   options: {
-    remarkPlugins: [
-      "remark-frontmatter",
-      "remark-mdx-frontmatter",
-      "remark-gfm",
-    ],
+    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter", "remark-gfm"],
     rehypePlugins: ["rehype-slug", ["@shikijs/rehype", rehypeShikiOptions]],
   },
 });
