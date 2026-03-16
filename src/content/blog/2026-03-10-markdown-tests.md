@@ -9,7 +9,7 @@ tags:
 keywords:
   - markdown
   - test
-image: "../../assets/blog-placeholder.jpg"
+image: "assets/blog-placeholder.jpg"
 ---
 
 # Markdown tests

@@ -5,7 +5,9 @@ const sortedAllPosts = allPosts.toSorted(
 );
 
 export function getBlogPosts(): Post[] {
-  return sortedAllPosts;
+  const isDev = process.env.NODE_ENV === "development";
+
+  return sortedAllPosts.filter((p) => (p.dev ? isDev : true));
 }
 
 export function getBlogPost(slug: string): Post | undefined {
@@ -13,11 +15,7 @@ export function getBlogPost(slug: string): Post | undefined {
 }
 
 export function getBlogPostsSlugs(): { slug: string }[] {
-  const isDev = process.env.NODE_ENV === "development";
-
-  return getBlogPosts()
-    .filter((p) => (p.dev ? isDev : true))
-    .map(({ slug }) => ({ slug }));
+  return getBlogPosts().map(({ slug }) => ({ slug }));
 }
 
 export { type Post };

@@ -4,6 +4,7 @@ import {
   defineConfig,
 } from "@content-collections/core";
 import type { MDXContent } from "mdx/types";
+import type { StaticImageData } from "next/image";
 import { z } from "zod";
 
 const posts = defineCollection({
@@ -16,6 +17,7 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.iso.date(),
+    image: z.string(),
     tags: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
     dev: z.boolean().default(false),
@@ -25,9 +27,14 @@ const posts = defineCollection({
       `@/content/blog/${_meta.filePath}`,
     );
 
+    const image = createDefaultImport<StaticImageData>(
+      `@/content/blog/${post.image}`,
+    );
+
     return {
       ...post,
       Content,
+      image,
     };
   },
 });

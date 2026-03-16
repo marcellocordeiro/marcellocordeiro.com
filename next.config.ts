@@ -5,6 +5,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  images: {
+    unoptimized: true,
+  },
   output: "export",
   typedRoutes: true,
   reactCompiler: true,

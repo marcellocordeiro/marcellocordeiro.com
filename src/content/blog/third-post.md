@@ -3,7 +3,7 @@ slug: third-post
 title: "Third post"
 description: "Lorem ipsum dolor sit amet"
 date: 2026-03-10
-image: "../../assets/blog-placeholder.jpg"
+image: "assets/blog-placeholder.jpg"
 tags: []
 keywords: []
 
