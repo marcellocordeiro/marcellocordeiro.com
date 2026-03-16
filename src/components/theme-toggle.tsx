@@ -1,7 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
-
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import {
@@ -10,19 +8,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { DarkThemeIcon, LightThemeIcon, SystemThemeIcon } from "@/config/icons";
-import { useIsMounted } from "@/hooks/use-is-mounted";
+import { useTheme } from "@/hooks/use-theme";
 
 interface Props {
   className?: string;
 }
 
 export function ThemeToggle({ className }: Props) {
-  const isMounted = useIsMounted();
   const { theme, systemTheme, setTheme } = useTheme();
-
-  if (!isMounted) {
-    return null;
-  }
 
   const items = [
     {

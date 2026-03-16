@@ -12,9 +12,9 @@ import { getBlogPosts } from "@/lib/blog";
 export default function Page() {
   const items = getBlogPosts().map((post) => (
     <Link key={post.slug} href={`/blog/${post.slug}`}>
-      <Card className="relative mx-auto w-full max-w-sm">
+      <Card className="mx-auto w-full max-w-sm">
         <Image
-          className="relative z-20 aspect-video w-full object-cover"
+          className="aspect-video w-full object-cover"
           src={post.image}
           alt={post.title}
         />

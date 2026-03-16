@@ -8,7 +8,6 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { sidebarItems } from "@/config/constants";
 
@@ -27,7 +26,6 @@ export function AppHeader() {
     return (
       <NavigationMenuItem key={item.href}>
         <NavigationMenuLink
-          className={navigationMenuTriggerStyle()}
           active={isActive(item.href)}
           render={<Link href={item.href} />}
         >
@@ -39,8 +37,8 @@ export function AppHeader() {
   });
 
   return (
-    <header className="sticky top-0 flex h-14 shrink-0 items-center justify-center gap-2">
-      <div className="flex items-center justify-center gap-2 rounded border bg-background/70 px-3 py-1">
+    <header className="sticky top-0 flex h-16 shrink-0 items-center justify-center gap-2">
+      <div className="rounded-full bg-accent/70 px-3 py-1 shadow-lg ring ring-accent backdrop-blur-sm">
         <NavigationMenu>
           <NavigationMenuList>{navigation}</NavigationMenuList>
         </NavigationMenu>
