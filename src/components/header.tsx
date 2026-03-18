@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
+import { Container } from "@/components/container";
 import { Link } from "@/components/link";
 import {
   NavigationMenu,
@@ -11,7 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { sidebarItems } from "@/config/constants";
 
-export function AppHeader() {
+export function Header() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -34,12 +35,10 @@ export function AppHeader() {
   });
 
   return (
-    <header className="sticky top-0 flex h-16 shrink-0 items-center justify-center gap-2">
-      <div className="rounded-full bg-accent/70 px-3 py-1 shadow-lg ring ring-accent backdrop-blur-sm">
-        <NavigationMenu>
-          <NavigationMenuList>{navigation}</NavigationMenuList>
-        </NavigationMenu>
-      </div>
+    <header className="sticky top-0 z-100 flex h-16 items-center justify-between">
+      <NavigationMenu className="mx-auto rounded-full bg-accent/70 px-3 py-1 shadow-lg ring ring-accent backdrop-blur-sm">
+        <NavigationMenuList>{navigation}</NavigationMenuList>
+      </NavigationMenu>
     </header>
   );
 }

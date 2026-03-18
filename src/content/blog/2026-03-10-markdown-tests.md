@@ -10,6 +10,7 @@ keywords:
   - markdown
   - test
 image: "assets/blog-placeholder.jpg"
+dev: true
 ---
 
 # Markdown tests

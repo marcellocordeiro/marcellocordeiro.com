@@ -24,6 +24,7 @@ export const info = {
       icon: LinkedInIcon,
     },
   ],
+  siteUrl: "https://marcellocordeiro.com",
   sourceCode: "https://github.com/marcellocordeiro/marcellocordeiro.com",
 };
 

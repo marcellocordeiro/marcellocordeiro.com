@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/typography";
 
 export default function Page() {
   return (
-    <Typography>
+    <Typography className="w-full">
       <h1>Welcome</h1>
       Intro
       <h2>Projects</h2>

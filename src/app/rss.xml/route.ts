@@ -1,20 +1,19 @@
 import { Feed } from "feed";
 
+import { info } from "@/config/constants";
 import { getBlogPosts } from "@/lib/blog";
 
 export function GET() {
-  const siteUrl = "https://marcellocordeiro.com";
-
   const feed = new Feed({
     title: "Marcello's Blog",
     description: "Description",
-    id: siteUrl,
-    link: siteUrl,
+    id: info.siteUrl,
+    link: info.siteUrl,
     language: "en",
-    favicon: `${siteUrl}/favicon.ico`,
+    favicon: `${info.siteUrl}/favicon.ico`,
     copyright: `© ${new Date().getFullYear()} Marcello Cordeiro`,
     feedLinks: {
-      rss2: `${siteUrl}/rss.xml`,
+      rss2: `${info.siteUrl}/rss.xml`,
       //atom: `${siteUrl}/atom.xml`,
     },
     author: {
@@ -26,8 +25,8 @@ export function GET() {
   for (const post of getBlogPosts()) {
     feed.addItem({
       title: post.title,
-      id: `${siteUrl}/blog/${post.slug}`,
-      link: `${siteUrl}/blog/${post.slug}`,
+      id: `${info.siteUrl}/blog/${post.slug}`,
+      link: `${info.siteUrl}/blog/${post.slug}`,
       description: post.description,
       date: new Date(post.date),
       //author: [{ name: post.author ?? 'Your Name' }],

@@ -2,11 +2,16 @@ import { ExternalLink } from "@/components/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { info } from "@/config/constants";
+import { cn } from "@/lib/utils";
 
-export function AppFooter() {
+interface FooterProps {
+  className?: string;
+}
+
+export function Footer({ className }: FooterProps) {
   return (
-    <footer className="border-t bg-background">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+    <footer className={cn(className)}>
+      <div className="mx-auto px-6">
         {/* Top grid */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <FooterLinks />
