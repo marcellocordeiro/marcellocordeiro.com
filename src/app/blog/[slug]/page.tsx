@@ -5,7 +5,6 @@ import { Link } from "@/components/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
-import { ChevronLeftIcon } from "@/config/icons";
 import { getAdjacentBlogPosts, getBlogPost, getBlogPostsSlugs } from "@/lib/blog";
 
 type Props = PageProps<"/blog/[slug]">;

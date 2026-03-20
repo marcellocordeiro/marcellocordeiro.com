@@ -4,9 +4,14 @@ import { cn } from "@/lib/utils";
 
 type LinkProps<RouteType> = NextLinkProps<RouteType>;
 
-export function Link<RouteType>({ className, children, ...props }: LinkProps<RouteType>) {
+export function Link<RouteType>({
+  className,
+  children,
+  prefetch = false,
+  ...props
+}: LinkProps<RouteType>) {
   return (
-    <NextLink className={cn(className)} {...props}>
+    <NextLink className={cn(className)} prefetch={prefetch} {...props}>
       {children}
     </NextLink>
   );

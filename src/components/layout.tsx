@@ -12,7 +12,7 @@ export function Layout({ children }: LayoutProps) {
       <Header />
 
       <Container>
-        <main className="flex-auto py-4 mx-auto w-full">{children}</main>
+        <main className="mx-auto w-full flex-auto py-4">{children}</main>
       </Container>
 
       <Footer />
