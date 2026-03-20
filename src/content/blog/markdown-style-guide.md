@@ -4,10 +4,7 @@ title: "Markdown Style Guide"
 description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
 date: 2026-03-10
 image: "assets/blog-placeholder.jpg"
-tags: []
-keywords: []
-
-dev: true
+# dev: true
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
@@ -44,7 +41,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-{/_ ![blog placeholder](../../assets/blog-placeholder-about.jpg) _/}
+![blog placeholder](./assets/blog-placeholder.jpg)
 
 ## Blockquotes
 
@@ -117,6 +114,22 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 ```
 ````
 
+````markdown
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+async function fetchUser(id: number): Promise<User> {
+  const res = await fetch(`/api/users/${id}`);
+  if (!res.ok) throw new Error("User not found");
+  return res.json();
+}
+```
+````
+
 ### Output
 
 ```html
@@ -130,6 +143,20 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
     <p>Test</p>
   </body>
 </html>
+```
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+async function fetchUser(id: number): Promise<User> {
+  const res = await fetch(`/api/users/${id}`);
+  if (!res.ok) throw new Error("User not found");
+  return res.json();
+}
 ```
 
 ## List Types

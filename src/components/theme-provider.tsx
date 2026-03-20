@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ThemeProvider as NextThemesProvider,
-  useTheme as useNextTheme,
-  type UseThemeProps as NextUseThemeProps,
-} from "next-themes";
+import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
@@ -13,10 +9,15 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
 
-type UseThemeProps = Pick<NextUseThemeProps, "theme" | "systemTheme" | "setTheme">;
+export type Theme = "system" | "light" | "dark";
+
+export interface UseThemeProps {
+  theme?: Theme;
+  setTheme: (theme: Theme) => void;
+}
 
 export function useTheme(): UseThemeProps {
-  const { theme, systemTheme, setTheme } = useNextTheme();
+  const { theme, setTheme } = useNextTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -26,15 +27,12 @@ export function useTheme(): UseThemeProps {
 
   if (!isMounted) {
     return {
-      theme: undefined,
-      systemTheme: undefined,
       setTheme: setTheme,
     };
   }
 
   return {
-    theme,
-    systemTheme,
+    theme: theme as Theme | undefined,
     setTheme,
   };
 }

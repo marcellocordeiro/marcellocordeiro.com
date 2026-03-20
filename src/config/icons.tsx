@@ -2,6 +2,7 @@ import type { IconType as IconTypePrimitive } from "react-icons";
 import {
   LuCheck,
   LuChevronDown,
+  LuChevronLeft,
   LuChevronRight,
   LuEllipsis,
   LuFolderKanban,
@@ -15,10 +16,12 @@ import {
   LuSun,
   LuTwitter,
   LuX,
+  LuMenu,
 } from "react-icons/lu";
 
 export type IconType = IconTypePrimitive;
 
+export const ChevronLeftIcon = LuChevronLeft;
 export const ChevronRightIcon = LuChevronRight;
 export const MoreHorizontalIcon = LuEllipsis;
 export const CheckIcon = LuCheck;
@@ -37,3 +40,5 @@ export const RssIcon = LuRss;
 export const GitHubIcon = LuGithub;
 export const LinkedInIcon = LuLinkedin;
 export const TwitterIcon = LuTwitter;
+
+export const MenuClosedIcon = LuMenu;

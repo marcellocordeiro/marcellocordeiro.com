@@ -12,7 +12,7 @@ const posts = defineCollection({
     slug: z.string(),
     title: z.string(),
     description: z.string(),
-    date: z.iso.date(),
+    date: z.coerce.date(),
     image: z.string(),
     tags: z.array(z.string()).default([]),
     keywords: z.array(z.string()).default([]),
@@ -20,7 +20,6 @@ const posts = defineCollection({
   }),
   transform: ({ _meta, ...post }) => {
     const Content = createDefaultImport<MDXContent>(`@/content/blog/${_meta.filePath}`);
-
     const image = createDefaultImport<StaticImageData>(`@/content/blog/${post.image}`);
 
     return {

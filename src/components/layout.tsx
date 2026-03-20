@@ -1,20 +1,21 @@
 import { Container } from "@/components/container";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { Separator } from "@/components/ui/separator";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export function Layout({ children }: LayoutProps) {
   return (
-    <Container>
-      <div className="flex w-full flex-col gap-8 px-4">
-        <Header />
+    <>
+      <Header />
 
-        <main className="flex-auto">{children}</main>
+      <Container>
+        <main className="flex-auto py-4 mx-auto w-full">{children}</main>
+      </Container>
 
-        <Separator />
-
-        <Footer className="mb-8" />
-      </div>
-    </Container>
+      <Footer />
+    </>
   );
 }

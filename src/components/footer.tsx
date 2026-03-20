@@ -2,29 +2,24 @@ import { ExternalLink } from "@/components/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { info } from "@/config/constants";
-import { cn } from "@/lib/utils";
 
-interface FooterProps {
-  className?: string;
-}
-
-export function Footer({ className }: FooterProps) {
+export function Footer() {
   return (
-    <footer className={cn(className)}>
-      <div className="mx-auto px-6">
+    <footer className="border-t py-8">
+      <div className="mx-auto max-w-3xl px-10">
         {/* Top grid */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <FooterLinks />
         </div>
 
         {/* Bottom grid */}
-        <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="justify-start not-sm:order-2">
+        <div className="mt-10 flex flex-row items-center justify-between gap-4">
+          <div className="">
             <Copyright />
             <Socials />
           </div>
 
-          <ThemeToggle className="not-sm:order-1 sm:col-start-2 lg:col-start-4" />
+          <ThemeToggle />
         </div>
       </div>
     </footer>
@@ -33,9 +28,10 @@ export function Footer({ className }: FooterProps) {
 
 function Copyright() {
   const year = new Date().getFullYear();
-  const copyright = `© ${year} ${info.firstName} ${info.lastName}`;
 
-  return <p className="text-sm text-muted-foreground">{copyright}</p>;
+  return (
+    <p className="text-sm text-muted-foreground">{`© ${year} ${info.firstName} ${info.lastName}`}</p>
+  );
 }
 
 function Socials() {
