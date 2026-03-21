@@ -1,19 +1,12 @@
-import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-
 import { cn } from "@/lib/utils";
 
-type LinkProps<RouteType> = NextLinkProps<RouteType>;
+type LinkProps = React.ComponentProps<"a">;
 
-export function Link<RouteType>({
-  className,
-  children,
-  prefetch = false,
-  ...props
-}: LinkProps<RouteType>) {
+export function Link({ className, children, ...props }: LinkProps) {
   return (
-    <NextLink className={cn(className)} prefetch={prefetch} {...props}>
+    <a className={cn(className)} {...props}>
       {children}
-    </NextLink>
+    </a>
   );
 }
 

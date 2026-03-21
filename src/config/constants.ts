@@ -1,5 +1,3 @@
-import type { Route } from "next";
-
 import {
   GitHubIcon,
   HouseIcon,
@@ -29,7 +27,7 @@ export const info = {
 };
 
 interface SidebarItem {
-  href: Route;
+  href: string;
   label: string;
   icon: IconType;
 }

@@ -1,0 +1,78 @@
+---
+import { render } from "astro:content";
+
+import Layout from "@/components/Layout.astro";
+import { Typography } from "@/components/ui/typography";
+import { Link } from "@/components/link";
+import { Separator } from "@/components/ui/separator";
+import { getBlogPostWindows, type Post } from "@/lib/blog";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+
+export function getStaticPaths() {
+  return getBlogPostWindows().map(({ previous, current, next }) => ({
+    params: { slug: current.id },
+    props: { previous, current, next },
+  }));
+}
+
+interface Props {
+  previous?: Post;
+  current: Post;
+  next?: Post;
+}
+
+const { previous, current, next } = Astro.props;
+const { title, description } = current.data;
+const { Content } = await render(current);
+---
+
+<Layout title={title} description={description}>
+  <Typography className="mx-auto">
+    <Link href="/blog">{"<- Back"}</Link>
+    <h1 class="mt-4">{title}</h1>
+
+    <Content />
+
+    <Separator />
+
+    <div>
+      <div>
+        <p>Tags:</p>
+        {current.data.tags.map((t) => <p>{t}</p>)}
+      </div>
+
+      <div class="flex gap-5">
+        {
+          previous && (
+            <Link className="w-full" href={`/blog/${previous.id}`}>
+              <Card className="">
+                <CardHeader className="">
+                  <CardTitle>{`<-- Previous`}</CardTitle>
+                  <CardDescription>{title}</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          )
+        }
+
+        {
+          next && (
+            <Link className="w-full" href={`/blog/${next.id}`}>
+              <Card className="max-w-full">
+                <CardHeader className="">
+                  <CardTitle>{`Next -->`}</CardTitle>
+                  <CardDescription>{title}</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          )
+        }
+      </div>
+    </div>
+  </Typography>
+</Layout>

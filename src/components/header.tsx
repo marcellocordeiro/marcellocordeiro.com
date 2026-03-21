@@ -1,6 +1,3 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Link } from "@/components/link";
@@ -15,15 +12,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { sidebarItems } from "@/config/constants";
 import { MenuClosedIcon } from "@/config/icons";
 
-export function Header() {
-  const pathname = usePathname();
+export interface HeaderProps {
+  pathname: string;
+}
+
+export function Header({ pathname }: HeaderProps) {
   const [openSheet, setOpenSheet] = useState(false);
 
   const isActive = (href: string) => {
-    if (pathname === null) {
-      return false;
-    }
-
     if (href === "/") {
       return pathname === "/";
     }
@@ -46,7 +42,7 @@ export function Header() {
   });
 
   return (
-    <header className="sticky top-0 z-10 border-b bg-accent/50 shadow-lg backdrop-blur-xl">
+    <header className="sticky top-0 z-10 border-b bg-accent/70 shadow-lg backdrop-blur-xl">
       <NavigationMenu className="mx-auto h-16 max-w-3xl justify-between px-10">
         <Link href="/">{`Marcello's website`}</Link>
 

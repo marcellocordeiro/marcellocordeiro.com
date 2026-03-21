@@ -1,0 +1,69 @@
+---
+import "@/styles/global.css";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/consts";
+import { Header } from "@/components/header";
+import { Container } from "@/components/container";
+import Footer from "@/components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { pathname } = Astro.url;
+---
+
+<html lang="en" class="antialiased">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE_TITLE}
+      href={new URL("rss.xml", Astro.site)}
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+  </head>
+
+  <body>
+    <Header pathname={pathname} client:load />
+
+    <Container>
+      <main class="mx-auto w-full flex-auto py-4">
+        <slot />
+      </main>
+    </Container>
+
+    <Footer />
+  </body>
+</html>
+
+<!-- This script needs to be inlined to avoid flash of unstyled content (FOUC) -->
+<script is:inline>
+  let theme = localStorage.getItem("theme") ?? "system";
+
+  if (theme === "system" || !["light", "dark"].includes(theme)) {
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+</script>
