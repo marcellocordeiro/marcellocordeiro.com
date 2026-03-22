@@ -1,5 +1,5 @@
 import { ExternalLink } from "@/components/link";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/themes/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { info } from "@/config/constants";
 

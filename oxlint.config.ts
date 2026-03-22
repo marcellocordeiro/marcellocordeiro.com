@@ -35,6 +35,7 @@ export default defineConfig({
     "sort-imports": "off", // Not very configurable yet
     "sort-keys": "off",
 
+    "unicorn/filename-case": "off",
     "unicorn/no-null": "off",
 
     "import/consistent-type-specifier-style": "off",

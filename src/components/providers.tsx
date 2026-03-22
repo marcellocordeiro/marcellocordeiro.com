@@ -1,8 +1,8 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/themes/theme-provider";
 
 export interface ProviderProps {
   children: React.ReactNode;
 }
 export function Providers({ children }: ProviderProps) {
-  return <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }

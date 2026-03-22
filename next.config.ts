@@ -16,7 +16,9 @@ const nextConfig: NextConfig = {
   },
 
   // dev
-  allowedDevOrigins: [process.env.ALLOWED_DEV_ORIGINS].filter((a) => a !== undefined),
+  allowedDevOrigins: (process.env.ALLOWED_DEV_ORIGINS ?? "")
+    .split(",")
+    .filter((a) => a !== undefined),
 };
 
 const rehypeShikiOptions: RehypeShikiOptions = {
@@ -31,7 +33,12 @@ const withMDX = createMDX({
   extension: /\.mdx?$/, // md and mdx
   options: {
     format: "mdx", // Keep html tags in md files
-    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter", "remark-gfm"],
+    remarkPlugins: [
+      "remark-frontmatter",
+      "remark-mdx-frontmatter",
+      "remark-gfm",
+      "remark-smartypants",
+    ],
     rehypePlugins: [
       "rehype-slug",
       "rehype-mdx-import-media",

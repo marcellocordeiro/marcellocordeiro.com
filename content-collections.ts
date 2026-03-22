@@ -13,9 +13,9 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
+    author: z.string(),
     image: z.string(),
     tags: z.array(z.string()).default([]),
-    keywords: z.array(z.string()).default([]),
     dev: z.boolean().default(false),
   }),
   transform: ({ _meta, ...post }) => {

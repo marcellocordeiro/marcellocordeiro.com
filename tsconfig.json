@@ -2,6 +2,9 @@
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "verbatimModuleSyntax": true,
     "paths": {
       "@/*": ["./src/*"]

@@ -46,7 +46,7 @@ export function Header() {
   });
 
   return (
-    <header className="sticky top-0 z-10 border-b bg-accent/50 shadow-lg backdrop-blur-xl">
+    <header className="sticky top-0 z-10 border-b bg-background/60 backdrop-blur-md">
       <NavigationMenu className="mx-auto h-16 max-w-3xl justify-between px-10">
         <Link href="/">{`Marcello's website`}</Link>
 

@@ -1,25 +1,28 @@
 import { allPosts as __posts, type Post } from "../../.content-collections/generated";
 
-const sortedAllPosts = __posts.toSorted(
-  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-);
-
-const tags = [...new Set(sortedAllPosts.flatMap((p) => p.tags))].toSorted();
-
-export function getBlogPosts(): Post[] {
+const { posts, tags } = (() => {
   const isDev = process.env.NODE_ENV === "development";
 
-  return sortedAllPosts.filter((p) => (p.dev ? isDev : true));
+  const sortedPosts = __posts
+    .filter((p) => (p.dev ? isDev : true))
+    .toSorted((a, b) => b.date.valueOf() - a.date.valueOf());
+
+  const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.tags))].toSorted();
+
+  return { posts: sortedPosts, tags: sortedTags };
+})();
+
+export function getBlogPosts(): Post[] {
+  return posts;
 }
 
 export function getBlogPost(slug: string): Post | undefined {
-  return getBlogPosts().find((p) => p.slug === slug);
+  return posts.find((p) => p.slug === slug);
 }
 
 export function getAdjacentBlogPosts(
   slug: string,
-): undefined | { previous?: Post; current: Post; next?: Post } {
-  const posts = getBlogPosts();
+): { previous?: Post; current: Post; next?: Post } | undefined {
   const index = posts.findIndex((p) => p.slug === slug);
 
   const current = posts[index];
@@ -38,8 +41,16 @@ export function getAdjacentBlogPosts(
   };
 }
 
+export function getBlogPostWindows(): { previous?: Post; current: Post; next?: Post }[] {
+  return posts.map((_, i) => ({
+    previous: posts[i - 1],
+    current: posts[i],
+    next: posts[i + 1],
+  }));
+}
+
 export function getBlogPostsSlugs(): { slug: string }[] {
-  return getBlogPosts().map(({ slug }) => ({ slug }));
+  return posts.map(({ slug }) => ({ slug }));
 }
 
 export function getBlogPostsTags(): { tag: string }[] {
