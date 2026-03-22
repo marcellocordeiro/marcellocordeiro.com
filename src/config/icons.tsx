@@ -9,6 +9,7 @@ import {
   LuGithub,
   LuHouse,
   LuLinkedin,
+  LuMenu,
   LuMonitor,
   LuMoon,
   LuNewspaper,
@@ -16,7 +17,6 @@ import {
   LuSun,
   LuTwitter,
   LuX,
-  LuMenu,
 } from "react-icons/lu";
 
 export type IconType = IconTypePrimitive;

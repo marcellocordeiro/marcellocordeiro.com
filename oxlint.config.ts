@@ -35,6 +35,7 @@ export default defineConfig({
     "sort-imports": "off", // Not very configurable yet
     "sort-keys": "off",
 
+    "unicorn/filename-case": "off",
     "unicorn/no-null": "off",
 
     "import/consistent-type-specifier-style": "off",
@@ -59,9 +60,6 @@ export default defineConfig({
       // polymorphicPropName: null,
       components: {},
       attributes: {},
-    },
-    next: {
-      rootDir: [],
     },
     react: {
       formComponents: [],
@@ -88,6 +86,7 @@ export default defineConfig({
     browser: true,
     node: true,
     es2024: true,
+    astro: true,
   },
   globals: {},
   ignorePatterns: [],

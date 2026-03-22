@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Link } from "@/components/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,8 +15,6 @@ export interface HeaderProps {
 }
 
 export function Header({ pathname }: HeaderProps) {
-  const [openSheet, setOpenSheet] = useState(false);
-
   const isActive = (href: string) => {
     if (href === "/") {
       return pathname === "/";
@@ -30,10 +26,7 @@ export function Header({ pathname }: HeaderProps) {
   const navigation = sidebarItems.map((item) => {
     return (
       <NavigationMenuItem className="not-sm:w-full" key={item.href}>
-        <NavigationMenuLink
-          active={isActive(item.href)}
-          render={<Link href={item.href} onClick={() => setOpenSheet(false)} />}
-        >
+        <NavigationMenuLink active={isActive(item.href)} render={<Link href={item.href} />}>
           <item.icon />
           <span>{item.label}</span>
         </NavigationMenuLink>
@@ -42,13 +35,13 @@ export function Header({ pathname }: HeaderProps) {
   });
 
   return (
-    <header className="sticky top-0 z-10 border-b bg-accent/70 shadow-lg backdrop-blur-xl">
+    <header className="sticky top-0 z-10 border-b bg-accent/70 shadow backdrop-blur-xl">
       <NavigationMenu className="mx-auto h-16 max-w-3xl justify-between px-10">
         <Link href="/">{`Marcello's website`}</Link>
 
         <NavigationMenuList className="justify-end not-sm:hidden">{navigation}</NavigationMenuList>
 
-        <Sheet open={openSheet} onOpenChange={setOpenSheet}>
+        <Sheet>
           <SheetTrigger
             className="sm:hidden"
             render={

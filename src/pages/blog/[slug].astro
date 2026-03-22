@@ -2,16 +2,11 @@
 import { render } from "astro:content";
 
 import Layout from "@/components/Layout.astro";
-import { Typography } from "@/components/ui/typography";
 import { Link } from "@/components/link";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Typography } from "@/components/ui/typography";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
 
 export function getStaticPaths() {
   return getBlogPostWindows().map(({ previous, current, next }) => ({

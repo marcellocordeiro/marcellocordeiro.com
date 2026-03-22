@@ -22,7 +22,7 @@ export function saveUserThemePreference(theme: Theme) {
 }
 
 export function getSystemThemePreference(): SystemTheme {
-  return window.matchMedia(THEME_MEDIA_QUERY).matches ? "dark" : "light";
+  return globalThis.matchMedia(THEME_MEDIA_QUERY).matches ? "dark" : "light";
 }
 
 export function registerTheme(theme: Theme) {

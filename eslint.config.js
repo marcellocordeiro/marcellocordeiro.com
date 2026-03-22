@@ -1,18 +1,27 @@
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import js from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
+import astro from "eslint-plugin-astro";
+import reactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
+export default defineConfig([
+  globalIgnores([".astro", "dist"]),
+  ...astro.configs.recommended,
+  ...astro.configs["jsx-a11y-recommended"],
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+    ],
+    languageOptions: {
+      ecmaVersion: 2024,
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+  },
 ]);
-
-export default eslintConfig;

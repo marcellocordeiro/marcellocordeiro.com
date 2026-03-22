@@ -1,9 +1,9 @@
 ---
 import "@/styles/global.css";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/consts";
-import { Header } from "@/components/header";
 import { Container } from "@/components/container";
 import Footer from "@/components/Footer.astro";
+import { Header } from "@/components/header";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/consts";
 
 interface Props {
   title?: string;
@@ -16,7 +16,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { pathname } = Astro.url;
 ---
 
-<html lang="en" class="antialiased">
+<html lang="en">
   <head>
     <!-- Global Metadata -->
     <meta charset="utf-8" />
@@ -59,9 +59,7 @@ const { pathname } = Astro.url;
   let theme = localStorage.getItem("theme") ?? "system";
 
   if (theme === "system" || !["light", "dark"].includes(theme)) {
-    theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    theme = globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 
   document.documentElement.dataset.theme = theme;

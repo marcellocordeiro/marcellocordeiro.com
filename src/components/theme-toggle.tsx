@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 
 import {
-  registerTheme,
   getUserThemePreference,
-  type Theme,
+  registerTheme,
   THEME_MEDIA_QUERY,
+  type Theme,
 } from "@/components/theme";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { DarkThemeIcon, LightThemeIcon, SystemThemeIcon, type IconType } from "@/config/icons";
+import { DarkThemeIcon, type IconType, LightThemeIcon, SystemThemeIcon } from "@/config/icons";
 
 export interface ThemeToggleProps {
   className?: string;
@@ -45,6 +45,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(getUserThemePreference());
   }, []);
 
@@ -54,7 +55,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         handleNewTheme("system");
       }
     };
-    const media = window.matchMedia(THEME_MEDIA_QUERY);
+    const media = globalThis.matchMedia(THEME_MEDIA_QUERY);
 
     media.addEventListener("change", handleMediaQuery);
 
