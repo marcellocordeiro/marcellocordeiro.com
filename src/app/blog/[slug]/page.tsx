@@ -35,7 +35,7 @@ export default async function Page({ params }: Props) {
   const { title, Content } = current;
 
   return (
-    <Typography className="mx-auto">
+    <Typography>
       <Link href="/blog">{"<- Back"}</Link>
 
       <h1 className="mt-4">{title}</h1>

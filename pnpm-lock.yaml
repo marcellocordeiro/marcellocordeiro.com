@@ -378,8 +378,8 @@ packages:
       '@content-collections/core': 0.x
       next: ^12 || ^13 || ^14 || ^15 || ^16
 
-  '@dotenvx/dotenvx@1.57.2':
-    resolution: {integrity: sha512-lv9+UZPnl/KOvShepevLWm3+/wc1It5kgO5Q580evnvOFMZcgKVEYFwxlL7Ohl9my1yjTsWo28N3PJYUEO8wFQ==}
+  '@dotenvx/dotenvx@1.57.4':
+    resolution: {integrity: sha512-Uk2cIy6Vb5pKv3hzjNW6m7YocX7W+41AADWa0cLDYiJCTrbGvqSOvUf8E4K3f3AQunbjf5h3/nBN4W2Z7g/PXw==}
     hasBin: true
 
   '@ecies/ciphers@0.2.5':
@@ -4788,7 +4788,7 @@ snapshots:
       '@content-collections/integrations': 0.5.0(@content-collections/core@0.14.3(typescript@6.0.2))
       next: 16.2.1(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
-  '@dotenvx/dotenvx@1.57.2':
+  '@dotenvx/dotenvx@1.57.4':
     dependencies:
       commander: 11.1.0
       dotenv: 17.3.1
@@ -8764,7 +8764,7 @@ snapshots:
       '@babel/parser': 7.29.2
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
       '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
-      '@dotenvx/dotenvx': 1.57.2
+      '@dotenvx/dotenvx': 1.57.4
       '@modelcontextprotocol/sdk': 1.28.0(zod@3.25.76)
       '@types/validate-npm-package-name': 4.0.2
       browserslist: 4.28.1

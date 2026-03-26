@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="border-t py-8">
       <div className="mx-auto max-w-3xl px-10">
         {/* Top grid */}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-10">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-center gap-10">
           <FooterLinks />
         </div>
 

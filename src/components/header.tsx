@@ -16,30 +16,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AUTHOR } from "@/config/constants";
 import { HouseIcon, type IconType, MenuClosedIcon, NewspaperIcon, RssIcon } from "@/config/icons";
 
-export interface NavbarItem {
-  href: Route;
-  label: string;
-  icon: IconType;
-}
-
-export const navbarItems: NavbarItem[] = [
-  {
-    href: "/",
-    label: "Home",
-    icon: HouseIcon,
-  },
-  {
-    href: "/blog",
-    label: "Blog",
-    icon: NewspaperIcon,
-  },
-  {
-    href: "/rss.xml",
-    label: "RSS",
-    icon: RssIcon,
-  },
-] as const;
-
 export function Header() {
   const pathname = usePathname();
   const [openSheet, setOpenSheet] = useState(false);
@@ -72,7 +48,7 @@ export function Header() {
   });
 
   return (
-    <header className="sticky top-0 border-b bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur">
       <NavigationMenu className="h-header mx-auto max-w-3xl justify-between px-10">
         <Link className="text-xl font-semibold whitespace-nowrap" href="/">
           {AUTHOR.name}
@@ -100,3 +76,27 @@ export function Header() {
     </header>
   );
 }
+
+interface NavbarItem {
+  href: Route;
+  label: string;
+  icon: IconType;
+}
+
+const navbarItems: NavbarItem[] = [
+  {
+    href: "/",
+    label: "Home",
+    icon: HouseIcon,
+  },
+  {
+    href: "/blog",
+    label: "Blog",
+    icon: NewspaperIcon,
+  },
+  {
+    href: "/rss.xml",
+    label: "RSS",
+    icon: RssIcon,
+  },
+] as const;

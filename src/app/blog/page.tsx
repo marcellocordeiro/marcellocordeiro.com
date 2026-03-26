@@ -30,5 +30,5 @@ export default function Page() {
     </Link>
   ));
 
-  return <Typography className="mx-auto flex flex-col gap-4">{items}</Typography>;
+  return <Typography className="flex flex-col gap-4">{items}</Typography>;
 }

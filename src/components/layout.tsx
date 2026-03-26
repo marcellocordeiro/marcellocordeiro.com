@@ -1,4 +1,3 @@
-import { Container } from "@/components/container";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 
@@ -10,11 +9,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-
-      <Container>
-        <main className="mx-auto w-full flex-auto py-4">{children}</main>
-      </Container>
-
+      <main className="wrapper py-4">{children}</main>
       <Footer />
     </>
   );
