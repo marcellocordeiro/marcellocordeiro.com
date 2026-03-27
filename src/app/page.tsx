@@ -30,7 +30,7 @@ export default function Page() {
             In my free time I enjoy playing games and working on fun projects. I've written a few
             emulators as challenges to develop new skills and learn new programming languages. I
             have also written this entire website from the scratch as way to brush up my web
-            development skills, which still needs a ton of improvements 😅.
+            development skills, which still needs a ton of improvements, oops.
           </p>
         </li>
       </ul>
@@ -38,25 +38,20 @@ export default function Page() {
       <dl>
         <dt>
           Game Boy emulator (
-          <Link
-            showExternalLinkIcon={false}
-            href="https://github.com/marcellocordeiro/gameboy-emulator"
-          >
+          <Link href="https://github.com/marcellocordeiro/gameboy-emulator">
             /marcellocordeiro/gameboy-emulator
           </Link>
           )
         </dt>
         <dd>
           - Game Boy/Game Boy Color emulator written in Rust. Supports Windows/macOS/Linux but also
-          runs in the browser.
+          runs in the browser:{" "}
+          <Link href="https://gb.marcellocordeiro.com">gb.marcellocordeiro.com</Link>
         </dd>
 
         <dt>
           NES emulator (
-          <Link
-            showExternalLinkIcon={false}
-            href="https://github.com/marcellocordeiro/gameboy-emulator"
-          >
+          <Link href="https://github.com/marcellocordeiro/gameboy-emulator">
             /marcellocordeiro/nes-emulator
           </Link>
           )
@@ -65,10 +60,7 @@ export default function Page() {
 
         <dt>
           This website (
-          <Link
-            showExternalLinkIcon={false}
-            href="https://github.com/marcellocordeiro/marcellocordeiro.com"
-          >
+          <Link href="https://github.com/marcellocordeiro/marcellocordeiro.com">
             /marcellocordeiro/marcellocordeiro.com
           </Link>
           )
