@@ -9,7 +9,8 @@ export interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
+  // Why is this sometimes returning `string | null`?
   const pathname = usePathname();
 
-  return <LayoutPrimitive pathname={pathname}>{children}</LayoutPrimitive>;
+  return <LayoutPrimitive pathname={pathname ?? ""}>{children}</LayoutPrimitive>;
 }

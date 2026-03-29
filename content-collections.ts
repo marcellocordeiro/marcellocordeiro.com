@@ -22,9 +22,11 @@ const posts = defineCollection({
     const image = createDefaultImport<StaticImageData>(`@/content/blog/${post.image}`);
 
     return {
-      ...post,
+      data: {
+        ...post,
+        image,
+      },
       Content,
-      image,
     };
   },
 });

@@ -30,10 +30,10 @@ export function GET() {
 
   for (const post of getBlogPosts()) {
     feed.addItem({
-      title: post.title,
-      link: new URL(post.slug, BLOG_URL).href,
-      description: post.description,
-      date: post.date,
+      title: post.data.title,
+      link: new URL(post.data.slug, BLOG_URL).href,
+      description: post.data.description,
+      date: post.data.date,
     });
   }
 
