@@ -3,7 +3,7 @@
 import { useTheme as useNextTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { isTheme, type Theme } from "@/components/themes/themes";
+import { isTheme, type Theme } from "@/components/theme/theme";
 
 export interface UseThemeProps {
   theme?: Theme;

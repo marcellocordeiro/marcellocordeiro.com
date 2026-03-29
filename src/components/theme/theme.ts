@@ -1,4 +1,4 @@
-import { DarkThemeIcon, type IconType, LightThemeIcon, SystemThemeIcon } from "@/config/icons";
+import { DarkThemeIcon, LightThemeIcon, SystemThemeIcon } from "@/config/icons";
 
 export type Theme = "system" | "light" | "dark";
 export type SystemTheme = Exclude<Theme, "system">;
@@ -23,8 +23,4 @@ export const themes = [
     label: "Dark",
     icon: DarkThemeIcon,
   },
-] as const satisfies {
-  theme: Theme;
-  label: string;
-  icon: IconType;
-}[];
+] as const;

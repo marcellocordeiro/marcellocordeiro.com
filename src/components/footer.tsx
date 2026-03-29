@@ -1,8 +1,7 @@
 import { Link } from "@/components/link";
-import { ThemeToggle } from "@/components/themes/theme-toggle";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
-import { AUTHOR, COPYRIGHT, GITHUB_URL, LINKEDIN_URL, SOURCE_CODE } from "@/config/constants";
-import { EmailIcon, GitHubIcon, LinkedInIcon } from "@/config/icons";
+import { COPYRIGHT, FOOTER_ITEMS, SOCIALS } from "@/config/constants";
 
 export function Footer() {
   return (
@@ -16,7 +15,7 @@ export function Footer() {
         {/* Bottom grid */}
         <div className="mt-10 flex flex-row items-center justify-between gap-4">
           <div className="">
-            <Copyright />
+            <p className="text-sm text-muted-foreground">{COPYRIGHT}</p>
             <Socials />
           </div>
 
@@ -27,32 +26,10 @@ export function Footer() {
   );
 }
 
-function Copyright() {
-  return <p className="text-sm text-muted-foreground">{COPYRIGHT}</p>;
-}
-
 function Socials() {
-  const socials = [
-    {
-      label: "GitHub",
-      href: GITHUB_URL,
-      icon: GitHubIcon,
-    },
-    {
-      label: "LinkedIn",
-      href: LINKEDIN_URL,
-      icon: LinkedInIcon,
-    },
-    {
-      label: "Email",
-      href: `mailto:${AUTHOR.email}`,
-      icon: EmailIcon,
-    },
-  ] as const;
-
   return (
     <div className="flex items-center gap-1">
-      {socials.map((item) => (
+      {SOCIALS.map((item) => (
         <Link
           key={item.label}
           href={item.href}
@@ -68,7 +45,7 @@ function Socials() {
 }
 
 function FooterLinks() {
-  return Object.entries(footerLinks).map(([group, links]) => (
+  return Object.entries(FOOTER_ITEMS).map(([group, links]) => (
     <div key={group}>
       <span className="text-sm font-medium">{group}</span>
       <nav>
@@ -88,17 +65,3 @@ function FooterLinks() {
     </div>
   ));
 }
-
-const footerLinks = {
-  Navigation: [
-    { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
-    { label: "RSS", href: "/rss.xml" },
-  ],
-  Resources: [{ label: "Source code", href: SOURCE_CODE }],
-  Contact: [
-    { label: "GitHub", href: GITHUB_URL },
-    { label: "LinkedIn", href: LINKEDIN_URL },
-    { label: "Email", href: `mailto:${AUTHOR.email}` },
-  ],
-} as const;

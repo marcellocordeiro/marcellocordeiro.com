@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-import { Link } from "@/components/link";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PostList } from "@/components/blog/post-list";
 import { Typography } from "@/components/ui/typography";
 import { getBlogPosts } from "@/lib/blog";
 
@@ -10,25 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const items = getBlogPosts().map((post) => (
-    <Link key={post.slug} href={`/blog/${post.slug}`}>
-      <Card>
-        <CardHeader>
-          <CardTitle>{post.title}</CardTitle>
-          <CardDescription>{post.description}</CardDescription>
-          <CardDescription>
-            <time dateTime={post.date.toISOString()}>
-              {post.date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </time>
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
-  ));
+  const posts = getBlogPosts();
 
-  return <Typography className="flex flex-col gap-4">{items}</Typography>;
+  return (
+    <Typography className="flex flex-col gap-4">
+      <PostList posts={posts} />
+    </Typography>
+  );
 }

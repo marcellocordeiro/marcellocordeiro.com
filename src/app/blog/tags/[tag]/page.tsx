@@ -7,7 +7,7 @@ export default async function Page({ params }: Props) {
   const { tag } = await params;
 
   return (
-    <Typography className="mx-auto">
+    <Typography>
       <p>{`Placeholder ${tag}`}</p>
     </Typography>
   );

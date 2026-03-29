@@ -1,7 +1,7 @@
 "use client";
 
-import { themes } from "@/components/themes/themes";
-import { useTheme } from "@/components/themes/use-theme";
+import { themes } from "@/components/theme/theme";
+import { useTheme } from "@/components/theme/use-theme";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 

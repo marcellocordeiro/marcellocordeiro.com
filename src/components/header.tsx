@@ -1,7 +1,5 @@
 "use client";
 
-import type { Route } from "next";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Link } from "@/components/link";
@@ -13,18 +11,18 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { AUTHOR } from "@/config/constants";
-import { HouseIcon, type IconType, MenuClosedIcon, NewspaperIcon, RssIcon } from "@/config/icons";
+import { AUTHOR, NAV_ITEMS } from "@/config/constants";
+import { MenuClosedIcon } from "@/config/icons";
+import type { Route } from "@/types";
 
-export function Header() {
-  const pathname = usePathname();
+export interface HeaderProps {
+  pathname: string;
+}
+
+export function Header({ pathname }: HeaderProps) {
   const [openSheet, setOpenSheet] = useState(false);
 
   const isActive = (href: Route) => {
-    if (pathname === null) {
-      return false;
-    }
-
     if (href === "/") {
       return pathname === "/";
     }
@@ -32,7 +30,7 @@ export function Header() {
     return pathname.startsWith(href);
   };
 
-  const navigation = navbarItems.map((item) => {
+  const navigation = NAV_ITEMS.map((item) => {
     return (
       <NavigationMenuItem className="not-sm:w-full" key={item.href}>
         <NavigationMenuLink
@@ -76,27 +74,3 @@ export function Header() {
     </header>
   );
 }
-
-interface NavbarItem {
-  href: Route;
-  label: string;
-  icon: IconType;
-}
-
-const navbarItems: NavbarItem[] = [
-  {
-    href: "/",
-    label: "Home",
-    icon: HouseIcon,
-  },
-  {
-    href: "/blog",
-    label: "Blog",
-    icon: NewspaperIcon,
-  },
-  {
-    href: "/rss.xml",
-    label: "RSS",
-    icon: RssIcon,
-  },
-] as const;

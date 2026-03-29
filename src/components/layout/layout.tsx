@@ -2,13 +2,14 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 
 export interface LayoutProps {
+  pathname: string;
   children: React.ReactNode;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ pathname, children }: LayoutProps) {
   return (
     <>
-      <Header />
+      <Header pathname={pathname} />
       <main className="wrapper py-4">{children}</main>
       <Footer />
     </>

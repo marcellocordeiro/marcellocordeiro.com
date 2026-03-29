@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { PostNavigation } from "@/components/blog/post-navigation";
 import { Link } from "@/components/link";
 import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
 import { getAdjacentBlogPosts, getBlogPost, getBlogPostsSlugs } from "@/lib/blog";
-
-import { PostNavigation } from "./post-navigation";
 
 type Props = PageProps<"/blog/[slug]">;
 
