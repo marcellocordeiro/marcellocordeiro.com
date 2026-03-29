@@ -8,14 +8,14 @@ export interface PostList {
 
 export function PostList({ posts }: PostList) {
   return posts.map((post) => (
-    <Link key={post.slug} href={`/blog/${post.slug}`}>
+    <Link key={post.data.slug} href={`/blog/${post.data.slug}`}>
       <Card>
         <CardHeader>
-          <CardTitle>{post.title}</CardTitle>
-          <CardDescription>{post.description}</CardDescription>
+          <CardTitle>{post.data.title}</CardTitle>
+          <CardDescription>{post.data.description}</CardDescription>
           <CardDescription>
-            <time dateTime={post.date.toISOString()}>
-              {post.date.toLocaleDateString("en-US", {
+            <time dateTime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",

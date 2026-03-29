@@ -10,9 +10,9 @@ export interface PostNavigationProps {
 export function PostNavigation({ previous, next }: PostNavigationProps) {
   return (
     <nav className="grid grid-cols-[auto_auto] gap-5">
-      {previous && <PreviousPost slug={previous.slug} title={previous.title} />}
+      {previous && <PreviousPost slug={previous.data.slug} title={previous.data.title} />}
 
-      {next && <NextPost slug={next.slug} title={next.title} />}
+      {next && <NextPost slug={next.data.slug} title={next.data.title} />}
     </nav>
   );
 }

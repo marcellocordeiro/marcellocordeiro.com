@@ -4,10 +4,10 @@ const { posts, tags } = (() => {
   const isDev = process.env.NODE_ENV === "development";
 
   const sortedPosts = __posts
-    .filter((p) => (p.dev ? isDev : true))
-    .toSorted((a, b) => b.date.valueOf() - a.date.valueOf());
+    .filter((p) => (p.data.dev ? isDev : true))
+    .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-  const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.tags))].toSorted();
+  const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.data.tags))].toSorted();
 
   return { posts: sortedPosts, tags: sortedTags };
 })();
@@ -17,13 +17,13 @@ export function getBlogPosts(): Post[] {
 }
 
 export function getBlogPost(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug);
+  return posts.find((p) => p.data.slug === slug);
 }
 
 export function getAdjacentBlogPosts(
   slug: string,
 ): { previous?: Post; current: Post; next?: Post } | undefined {
-  const index = posts.findIndex((p) => p.slug === slug);
+  const index = posts.findIndex((p) => p.data.slug === slug);
 
   const current = posts[index];
 
@@ -50,7 +50,7 @@ export function getBlogPostWindows(): { previous?: Post; current: Post; next?: P
 }
 
 export function getBlogPostsSlugs(): { slug: string }[] {
-  return posts.map(({ slug }) => ({ slug }));
+  return posts.map(({ data: { slug } }) => ({ slug }));
 }
 
 export function getBlogPostsTags(): { tag: string }[] {

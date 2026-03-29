@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: post.title,
+    title: post.data.title,
   };
 }
 
@@ -31,7 +31,10 @@ export default async function Page({ params }: Props) {
   }
 
   const { previous, current, next } = posts;
-  const { title, Content } = current;
+  const {
+    data: { title },
+    Content,
+  } = current;
 
   return (
     <Typography>
@@ -46,7 +49,7 @@ export default async function Page({ params }: Props) {
       <div>
         <div>
           <p>Tags:</p>
-          {current.tags.map((t) => (
+          {current.data.tags.map((t) => (
             <p key={t}>{t}</p>
           ))}
         </div>

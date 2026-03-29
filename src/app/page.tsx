@@ -80,8 +80,8 @@ export default function Page() {
       <p>Some of the blog posts I've written recently</p>
       <ul>
         {posts.map((p) => (
-          <li key={p.slug}>
-            <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+          <li key={p.data.slug}>
+            <Link href={`/blog/${p.data.slug}`}>{p.data.title}</Link>
           </li>
         ))}
       </ul>
