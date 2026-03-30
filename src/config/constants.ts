@@ -13,7 +13,8 @@ export const AUTHOR = {
 export const COPYRIGHT = `© ${new Date().getFullYear()} ${AUTHOR.name}`;
 
 export const SITE_TITLE = AUTHOR.name;
-export const SITE_DESCRIPTION = "";
+export const SITE_DESCRIPTION =
+  "This is my personal website where I try to post cool things about me, my work and my hobbies.";
 
 export const GITHUB_URL = "https://github.com/marcellocordeiro";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/marcello-cordeiro";

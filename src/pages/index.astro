@@ -1,0 +1,14 @@
+---
+import { Link } from "@/components/link";
+import { Typography } from "@/components/ui/typography";
+import Layout from "@/layouts/Layout.astro";
+import { getBlogPosts } from "@/lib/blog";
+import { Content } from "@/content/home.mdx";
+import { mdxComponents } from "@/components/mdx-components";
+---
+
+<Layout>
+  <Typography>
+    <Content components={mdxComponents} />
+  </Typography>
+</Layout>

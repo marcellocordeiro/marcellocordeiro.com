@@ -1,0 +1,20 @@
+---
+import type { ImageMetadata } from "astro";
+import { Layout as LayoutPrimitive } from "@/components/layout";
+import RootLayout from "./RootLayout.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: ImageMetadata;
+}
+
+const { title, description, image } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<RootLayout title={title} description={description}>
+  <LayoutPrimitive pathname={pathname} client:load>
+    <slot />
+  </LayoutPrimitive>
+</RootLayout>

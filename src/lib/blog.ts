@@ -1,11 +1,14 @@
-import { allPosts as __posts, type Post } from "../../.content-collections/generated";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const { posts, tags } = (() => {
-  const isDev = process.env.NODE_ENV === "development";
+type Post = CollectionEntry<"blog">;
 
-  const sortedPosts = __posts
+const { posts, tags } = await (async () => {
+  const isDev = process.env["NODE_ENV"] === "development";
+
+  const collection = await getCollection("blog");
+  const sortedPosts = collection
     .filter((p) => (p.data.dev ? isDev : true))
-    .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.data.tags))].toSorted();
 

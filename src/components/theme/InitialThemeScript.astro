@@ -1,0 +1,17 @@
+<script is:inline>
+  function updateDOM(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.style.colorScheme = theme;
+  }
+
+  let resolvedTheme = localStorage.getItem("theme");
+
+  if (resolvedTheme !== "light" && resolvedTheme !== "dark") {
+    resolvedTheme = globalThis.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+  }
+
+  updateDOM(resolvedTheme);
+</script>

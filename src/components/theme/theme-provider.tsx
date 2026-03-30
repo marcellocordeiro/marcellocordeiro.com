@@ -1,9 +1,17 @@
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { useEffect, useState } from "react";
 
-export interface ThemeProviderProps {
-  children: React.ReactNode;
-}
+export function ThemeProvider() {
+  const [theme, setThemeState] = useState<"theme-light" | "dark" | "system">("theme-light");
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  return <NextThemesProvider disableTransitionOnChange>{children}</NextThemesProvider>;
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setThemeState(isDarkMode ? "dark" : "theme-light");
+  }, []);
+
+  useEffect(() => {
+    const isDark =
+      theme === "dark" ||
+      (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+  }, [theme]);
 }

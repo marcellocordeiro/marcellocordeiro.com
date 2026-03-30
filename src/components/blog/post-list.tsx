@@ -14,8 +14,8 @@ export function PostList({ posts }: PostList) {
           <CardTitle>{post.data.title}</CardTitle>
           <CardDescription>{post.data.description}</CardDescription>
           <CardDescription>
-            <time dateTime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString("en-US", {
+            <time dateTime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",

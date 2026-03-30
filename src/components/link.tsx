@@ -1,27 +1,24 @@
-import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-
 import { ExternalLinkIcon } from "@/config/icons";
 import { cn } from "@/lib/utils";
 
-export interface LinkProps<RouteType> extends NextLinkProps<RouteType> {
+export interface LinkProps extends React.ComponentProps<"a"> {
   showExternalLinkIcon?: boolean;
 }
 
-export function Link<RouteType>({
+export function Link({
   className,
   children,
   href,
   rel,
   target,
-  prefetch = false,
   showExternalLinkIcon,
   ...props
-}: LinkProps<RouteType>) {
+}: LinkProps) {
   const isExternal = __isExternal(href);
   const resolvedShowExternalLinkIcon = showExternalLinkIcon ?? isExternal;
 
   return (
-    <NextLink
+    <a
       className={cn(
         resolvedShowExternalLinkIcon && "inline-flex place-items-center gap-1",
         className,
@@ -29,21 +26,18 @@ export function Link<RouteType>({
       href={href}
       rel={rel ?? (isExternal ? "noopener noreferrer" : undefined)}
       target={target ?? (isExternal ? "_blank" : undefined)}
-      prefetch={prefetch}
       {...props}
     >
       {children}
       {resolvedShowExternalLinkIcon && <ExternalLinkIcon />}
-    </NextLink>
+    </a>
   );
 }
 
-function __isExternal<RouteType>(href: LinkProps<RouteType>["href"]): boolean {
-  if (typeof href === "string") {
-    return !(href.startsWith("/") || href.startsWith("?") || href.startsWith("#"));
-  } else if (typeof href === "object") {
+function __isExternal(href: LinkProps["href"]): boolean {
+  if (href === undefined) {
     return false;
   }
 
-  return href; // never
+  return !(href.startsWith("/") || href.startsWith("?") || href.startsWith("#"));
 }

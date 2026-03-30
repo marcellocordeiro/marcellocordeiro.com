@@ -1,0 +1,13 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import { PostList } from "@/components/blog/post-list";
+import { getBlogPosts } from "@/lib/blog";
+import { SITE_TITLE } from "@/config/constants";
+
+const posts = getBlogPosts();
+---
+
+<Layout title=`Blog | ${SITE_TITLE}`>
+  <PostList posts={posts} />
+</Layout>

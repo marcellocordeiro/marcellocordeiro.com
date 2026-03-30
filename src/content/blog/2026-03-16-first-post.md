@@ -2,7 +2,7 @@
 slug: first-post
 title: "First post"
 description: "Lorem ipsum dolor sit amet"
-date: "2026-03-10"
+pubDate: "2026-03-10"
 image: "assets/blog-placeholder.jpg"
 tags:
   - test
