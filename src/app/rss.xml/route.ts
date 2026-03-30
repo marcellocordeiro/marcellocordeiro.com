@@ -18,6 +18,7 @@ export function GET() {
     description: SITE_DESCRIPTION,
     link: SITE_URL,
     language: "en",
+    stylesheet: "/rss/styles.xsl",
     favicon: FAVICON_ICO_URL,
     copyright: COPYRIGHT,
     feedLinks: {
@@ -33,7 +34,7 @@ export function GET() {
       title: post.data.title,
       link: new URL(post.data.slug, BLOG_URL).href,
       description: post.data.description,
-      date: post.data.date,
+      date: post.data.pubDate,
     });
   }
 

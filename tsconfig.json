@@ -2,7 +2,7 @@
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "noPropertyAccessFromIndexSignature": true,
+    // "noPropertyAccessFromIndexSignature": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,

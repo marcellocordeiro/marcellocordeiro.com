@@ -1,0 +1,14 @@
+<script is:inline>
+  let resolvedTheme = globalThis.localStorage.getItem("theme");
+
+  if (resolvedTheme !== "light" && resolvedTheme !== "dark") {
+    resolvedTheme = globalThis.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+  }
+
+  const element = globalThis.document.documentElement;
+  element.dataset.theme = resolvedTheme;
+  element.style.colorScheme = resolvedTheme;
+</script>

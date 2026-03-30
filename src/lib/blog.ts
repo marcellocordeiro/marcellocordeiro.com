@@ -5,7 +5,7 @@ const { posts, tags } = (() => {
 
   const sortedPosts = __posts
     .filter((p) => (p.data.dev ? isDev : true))
-    .toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.data.tags))].toSorted();
 
