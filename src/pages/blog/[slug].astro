@@ -1,0 +1,51 @@
+---
+import { render } from "astro:content";
+
+import { PostNavigation } from "@/components/blog/post-navigation";
+import { Link } from "@/components/link";
+import { mdxComponents } from "@/components/mdx-components";
+import { Separator } from "@/components/ui/separator";
+import { Typography } from "@/components/ui/typography";
+import { SITE_TITLE } from "@/config/constants";
+import Layout from "@/layouts/Layout.astro";
+import { getBlogPostWindows, type Post } from "@/lib/blog";
+
+export function getStaticPaths() {
+  const windows = getBlogPostWindows();
+  return windows.map(({ previous, current, next }) => ({
+    params: { slug: current.id },
+    props: { previous, current, next },
+  }));
+}
+
+interface Props {
+  previous?: Post;
+  current: Post;
+  next?: Post;
+}
+
+const { previous, current, next } = Astro.props;
+const { title } = current.data;
+const { Content } = await render(current);
+---
+
+<Layout title=`${title} | ${SITE_TITLE}`>
+  <Typography>
+    <Link href="/blog">{"<- Back"}</Link>
+
+    <h1 class="mt-4">{title}</h1>
+
+    <Content components={mdxComponents} />
+
+    <Separator />
+
+    <div>
+      <div>
+        <p>Tags:</p>
+        {current.data.tags.map((t) => <p>{t}</p>)}
+      </div>
+
+      <PostNavigation previous={previous} next={next} />
+    </div>
+  </Typography>
+</Layout>

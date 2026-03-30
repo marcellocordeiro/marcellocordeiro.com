@@ -1,9 +1,12 @@
-import { allPosts as __posts, type Post } from "../../.content-collections/generated";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-const { posts, tags } = (() => {
+type Post = CollectionEntry<"blog">;
+
+const { posts, tags } = await (async () => {
   const isDev = process.env.NODE_ENV === "development";
 
-  const sortedPosts = __posts
+  const collection = await getCollection("blog");
+  const sortedPosts = collection
     .filter((p) => (p.data.dev ? isDev : true))
     .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 

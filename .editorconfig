@@ -35,8 +35,5 @@ indent_size = 2
 [*.{js,jsx,ts,tsx}]
 indent_size = 2
 
-[*.css]
-indent_size = 2
-
-[*.html]
+[*.{html,astro,css}]
 indent_size = 2

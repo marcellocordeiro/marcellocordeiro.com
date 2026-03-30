@@ -14,10 +14,10 @@ import { Link } from "@/components/link";
 - Game Boy emulator ([/marcellocordeiro/gameboy-emulator]("https://github.com/marcellocordeiro/gameboy-emulator"))
   - Game Boy/Game Boy Color emulator written in Rust. Supports Windows/macOS/Linux but also runs in the browser: [gb.marcellocordeiro.com](https://gb.marcellocordeiro.com)
 
-- NES emulator [/marcellocordeiro/nes-emulator](https://github.com/marcellocordeiro/gameboy-emulator)
+- NES emulator ([/marcellocordeiro/nes-emulator](https://github.com/marcellocordeiro/gameboy-emulator))
   - NES emulator written in C++. Supports Windows/macOS/Linux.
 
-- This website [/marcellocordeiro/marcellocordeiro.com](https://github.com/marcellocordeiro/marcellocordeiro.com)
+- This website ([/marcellocordeiro/marcellocordeiro.com](https://github.com/marcellocordeiro/marcellocordeiro.com))
   - There is also a blog and a RSS feed. It'll be more useful for when there are more blog posts! It's fully open source, for your viewing pleasure (or not).
 
 ## Programming Languages And Tools
@@ -28,7 +28,7 @@ I mainly write Swift at work, but I can also comfortably write Rust, C++, JavaSc
 
 <ul>
   {getBlogPosts().map((p) => (
-    <li key={p.data.slug}>
+    <li>
       <Link href={`/blog/${p.data.slug}`}>{p.data.title}</Link>
     </li>
   ))}

@@ -35,9 +35,7 @@ export function Header({ pathname }: HeaderProps) {
       <NavigationMenuItem className="not-sm:w-full" key={item.href}>
         <NavigationMenuLink
           active={isActive(item.href)}
-          render={
-            <Link href={item.href} aria-label={item.label} onNavigate={() => setOpenSheet(false)} />
-          }
+          render={<Link href={item.href} aria-label={item.label} />}
         >
           {item.label}
         </NavigationMenuLink>
