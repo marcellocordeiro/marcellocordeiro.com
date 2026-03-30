@@ -1,17 +1,7 @@
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
-  plugins: [
-    "eslint",
-    "typescript",
-    "unicorn",
-    "react",
-    "react-perf",
-    "nextjs",
-    "oxc",
-    "import",
-    "jsx-a11y",
-  ],
+  plugins: ["eslint", "typescript", "unicorn", "react", "react-perf", "oxc", "import", "jsx-a11y"],
   categories: {
     correctness: "error",
     suspicious: "warn",
@@ -65,9 +55,6 @@ export default defineConfig({
       },
       attributes: {},
     },
-    next: {
-      rootDir: [],
-    },
     react: {
       formComponents: [],
       linkComponents: ["Link"],
@@ -93,6 +80,7 @@ export default defineConfig({
     browser: true,
     node: true,
     es2024: true,
+    astro: true,
   },
   globals: {},
   ignorePatterns: [],

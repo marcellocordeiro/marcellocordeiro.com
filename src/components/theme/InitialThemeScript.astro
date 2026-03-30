@@ -1,10 +1,5 @@
 <script is:inline>
-  function updateDOM(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.style.colorScheme = theme;
-  }
-
-  let resolvedTheme = localStorage.getItem("theme");
+  let resolvedTheme = globalThis.localStorage.getItem("theme");
 
   if (resolvedTheme !== "light" && resolvedTheme !== "dark") {
     resolvedTheme = globalThis.matchMedia("(prefers-color-scheme: dark)")
@@ -13,5 +8,7 @@
       : "light";
   }
 
-  updateDOM(resolvedTheme);
+  const element = globalThis.document.documentElement;
+  element.dataset.theme = resolvedTheme;
+  element.style.colorScheme = resolvedTheme;
 </script>

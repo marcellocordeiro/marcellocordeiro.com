@@ -10,10 +10,12 @@ export function GET(): Promise<Response> {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: SITE_URL,
+    trailingSlash: false,
+    stylesheet: "/rss/styles.xsl",
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      pubDate: post.data.date,
+      pubDate: post.data.pubDate,
       link: `/blog/${post.data.slug}`,
     })),
   });

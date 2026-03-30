@@ -23,11 +23,11 @@ export type SystemTheme = Exclude<Theme, "system">;
 
 export const DARK_MODE_MEDIA_QUERY = "(prefers-color-scheme: dark)";
 
-export function isTheme(value: string): value is Theme {
+export function isTheme(value: string | null): value is Theme {
   return value === "system" || value === "light" || value === "dark";
 }
 
-export function isSystemTheme(value: string): value is SystemTheme {
+export function isSystemTheme(value: string | null): value is SystemTheme {
   return value === "light" || value === "dark";
 }
 
@@ -38,15 +38,17 @@ export function getSystemTheme(): SystemTheme {
 export function updateTheme(theme: Theme) {
   if (theme === "system") {
     theme = getSystemTheme();
-    localStorage.removeItem("theme");
+    globalThis.localStorage.removeItem("theme");
   } else {
-    localStorage.setItem("theme", theme);
+    globalThis.localStorage.setItem("theme", theme);
   }
 
   updateDOMTheme(theme);
 }
 
 export function updateDOMTheme(systemTheme: SystemTheme) {
-  document.documentElement.setAttribute("data-theme", systemTheme);
-  document.documentElement.style.colorScheme = systemTheme;
+  const element = globalThis.document.documentElement;
+
+  element.dataset.theme = systemTheme;
+  element.style.colorScheme = systemTheme;
 }

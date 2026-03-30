@@ -1,9 +1,9 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 type Post = CollectionEntry<"blog">;
 
 const { posts, tags } = await (async () => {
-  const isDev = process.env["NODE_ENV"] === "development";
+  const isDev = process.env.NODE_ENV === "development";
 
   const collection = await getCollection("blog");
   const sortedPosts = collection

@@ -1,13 +1,15 @@
 ---
-import { Image } from "astro:assets";
-import Layout from "@/layouts/Layout.astro";
 import { PostList } from "@/components/blog/post-list";
-import { getBlogPosts } from "@/lib/blog";
+import { Typography } from "@/components/ui/typography";
 import { SITE_TITLE } from "@/config/constants";
+import Layout from "@/layouts/Layout.astro";
+import { getBlogPosts } from "@/lib/blog";
 
 const posts = getBlogPosts();
 ---
 
 <Layout title=`Blog | ${SITE_TITLE}`>
-  <PostList posts={posts} />
+  <Typography className="flex flex-col gap-4 mx-auto">
+    <PostList posts={posts} />
+  </Typography>
 </Layout>

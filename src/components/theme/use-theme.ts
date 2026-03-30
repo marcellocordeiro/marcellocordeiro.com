@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import {
   DARK_MODE_MEDIA_QUERY,
   isTheme,
+  type Theme,
   updateDOMTheme,
   updateTheme,
-  type Theme,
 } from "@/components/theme/theme";
 
 export interface UseTheme {
@@ -21,9 +21,9 @@ export function useTheme(): UseTheme {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") ?? "system";
+    const savedTheme = localStorage.getItem("theme");
 
-    if (savedTheme === "system" || savedTheme === "light" || savedTheme === "dark") {
+    if (isTheme(savedTheme)) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(savedTheme);
     }
@@ -50,16 +50,16 @@ export function useTheme(): UseTheme {
     return () => mql.removeEventListener("change", handleMediaChange);
   }, [theme]);
 
-  if (!isMounted || theme === undefined || !isTheme(theme)) {
-    return {
-      setTheme: (_) => {},
-    };
-  }
-
   const handleSetTheme = (newTheme: Theme) => {
     updateTheme(newTheme);
     setTheme(newTheme);
   };
+
+  if (!isMounted) {
+    return {
+      setTheme: handleSetTheme,
+    };
+  }
 
   return {
     theme,

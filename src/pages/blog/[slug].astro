@@ -1,4 +1,6 @@
 ---
+import { render } from "astro:content";
+
 import { PostNavigation } from "@/components/blog/post-navigation";
 import { Link } from "@/components/link";
 import { mdxComponents } from "@/components/mdx-components";
@@ -7,7 +9,6 @@ import { Typography } from "@/components/ui/typography";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
-import { render } from "astro:content";
 
 export function getStaticPaths() {
   const windows = getBlogPostWindows();

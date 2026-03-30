@@ -1,11 +1,12 @@
 ---
 import "@/styles/globals.css";
-import { Image } from "astro:assets";
 
 import type { ImageMetadata } from "astro";
-import FallbackImage from "../content/blog/assets/blog-placeholder.jpg";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/constants";
+import Font from "astro/components/Font.astro";
+
 import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/constants";
+import FallbackImage from "@/content/blog/assets/blog-placeholder.jpg";
 
 interface Props {
   title?: string;
@@ -39,6 +40,8 @@ const {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Font preloads -->
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" preload />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
