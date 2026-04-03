@@ -1,0 +1,34 @@
+---
+import type { Post } from "@/lib/blog";
+
+import PostNavigatorLink from "./PostNavigatorLink.astro";
+
+interface Props {
+  previous?: Post;
+  next?: Post;
+}
+
+const { previous, next } = Astro.props;
+---
+
+<nav class="grid grid-cols-2 gap-5">
+  {
+    previous && (
+      <PostNavigatorLink
+        position="previous"
+        slug={previous.data.slug}
+        title={previous.data.title}
+      />
+    )
+  }
+
+  {
+    next && (
+      <PostNavigatorLink
+        position="next"
+        slug={next.data.slug}
+        title={next.data.title}
+      />
+    )
+  }
+</nav>

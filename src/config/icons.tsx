@@ -43,3 +43,4 @@ export const LinkedInIcon = FaLinkedinIn;
 export const EmailIcon = FaEnvelope;
 
 export const MenuClosedIcon = LuMenu;
+export const MenuOpenIcon = LuX;

@@ -1,6 +1,6 @@
 ---
-import { PostList } from "@/components/blog/post-list";
-import { Typography } from "@/components/ui/typography";
+import PostCardLink from "@/components/blog/PostCardLink.astro";
+import Typography from "@/components/ui/Typography.astro";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPosts } from "@/lib/blog";
@@ -9,7 +9,7 @@ const posts = getBlogPosts();
 ---
 
 <Layout title=`Blog | ${SITE_TITLE}`>
-  <Typography className="flex flex-col gap-4 mx-auto">
-    <PostList posts={posts} />
+  <Typography class="flex flex-col gap-4 mx-auto">
+    {posts.map((post) => <PostCardLink post={post} />)}
   </Typography>
 </Layout>

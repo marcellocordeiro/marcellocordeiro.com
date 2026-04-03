@@ -28,7 +28,6 @@ export function useTheme(): UseTheme {
       setTheme(savedTheme);
     }
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
@@ -51,8 +50,8 @@ export function useTheme(): UseTheme {
   }, [theme]);
 
   const handleSetTheme = (newTheme: Theme) => {
-    updateTheme(newTheme);
     setTheme(newTheme);
+    updateTheme(newTheme);
   };
 
   if (!isMounted) {

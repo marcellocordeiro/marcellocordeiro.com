@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
 
-import { Footer } from "@/components/footer";
+import Footer from "@/components/footer/Footer.astro";
 import { Header } from "@/components/header";
 
 import RootLayout from "./RootLayout.astro";
@@ -19,5 +19,5 @@ const { pathname } = Astro.url;
 <RootLayout title={title} description={description} image={image}>
   <Header pathname={pathname} client:load />
   <main class="wrapper py-4"><slot /></main>
-  <Footer client:load />
+  <Footer />
 </RootLayout>

@@ -9,13 +9,21 @@ import { SITE_URL } from "./src/config/constants";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    react({
+      babel: { plugins: ["babel-plugin-react-compiler"] },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
   server: {
     port: 3000,
-    // host: true,
+  },
+  devToolbar: {
+    enabled: false,
   },
   image: {
     responsiveStyles: true,

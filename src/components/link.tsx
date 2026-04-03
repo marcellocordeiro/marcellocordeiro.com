@@ -7,14 +7,22 @@ export interface LinkProps extends React.ComponentProps<"a"> {
 
 export function Link({
   className,
-  children,
   href,
   rel,
   target,
   showExternalLinkIcon,
+  children,
   ...props
 }: LinkProps) {
-  const isExternal = __isExternal(href);
+  function __isExternal(): boolean {
+    if (href === undefined) {
+      return false;
+    }
+
+    return !(href.startsWith("/") || href.startsWith("?") || href.startsWith("#"));
+  }
+
+  const isExternal = __isExternal();
   const resolvedShowExternalLinkIcon = showExternalLinkIcon ?? isExternal;
 
   return (
@@ -32,12 +40,4 @@ export function Link({
       {resolvedShowExternalLinkIcon && <ExternalLinkIcon />}
     </a>
   );
-}
-
-function __isExternal(href: LinkProps["href"]): boolean {
-  if (href === undefined) {
-    return false;
-  }
-
-  return !(href.startsWith("/") || href.startsWith("?") || href.startsWith("#"));
 }

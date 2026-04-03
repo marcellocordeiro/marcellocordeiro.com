@@ -4,7 +4,7 @@
 
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is([data-theme="dark"] *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
   --background: oklch(0.994 0 0);
@@ -130,6 +130,7 @@
 
   html {
     @apply scroll-smooth font-sans antialiased;
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -151,6 +152,10 @@
 }
 
 @layer components {
+  .min-h-header {
+    min-height: var(--header-height);
+  }
+
   .h-header {
     height: var(--header-height);
   }

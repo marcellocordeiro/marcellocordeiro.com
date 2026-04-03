@@ -1,0 +1,3 @@
+# https://developers.google.com/crawling/docs/robots-txt/create-robots-txt
+User-agent: *
+Allow: /

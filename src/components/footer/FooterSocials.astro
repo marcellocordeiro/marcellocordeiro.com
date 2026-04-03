@@ -1,0 +1,20 @@
+---
+import { Link } from "@/components/link";
+import { buttonVariants } from "@/components/ui/button/variants";
+import { SOCIALS } from "@/config/constants";
+---
+
+<div class="flex items-center gap-1">
+  {
+    SOCIALS.map((item) => (
+      <Link
+        href={item.href}
+        aria-label={item.label}
+        showExternalLinkIcon={false}
+        className={buttonVariants({ variant: "ghost", size: "icon" })}
+      >
+        <item.icon />
+      </Link>
+    ))
+  }
+</div>

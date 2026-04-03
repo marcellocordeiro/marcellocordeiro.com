@@ -1,11 +1,11 @@
 ---
 import { render } from "astro:content";
 
-import { PostNavigation } from "@/components/blog/post-navigation";
+import PostNavigator from "@/components/blog/post-navigator/PostNavigator.astro";
 import { Link } from "@/components/link";
 import { mdxComponents } from "@/components/mdx-components";
 import { Separator } from "@/components/ui/separator";
-import { Typography } from "@/components/ui/typography";
+import Typography from "@/components/ui/Typography.astro";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
@@ -45,7 +45,7 @@ const { Content } = await render(current);
         {current.data.tags.map((t) => <p>{t}</p>)}
       </div>
 
-      <PostNavigation previous={previous} next={next} />
+      <PostNavigator previous={previous} next={next} />
     </div>
   </Typography>
 </Layout>
