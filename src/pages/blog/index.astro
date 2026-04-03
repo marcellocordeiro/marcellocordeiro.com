@@ -9,7 +9,7 @@ const posts = getBlogPosts();
 ---
 
 <Layout title=`Blog | ${SITE_TITLE}`>
-  <Typography class="flex flex-col gap-4 mx-auto">
+  <Typography class="mx-auto flex flex-col gap-4">
     {posts.map((post) => <PostCardLink post={post} />)}
   </Typography>
 </Layout>

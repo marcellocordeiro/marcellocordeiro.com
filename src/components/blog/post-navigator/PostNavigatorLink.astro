@@ -1,12 +1,13 @@
 ---
 import { cva } from "class-variance-authority";
 
-import { Link } from "@/components/link";
-import { Card } from "@/components/ui/card/card";
-import { CardDescription } from "@/components/ui/card/card-description";
-import { CardHeader } from "@/components/ui/card/card-header";
-import { CardTitle } from "@/components/ui/card/card-title";
-import { ChevronLeftIcon, ChevronRightIcon } from "@/config/icons";
+import Link from "@/components/Link.svelte";
+import SvelteIcon from "@/components/SvelteIcon.svelte";
+import Card from "@/components/ui/card/Card.astro";
+import CardDescription from "@/components/ui/card/CardDescription.astro";
+import CardHeader from "@/components/ui/card/CardHeader.astro";
+import CardTitle from "@/components/ui/card/CardTitle.astro";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/config/icons.svelte";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -61,14 +62,14 @@ const LABEL = {
   },
 } as const;
 
-const { text, icon: Icon } = LABEL[position];
+const { text, icon } = LABEL[position];
 ---
 
-<Link className={cn(navItemVariants({ position }))} href={`/blog/${slug}`}>
+<Link class={cn(navItemVariants({ position }))} href={`/blog/${slug}`}>
   <Card>
-    <CardHeader className={cn(cardHeaderVariants({ position }))}>
-      <CardTitle className={cn(labelVariants({ position }))}>
-        <Icon />
+    <CardHeader class={cn(cardHeaderVariants({ position }))}>
+      <CardTitle class={cn(labelVariants({ position }))}>
+        <SvelteIcon {icon} />
         {text}
       </CardTitle>
       <CardDescription>{title}</CardDescription>

@@ -1,6 +1,7 @@
 ---
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+import ThemeToggle from "@/components/theme/ThemeToggle.svelte";
 import { COPYRIGHT } from "@/config/constants";
+
 import FooterLinks from "./FooterLinks.astro";
 import FooterSocials from "./FooterSocials.astro";
 ---
@@ -19,7 +20,7 @@ import FooterSocials from "./FooterSocials.astro";
         <FooterSocials />
       </div>
 
-      <ThemeToggle client:load />
+      <ThemeToggle client:load transition:persist />
     </div>
   </div>
 </footer>

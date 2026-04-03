@@ -4,7 +4,7 @@
 
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
   --background: oklch(0.994 0 0);
@@ -77,6 +77,14 @@
 :root {
   --radius: 0.625rem;
   --header-height: calc(var(--spacing) * 16);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @theme inline {

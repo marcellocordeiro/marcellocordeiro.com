@@ -1,4 +1,4 @@
-import { Link } from "@/components/link";
+import Link from "@/components/Link.svelte";
 
 export const mdxComponents = {
   a: Link,

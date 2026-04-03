@@ -9,11 +9,15 @@ default:
 # Lint the project
 [group("maintenance")]
 lint *ARGS:
+  pnpm lint:eslint
+  pnpm lint:biome
   pnpm lint {{ARGS}}
 
 # Format the project
 [group("maintenance")]
 format:
+  pnpm format:prettier
+  pnpm format:biome
   pnpm format
 
 # Lint and fix the project, then format
@@ -35,9 +39,9 @@ dev:
 build:
   pnpm build
 
-# Build and serve
+# Build and preview
 [group("development")]
-serve:
+preview:
   pnpm build
-  pnpm serve
+  pnpm preview
 

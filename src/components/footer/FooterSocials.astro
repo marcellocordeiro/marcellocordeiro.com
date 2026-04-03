@@ -1,7 +1,8 @@
 ---
-import { Link } from "@/components/link";
+import Link from "@/components/Link.svelte";
+import SvelteIcon from "@/components/SvelteIcon.svelte";
 import { buttonVariants } from "@/components/ui/button/variants";
-import { SOCIALS } from "@/config/constants";
+import { SOCIALS } from "@/config/navigation-items.svelte";
 ---
 
 <div class="flex items-center gap-1">
@@ -11,9 +12,9 @@ import { SOCIALS } from "@/config/constants";
         href={item.href}
         aria-label={item.label}
         showExternalLinkIcon={false}
-        className={buttonVariants({ variant: "ghost", size: "icon" })}
+        class={buttonVariants({ variant: "ghost", size: "icon" })}
       >
-        <item.icon />
+        <SvelteIcon icon={item.icon} />
       </Link>
     ))
   }

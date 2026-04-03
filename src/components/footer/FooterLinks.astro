@@ -1,6 +1,6 @@
 ---
-import { Link } from "@/components/link";
-import { FOOTER_ITEMS } from "@/config/constants";
+import Link from "@/components/Link.svelte";
+import { FOOTER_ITEMS } from "@/config/navigation-items.svelte";
 ---
 
 {
@@ -12,8 +12,8 @@ import { FOOTER_ITEMS } from "@/config/constants";
           {links.map((link) => (
             <li>
               <Link
+                class="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </Link>

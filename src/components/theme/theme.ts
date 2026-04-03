@@ -1,27 +1,9 @@
-import { DarkThemeIcon, LightThemeIcon, SystemThemeIcon } from "@/config/icons";
-
-export const themes = [
-  {
-    theme: "light",
-    label: "Light",
-    icon: LightThemeIcon,
-  },
-  {
-    theme: "system",
-    label: "System",
-    icon: SystemThemeIcon,
-  },
-  {
-    theme: "dark",
-    label: "Dark",
-    icon: DarkThemeIcon,
-  },
-] as const;
+// Types
 
 export type Theme = "system" | "light" | "dark";
 export type SystemTheme = Exclude<Theme, "system">;
 
-export const DARK_MODE_MEDIA_QUERY = "(prefers-color-scheme: dark)";
+// Assertions
 
 export function isTheme(value: string | null): value is Theme {
   return value === "system" || value === "light" || value === "dark";
@@ -31,24 +13,55 @@ export function isSystemTheme(value: string | null): value is SystemTheme {
   return value === "light" || value === "dark";
 }
 
+// Media queries
+
+export const DARK_MODE_MEDIA_QUERY = "(prefers-color-scheme: dark)";
+
 export function getSystemTheme(): SystemTheme {
   return globalThis.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
 }
 
+// Storage
+
+const localStorageKey = "theme";
+
+export function getSavedTheme(): Theme | null {
+  const savedTheme = globalThis.localStorage.getItem(localStorageKey);
+
+  if (isTheme(savedTheme)) {
+    return savedTheme;
+  }
+
+  return null;
+}
+
+export function saveTheme(theme: Theme) {
+  globalThis.localStorage.setItem(localStorageKey, theme);
+}
+
+export function clearSavedTheme() {
+  globalThis.localStorage.removeItem(localStorageKey);
+}
+
+// Updates
+
 export function updateTheme(theme: Theme) {
   if (theme === "system") {
     theme = getSystemTheme();
-    globalThis.localStorage.removeItem("theme");
+    clearSavedTheme();
   } else {
-    globalThis.localStorage.setItem("theme", theme);
+    saveTheme(theme);
   }
 
   updateDOMTheme(theme);
 }
 
-export function updateDOMTheme(systemTheme: SystemTheme) {
+export function updateDOMTheme(systemTheme: SystemTheme | null) {
   const element = globalThis.document.documentElement;
 
-  element.dataset.theme = systemTheme;
-  element.style.colorScheme = systemTheme;
+  if (systemTheme === null) {
+    delete element.dataset.theme;
+  } else {
+    element.dataset.theme = systemTheme;
+  }
 }

@@ -44,7 +44,11 @@ export function getAdjacentBlogPosts(
   };
 }
 
-export function getBlogPostWindows(): { previous?: Post; current: Post; next?: Post }[] {
+export function getBlogPostWindows(): {
+  previous?: Post;
+  current: Post;
+  next?: Post;
+}[] {
   return posts.map((_, i) => ({
     previous: posts[i - 1],
     current: posts[i],

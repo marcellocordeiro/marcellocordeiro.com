@@ -1,14 +1,17 @@
 <script is:inline>
-  let resolvedTheme = globalThis.localStorage.getItem("theme");
+  function applyTheme() {
+    let theme = globalThis.localStorage.getItem("theme");
 
-  if (resolvedTheme !== "light" && resolvedTheme !== "dark") {
-    resolvedTheme = globalThis.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "dark"
-      : "light";
+    if (theme !== "light" && theme !== "dark") {
+      theme = globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    const element = globalThis.document.documentElement;
+    element.dataset.theme = theme;
   }
 
-  const element = globalThis.document.documentElement;
-  element.dataset.theme = resolvedTheme;
-  element.style.colorScheme = resolvedTheme;
+  globalThis.document.addEventListener("astro:after-swap", applyTheme);
+  applyTheme();
 </script>

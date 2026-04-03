@@ -1,23 +1,18 @@
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
+import Icons from "unplugin-icons/vite";
 
 import { SITE_URL } from "./src/config/constants";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [
-    mdx(),
-    sitemap(),
-    react({
-      babel: { plugins: ["babel-plugin-react-compiler"] },
-    }),
-  ],
+  integrations: [mdx(), sitemap(), svelte()],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), Icons({ scale: 1, compiler: "svelte" })],
   },
   server: {
     port: 3000,

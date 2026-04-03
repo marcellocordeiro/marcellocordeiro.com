@@ -35,9 +35,6 @@
       "quoteStyle": "double"
     }
   },
-  "html": {
-    "experimentalFullSupportEnabled": true
-  },
   "css": {
     "parser": {
       "tailwindDirectives": true
@@ -57,7 +54,8 @@
           },
           "correctness": {
             "noUnusedVariables": "off",
-            "noUnusedImports": "off"
+            "noUnusedImports": "off",
+            "useJsxKeyInIterable": "off"
           }
         }
       }
