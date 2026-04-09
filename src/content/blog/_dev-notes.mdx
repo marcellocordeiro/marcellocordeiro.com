@@ -1,0 +1,28 @@
+---
+slug: _dev-notes
+title: "Development notes"
+description: "Some development notes for testing"
+pubDate: 2099-01-01
+image: "assets/blog-placeholder.jpg"
+
+# dev: true
+---
+
+import Dialog from "@/components/ui/dialog/Dialog.svelte";
+
+## Dialog
+
+<Dialog client:load transition:persist />
+
+<div class="test-bg" data-theme="light">
+    Light
+
+    <div class="test-bg" data-theme="dark">
+        Dark
+    </div>
+
+    <div class="test-bg">
+        Unset (should be dark)
+    </div>
+
+</div>

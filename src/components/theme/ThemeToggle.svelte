@@ -4,6 +4,7 @@
   import { MonitorIcon, MoonIcon, SunIcon } from "@/config/icons.svelte";
 
   import { createThemeContext } from "./theme-context.svelte";
+  import type { Theme } from "./theme";
 
   const theme = createThemeContext();
 
@@ -24,14 +25,22 @@
       icon: MoonIcon,
     },
   ] as const;
+
+  function handleThemeChange(newTheme: Theme) {
+    if (newTheme === theme.value) {
+      return;
+    }
+
+    theme.value = newTheme;
+  }
 </script>
 
-<ButtonGroup>
+<ButtonGroup class="transition-colors duration-100">
   {#each themes as item (item.theme)}
     <Button
       variant={item.theme === theme.value ? "default" : "outline"}
       aria-label={`Set theme to ${item.label}`}
-      onclick={() => (theme.value = item.theme)}
+      onclick={() => handleThemeChange(item.theme)}
     >
       {@const Icon = item.icon}
       <Icon />

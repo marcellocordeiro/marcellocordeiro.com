@@ -15,10 +15,10 @@
 </script>
 
 <div
+  role="separator"
+  aria-orientation={orientation}
   data-slot="separator"
   data-orientation={orientation}
-  // role="separator"
-  // aria-orientation={orientation}
   class={cn(
     "shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch",
     className,

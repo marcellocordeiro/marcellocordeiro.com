@@ -18,7 +18,7 @@ export function isSystemTheme(value: string | null): value is SystemTheme {
 export const DARK_MODE_MEDIA_QUERY = "(prefers-color-scheme: dark)";
 
 export function getSystemTheme(): SystemTheme {
-  return globalThis.matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
+  return matchMedia(DARK_MODE_MEDIA_QUERY).matches ? "dark" : "light";
 }
 
 // Storage
@@ -26,7 +26,7 @@ export function getSystemTheme(): SystemTheme {
 const localStorageKey = "theme";
 
 export function getSavedTheme(): Theme | null {
-  const savedTheme = globalThis.localStorage.getItem(localStorageKey);
+  const savedTheme = localStorage.getItem(localStorageKey);
 
   if (isTheme(savedTheme)) {
     return savedTheme;
@@ -36,11 +36,11 @@ export function getSavedTheme(): Theme | null {
 }
 
 export function saveTheme(theme: Theme) {
-  globalThis.localStorage.setItem(localStorageKey, theme);
+  localStorage.setItem(localStorageKey, theme);
 }
 
 export function clearSavedTheme() {
-  globalThis.localStorage.removeItem(localStorageKey);
+  localStorage.removeItem(localStorageKey);
 }
 
 // Updates
@@ -57,11 +57,9 @@ export function updateTheme(theme: Theme) {
 }
 
 export function updateDOMTheme(systemTheme: SystemTheme | null) {
-  const element = globalThis.document.documentElement;
-
   if (systemTheme === null) {
-    delete element.dataset.theme;
+    delete document.documentElement.dataset.theme;
   } else {
-    element.dataset.theme = systemTheme;
+    document.documentElement.dataset.theme = systemTheme;
   }
 }

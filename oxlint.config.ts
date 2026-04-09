@@ -86,4 +86,13 @@ export default defineConfig({
   },
   globals: {},
   ignorePatterns: [],
+  overrides: [
+    {
+      files: ["**/*.svelte"],
+      rules: {
+        "prefer-const": "off",
+        "typescript/consistent-type-imports": "off",
+      },
+    },
+  ],
 });

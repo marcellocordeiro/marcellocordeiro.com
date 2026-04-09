@@ -157,6 +157,11 @@
   p {
     text-wrap: pretty;
   }
+
+  /* https://github.com/tailwindlabs/tailwindcss/issues/16372 */
+  dialog {
+    margin: auto;
+  }
 }
 
 @layer components {
@@ -172,4 +177,8 @@
     @apply max-w-3xl px-4;
     margin-inline: auto;
   }
+}
+
+.test-bg {
+  background-color: light-dark(red, blue);
 }
