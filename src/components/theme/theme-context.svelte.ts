@@ -1,4 +1,4 @@
-import { untrack } from "svelte";
+import { onMount, untrack } from "svelte";
 import { MediaQuery } from "svelte/reactivity";
 
 import {
@@ -14,21 +14,21 @@ export function createThemeContext() {
   const prefersDarkMode = new MediaQuery(DARK_MODE_MEDIA_QUERY);
 
   // Initial state, only run once
-  $effect(() => {
-    untrack(() => {
-      currentTheme = getSavedTheme() ?? "system";
-    });
+  onMount(() => {
+    currentTheme = getSavedTheme() ?? "system";
   });
 
   // Media query listener
+  // Should not update the local storage
   $effect(() => {
+    // Make sure this dependency is registered
+    // Moving this after the conditional will stop this effect from running
+    const theme = prefersDarkMode.current ? "dark" : "light";
+
     // Only update the DOM if the user did not set any preference
     if (untrack(() => currentTheme) !== "system") {
       return;
     }
-
-    // Does not update the local storage
-    const theme = prefersDarkMode.current ? "dark" : "light";
 
     document.startViewTransition(() => {
       updateDOMTheme(theme);
@@ -47,8 +47,8 @@ export function createThemeContext() {
     get value() {
       return currentTheme;
     },
-    set value(value: Theme | null) {
-      if (value === null) {
+    apply(value: Theme) {
+      if (value === currentTheme) {
         return;
       }
 

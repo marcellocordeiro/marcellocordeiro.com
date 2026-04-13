@@ -4,23 +4,23 @@ import { FOOTER_ITEMS } from "@/config/navigation-items.svelte";
 ---
 
 {
-  Object.entries(FOOTER_ITEMS).map(([group, links]) => (
-    <div>
-      <span class="text-sm font-medium">{group}</span>
-      <nav>
-        <ul class="mt-3.5 space-y-1.5">
-          {links.map((link) => (
-            <li>
-              <Link
-                class="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+  Object.entries(FOOTER_ITEMS).map(([id, { label, items }]) => (
+    <nav aria-labelledby={id}>
+      <p id={id} class="text-sm font-medium">
+        {label}
+      </p>
+      <ul class="mt-3.5 space-y-1.5">
+        {items.map((link) => (
+          <li>
+            <Link
+              class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   ))
 }

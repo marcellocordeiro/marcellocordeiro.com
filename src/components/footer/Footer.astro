@@ -8,14 +8,14 @@ import FooterSocials from "./FooterSocials.astro";
 
 <footer class="border-t py-8">
   <div class="mx-auto max-w-3xl px-10">
-    <div
-      class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-center gap-10"
-    >
+    <div class="flex flex-wrap justify-between gap-10 px-10">
       <FooterLinks />
     </div>
 
-    <div class="mt-10 flex flex-row items-center justify-between gap-4">
-      <div class="">
+    <div
+      class="mt-10 flex flex-row flex-wrap items-center justify-between gap-4"
+    >
+      <div>
         <p class="text-sm text-muted-foreground">{COPYRIGHT}</p>
         <FooterSocials />
       </div>

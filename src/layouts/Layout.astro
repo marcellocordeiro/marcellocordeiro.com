@@ -18,6 +18,6 @@ const { pathname } = Astro.url;
 
 <RootLayout title={title} description={description} image={image}>
   <Header {pathname} client:load />
-  <main class="wrapper py-4"><slot /></main>
+  <main class="mx-auto max-w-3xl p-4"><slot /></main>
   <Footer />
 </RootLayout>

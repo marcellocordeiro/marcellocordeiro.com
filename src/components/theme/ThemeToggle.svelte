@@ -26,12 +26,13 @@
   ] as const;
 </script>
 
-<ButtonGroup>
+<ButtonGroup role="radiogroup">
   {#each themes as item (item.theme)}
     <Button
+      role="radio"
       variant={item.theme === theme.value ? "default" : "outline"}
-      aria-label={`Set theme to ${item.label}`}
-      onclick={() => (theme.value = item.theme)}
+      aria-label={`Switch theme to ${item.label}`}
+      onclick={() => theme.apply(item.theme)}
     >
       {@const Icon = item.icon}
       <Icon />

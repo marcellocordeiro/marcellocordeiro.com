@@ -45,7 +45,16 @@ export const NAV_ITEMS = [
 ] as const;
 
 export const FOOTER_ITEMS = {
-  Navigation: NAV_ITEMS,
-  Resources: [{ label: "Source Code", href: SOURCE_CODE }],
-  Contact: SOCIALS,
+  naviation: {
+    label: "Navigation",
+    items: NAV_ITEMS,
+  },
+  resources: {
+    label: "Resources",
+    items: [{ label: "Source Code", href: SOURCE_CODE }],
+  },
+  contact: {
+    label: "Contact",
+    items: SOCIALS,
+  },
 } as const;

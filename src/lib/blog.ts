@@ -7,7 +7,7 @@ const { posts, tags } = await (async () => {
 
   const collection = await getCollection("blog");
   const sortedPosts = collection
-    .filter((p) => (p.data.dev ? isDev : true))
+    .filter((p) => isDev || !p.data.dev)
     .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.data.tags))].toSorted();
