@@ -7,7 +7,6 @@ import Font from "astro/components/Font.astro";
 import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/constants";
 import FallbackImage from "@/content/blog/assets/blog-placeholder.jpg";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -66,7 +65,6 @@ const {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
-    <ClientRouter />
     <InitialThemeScript />
   </head>
 
@@ -74,12 +72,3 @@ const {
     <slot />
   </body>
 </html>
-
-<!-- Makes the code blocks overflow horizontally -->
-<!-- <style>
-  body {
-    min-block-size: 100svh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
-</style> -->
