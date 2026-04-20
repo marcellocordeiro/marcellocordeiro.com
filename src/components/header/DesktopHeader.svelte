@@ -14,9 +14,9 @@
   const { class: className, pathname }: Props = $props();
 </script>
 
-<header class={["sticky top-0 z-10 px-4 pt-4", className]}>
+<header class={["sticky top-0 z-10 border-b", className]}>
   <nav
-    class="min-h-header mx-auto flex max-w-3xl items-center justify-between rounded-full border bg-background/80 px-6 backdrop-blur"
+    class="min-h-header mx-auto flex max-w-3xl items-center justify-between bg-background/80 px-10 backdrop-blur"
   >
     <Link href="/">
       <span class="text-xl font-semibold whitespace-nowrap">{AUTHOR.name}</span>

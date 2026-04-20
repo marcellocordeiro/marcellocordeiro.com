@@ -53,7 +53,7 @@
 }
 
 :root {
-  /* color-scheme: light dark; */
+  color-scheme: light dark;
   --radius: 0.625rem;
   --header-height: calc(var(--spacing) * 16);
 }

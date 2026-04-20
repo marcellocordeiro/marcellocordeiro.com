@@ -1,6 +1,4 @@
 :root {
-  color-scheme: light dark;
-
   --background: light-dark(oklch(0.994 0 0), oklch(0.2223 0.006 271.1393));
   --foreground: light-dark(oklch(0 0 0), oklch(0.9551 0 0));
   --card: light-dark(oklch(0.994 0 0), oklch(0.2568 0.0076 274.6528));

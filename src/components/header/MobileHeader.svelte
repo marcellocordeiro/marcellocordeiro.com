@@ -18,17 +18,17 @@
   let expandMobileNav = $state(false);
 </script>
 
-<header class={["sticky top-0 z-10 px-4 pt-4", className]}>
+<header class={["sticky top-0 z-10 border-b", className]}>
   <nav
-    class="mx-auto flex max-w-3xl flex-col items-center justify-between rounded-full border bg-background/80 backdrop-blur has-data-[expanded=true]:rounded-3xl"
+    class="mx-auto flex max-w-3xl flex-col items-center justify-between bg-background/80 px-10 backdrop-blur"
   >
     <div
-      class="min-h-header flex w-full items-center justify-between pr-4 pl-6"
+      class="min-h-header flex w-full flex-wrap items-center justify-between"
     >
       <Link href="/">
-        <span class="text-xl font-semibold whitespace-nowrap"
-          >{AUTHOR.name}</span
-        >
+        <span class="text-xl font-semibold">
+          {AUTHOR.name}
+        </span>
       </Link>
 
       <Button

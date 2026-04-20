@@ -18,6 +18,22 @@ const { pathname } = Astro.url;
 
 <RootLayout title={title} description={description} image={image}>
   <Header {pathname} client:load />
-  <main class="mx-auto max-w-3xl p-4"><slot /></main>
+  <main>
+    <slot />
+  </main>
   <Footer />
 </RootLayout>
+
+<style>
+  main {
+    /*
+     * Setting a value higher than 100% will
+     * fit the grid column to max content,
+     * causing horizontal overflow if non-wrapping elements
+     * like <pre> are present.
+     */
+    max-width: min(100%, var(--container-3xl));
+    margin-inline: auto;
+    padding: calc(var(--spacing) * 4);
+  }
+</style>

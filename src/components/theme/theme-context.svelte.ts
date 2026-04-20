@@ -30,17 +30,13 @@ export function createThemeContext() {
       return;
     }
 
-    document.startViewTransition(() => {
-      updateDOMTheme(theme);
-    });
+    updateDOMTheme(theme);
   });
 
   function handleUserSelection(value: Theme) {
     currentTheme = value;
 
-    document.startViewTransition(() => {
-      updateTheme(value);
-    });
+    updateTheme(value);
   }
 
   return {
