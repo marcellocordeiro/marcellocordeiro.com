@@ -14,16 +14,23 @@
   const { class: className, pathname }: Props = $props();
 </script>
 
-<header class={["sticky top-0 z-10 border-b", className]}>
-  <nav
-    class="min-h-header mx-auto flex max-w-3xl items-center justify-between bg-background/80 px-10 backdrop-blur"
+<header
+  class={[
+    "sticky top-0 z-10 border-b bg-background/80 backdrop-blur",
+    className,
+  ]}
+>
+  <div
+    class="min-h-header mx-auto flex max-w-3xl items-center justify-between px-4"
   >
-    <Link href="/">
-      <span class="text-xl font-semibold whitespace-nowrap">{AUTHOR.name}</span>
+    <Link class="text-xl font-semibold" href="/">
+      {AUTHOR.name}
     </Link>
 
-    <ul class="flex gap-4 rounded font-medium">
-      <HeaderNavigationItems {pathname} />
-    </ul>
-  </nav>
+    <nav>
+      <ul class="flex gap-4 rounded font-medium">
+        <HeaderNavigationItems {pathname} />
+      </ul>
+    </nav>
+  </div>
 </header>

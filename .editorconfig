@@ -18,7 +18,7 @@ charset = utf-16le
 end_of_line = crlf
 
 [justfile]
-indent_size = 2
+indent_size = 4
 
 [*.md]
 indent_size = 2

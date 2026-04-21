@@ -1,0 +1,13 @@
+---
+import DesktopHeader from "./DesktopHeader.svelte";
+import MobileHeader from "./MobileHeader.svelte";
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+---
+
+<DesktopHeader class="not-md:hidden" {pathname} />
+<MobileHeader class="md:hidden" {pathname} client:load />

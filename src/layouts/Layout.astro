@@ -2,7 +2,7 @@
 import type { ImageMetadata } from "astro";
 
 import Footer from "@/components/footer/Footer.astro";
-import Header from "@/components/header/Header.svelte";
+import Header from "@/components/header/Header.astro";
 
 import RootLayout from "./RootLayout.astro";
 
@@ -17,7 +17,7 @@ const { pathname } = Astro.url;
 ---
 
 <RootLayout title={title} description={description} image={image}>
-  <Header {pathname} client:load />
+  <Header {pathname} />
   <main>
     <slot />
   </main>
