@@ -1,5 +1,5 @@
 allowBuilds:
-  "esbuild": true
-  "sharp": true
+  esbuild: true
+  sharp: true
 
-minimumReleaseAge: 1440
+# minimumReleaseAge: 0

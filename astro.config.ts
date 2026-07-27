@@ -27,12 +27,14 @@ export default defineConfig({
     {
       name: "Inter",
       cssVariable: "--font-sans",
+      fallbacks: ["sans-serif"],
       provider: fontProviders.fontsource(),
       weights: ["100 900"],
     },
     {
       name: "JetBrains Mono",
       cssVariable: "--font-mono",
+      fallbacks: ["monospace"],
       provider: fontProviders.fontsource(),
       weights: ["100 800"],
     },

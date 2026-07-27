@@ -3,14 +3,14 @@ import prettier from "eslint-config-prettier";
 import svelte from "eslint-plugin-svelte";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
-import ts from "typescript-eslint";
+import tseslint from "typescript-eslint";
 
 import svelteConfig from "./svelte.config.js";
 
 export default defineConfig([
   globalIgnores([".astro", "dist"]),
   js.configs.recommended,
-  ts.configs.recommended,
+  tseslint.configs.recommended,
   svelte.configs.recommended,
   prettier,
   svelte.configs.prettier,
@@ -33,7 +33,7 @@ export default defineConfig([
       parserOptions: {
         projectService: true,
         extraFileExtensions: [".svelte"],
-        parser: ts.parser,
+        parser: tseslint.parser,
         svelteConfig,
       },
     },

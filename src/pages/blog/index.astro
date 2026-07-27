@@ -1,6 +1,5 @@
 ---
 import PostCardLink from "@/components/blog/PostCardLink.astro";
-import Typography from "@/components/ui/Typography.astro";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPosts } from "@/lib/blog";
@@ -9,7 +8,7 @@ const posts = getBlogPosts();
 ---
 
 <Layout title=`Blog | ${SITE_TITLE}`>
-  <div class="grid gap-4">
+  <div class="grid w-full grid-cols-1 gap-4">
     {posts.map((post) => <PostCardLink post={post} />)}
   </div>
 </Layout>

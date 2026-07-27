@@ -18,7 +18,7 @@
     ...props
   }: Props = $props();
 
-  function __isExternal(): boolean {
+  const isExternal = (() => {
     if (href === undefined || href === null) {
       return false;
     }
@@ -28,9 +28,8 @@
       href.startsWith("?") ||
       href.startsWith("#")
     );
-  }
+  })();
 
-  const isExternal = __isExternal();
   const resolvedShowExternalLinkIcon = $derived(
     showExternalLinkIcon ?? isExternal,
   );
