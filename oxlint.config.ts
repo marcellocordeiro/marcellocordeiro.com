@@ -15,14 +15,15 @@ export default defineConfig({
     "capitalized-comments": "off",
     "func-style": "off",
     "id-length": "off",
-    "max-lines": "off",
     "max-lines-per-function": "off",
+    "max-lines": "off",
     "max-statements": "off",
     "new-cap": "off",
     "no-inline-comments": "off",
     "no-magic-numbers": "off",
     "no-ternary": "off",
     "no-unused-vars": "warn",
+    "one-var": "off",
     "sort-imports": "off", // Not very configurable yet
     "sort-keys": "off",
 
