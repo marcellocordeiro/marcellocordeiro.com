@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { SvelteHTMLElements } from "svelte/elements";
-
-  import { cn } from "@/lib/utils";
+  import { cn } from "cn";
 
   interface Props extends Omit<SvelteHTMLElements["div"], "children"> {
     orientation?: "horizontal" | "vertical";

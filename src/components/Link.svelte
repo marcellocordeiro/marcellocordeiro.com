@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { HTMLAnchorAttributes } from "svelte/elements";
+  import { cn } from "cn";
 
   import { ExternalLinkIcon } from "@/config/icons.svelte";
-  import { cn } from "@/lib/utils";
 
   interface Props extends HTMLAnchorAttributes {
     showExternalLinkIcon?: boolean;

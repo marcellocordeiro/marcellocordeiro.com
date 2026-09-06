@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { VariantProps } from "class-variance-authority";
   import type { HTMLFieldsetAttributes } from "svelte/elements";
-
-  import { cn } from "@/lib/utils";
+  import { cn } from "cn";
 
   import { buttonGroupVariants } from "./variants";
 

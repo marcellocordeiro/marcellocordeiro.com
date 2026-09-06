@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { SvelteHTMLElements } from "svelte/elements";
-
-  import { cn } from "@/lib/utils";
+  import { cn } from "cn";
 
   type DivProps = SvelteHTMLElements["div"];
   interface Props extends DivProps {

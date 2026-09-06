@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ComponentProps } from "svelte";
+  import { cn } from "cn";
 
   import Separator from "@/components/ui/Separator.svelte";
 
@@ -15,9 +16,9 @@
 <Separator
   data-slot="button-group-separator"
   data-orientation={orientation}
-  class={[
+  class={cn(
     "relative self-stretch bg-input data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto",
     className,
-  ]}
+  )}
   {...props}
 ></Separator>
