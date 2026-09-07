@@ -3,7 +3,6 @@ import { render } from "astro:content";
 
 import PostNavigator from "@/components/blog/post-navigator/PostNavigator.astro";
 import Link from "@/components/Link.svelte";
-import { mdxComponents } from "@/components/mdx-components";
 import Separator from "@/components/ui/Separator.svelte";
 import Typography from "@/components/ui/Typography.astro";
 import { SITE_TITLE } from "@/config/constants";
@@ -35,7 +34,7 @@ const { Content } = await render(current);
 
     <h1 class="mt-4">{title}</h1>
 
-    <Content components={mdxComponents} />
+    <Content />
 
     <Separator />
 

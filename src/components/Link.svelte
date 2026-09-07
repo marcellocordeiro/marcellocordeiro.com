@@ -3,32 +3,22 @@
   import { cn } from "cn";
 
   import { ExternalLinkIcon } from "@/config/icons.svelte";
+  import { parseHref } from "@/lib/href-parser";
 
   interface Props extends HTMLAnchorAttributes {
+    href: string;
     showExternalLinkIcon?: boolean;
   }
 
   const {
     class: className,
     href,
-    rel,
-    target,
     showExternalLinkIcon,
     children,
     ...props
   }: Props = $props();
 
-  const isExternal = (() => {
-    if (href === undefined || href === null) {
-      return false;
-    }
-
-    return !(
-      href.startsWith("/") ||
-      href.startsWith("?") ||
-      href.startsWith("#")
-    );
-  })();
+  const { isExternal, ...propsFromHref } = $derived(parseHref(href));
 
   const resolvedShowExternalLinkIcon = $derived(
     showExternalLinkIcon ?? isExternal,
@@ -41,13 +31,13 @@
     className,
   )}
   {href}
-  rel={rel ?? (isExternal ? "noopener noreferrer" : undefined)}
-  target={target ?? (isExternal ? "_blank" : undefined)}
+  {...propsFromHref}
   {...props}
 >
   {@render children?.()}
 
   {#if resolvedShowExternalLinkIcon}
-    <ExternalLinkIcon />
+    <ExternalLinkIcon aria-hidden="true" />
+    <span class="sr-only">(opens in a new tab)</span>
   {/if}
 </a>

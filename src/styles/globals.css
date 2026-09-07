@@ -73,7 +73,7 @@
   html {
     @apply font-sans antialiased;
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable both-edges;
   }
 
   body {
