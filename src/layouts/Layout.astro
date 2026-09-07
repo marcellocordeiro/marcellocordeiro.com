@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer.astro";
 import Header from "@/components/header/Header.astro";
 
 import RootLayout from "./RootLayout.astro";
+import SkipToContent from "@/components/SkipToContent.astro";
 
 interface Props {
   title?: string;
@@ -17,8 +18,9 @@ const { pathname } = Astro.url;
 ---
 
 <RootLayout title={title} description={description} image={image}>
+  <SkipToContent />
   <Header {pathname} />
-  <main>
+  <main id="main">
     <slot />
   </main>
   <Footer />

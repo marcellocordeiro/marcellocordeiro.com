@@ -14,12 +14,7 @@
   const { class: className, pathname }: Props = $props();
 </script>
 
-<header
-  class={[
-    "sticky top-0 z-10 border-b bg-background/80 backdrop-blur",
-    className,
-  ]}
->
+<header class={["border-b bg-background/80 backdrop-blur", className]}>
   <div
     class="min-h-header mx-auto flex max-w-3xl items-center justify-between px-4"
   >
