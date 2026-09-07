@@ -5,10 +5,12 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "verbatimModuleSyntax": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["unplugin-icons/types/svelte"],
+    "types": ["unplugin-icons/types/react"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

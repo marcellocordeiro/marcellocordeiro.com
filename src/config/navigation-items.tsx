@@ -1,28 +1,21 @@
 import { AUTHOR, GITHUB_URL, LINKEDIN_URL, SOURCE_CODE } from "./constants";
-import {
-  EmailIcon,
-  GitHubIcon,
-  HouseIcon,
-  LinkedInIcon,
-  NewspaperIcon,
-  RssIcon,
-} from "./icons.svelte";
+import { EmailIcon, GitHubIcon, HouseIcon, LinkedInIcon, NewspaperIcon, RssIcon } from "./icons";
 
 export const SOCIALS = [
   {
     href: GITHUB_URL,
     label: "GitHub",
-    icon: GitHubIcon,
+    Icon: GitHubIcon,
   },
   {
     href: LINKEDIN_URL,
     label: "LinkedIn",
-    icon: LinkedInIcon,
+    Icon: LinkedInIcon,
   },
   {
     href: `mailto:${AUTHOR.email}`,
     label: "Email",
-    icon: EmailIcon,
+    Icon: EmailIcon,
   },
 ] as const;
 
@@ -30,17 +23,17 @@ export const NAV_ITEMS = [
   {
     href: "/",
     label: "Home",
-    icon: HouseIcon,
+    Icon: HouseIcon,
   },
   {
     href: "/blog",
     label: "Blog",
-    icon: NewspaperIcon,
+    Icon: NewspaperIcon,
   },
   {
     href: "/rss.xml",
     label: "RSS",
-    icon: RssIcon,
+    Icon: RssIcon,
   },
 ] as const;
 
