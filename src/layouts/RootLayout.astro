@@ -8,6 +8,7 @@ import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/constants";
 import FallbackImage from "@/content/blog/assets/blog-placeholder.jpg";
 import { ClientRouter } from "astro:transitions";
+import CloudflareWorkaround from "@/lib/CloudflareWorkaround.astro";
 
 interface Props {
   title?: string;
@@ -67,6 +68,7 @@ const {
     <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
     <InitialThemeScript />
+    <CloudflareWorkaround />
     <ClientRouter />
   </head>
 

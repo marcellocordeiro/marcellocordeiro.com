@@ -1,0 +1,8 @@
+<!-- https://github.com/withastro/astro/issues/15470 -->
+<script is:inline>
+  document.addEventListener("astro:before-swap", (e) => {
+    e.newDocument
+      .querySelector('script[src*="/cloudflare-static/email-decode"]')
+      ?.setAttribute("data-astro-rerun", "");
+  });
+</script>
