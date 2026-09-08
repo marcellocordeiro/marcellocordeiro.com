@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
-    "cn": "^0.2.5",
+    "cn": "^0.2.6",
     "dayjs": "^1.11.23",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"

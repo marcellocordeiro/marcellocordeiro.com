@@ -4,7 +4,7 @@ import { render } from "astro:content";
 import PostPager from "@/components/blog/post-pager/PostPager.astro";
 import { Link } from "@/components/Link";
 import { Separator } from "@/components/ui/Separator";
-import Typography from "@/components/ui/Typography.astro";
+import Prose from "@/components/ui/Prose.astro";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
@@ -29,7 +29,7 @@ const { Content } = await render(current);
 ---
 
 <Layout title=`${title} | ${SITE_TITLE}`>
-  <Typography>
+  <Prose>
     <Link href="/blog">{"<- Back"}</Link>
 
     <h1 class="mt-4">{title}</h1>
@@ -46,5 +46,5 @@ const { Content } = await render(current);
 
       <PostPager previous={previous} next={next} />
     </div>
-  </Typography>
+  </Prose>
 </Layout>

@@ -7,6 +7,7 @@ interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
 export function Separator({ className, orientation = "horizontal", ...props }: Props) {
   return (
     <div
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
       role="separator"
       aria-orientation={orientation}
       data-slot="separator"
