@@ -1,0 +1,19 @@
+---
+import Projects from "@/components/projects/Projects.astro";
+import { SITE_TITLE } from "@/config/constants";
+import { getProjects } from "@/lib/projects";
+import Layout from "@/layouts/Layout.astro";
+
+const projects = getProjects();
+---
+
+<Layout title={`Projects | ${SITE_TITLE}`}>
+  <div class="space-y-8">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Projects</h1>
+      <p class="text-muted-foreground">Some of the fun projects I've built.</p>
+    </header>
+
+    <Projects projects={projects} />
+  </div>
+</Layout>

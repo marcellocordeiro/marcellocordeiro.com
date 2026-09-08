@@ -74,9 +74,11 @@ export function ThemeToggle() {
       {themes.map((item) => (
         <Button
           key={item.theme}
+          // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
           role="radio"
           variant={item.theme === currentTheme ? "default" : "outline"}
           aria-label={`Switch theme to ${item.label}`}
+          aria-checked={item.theme === currentTheme}
           onClick={() => handleThemeChange(item.theme)}
         >
           <item.Icon />

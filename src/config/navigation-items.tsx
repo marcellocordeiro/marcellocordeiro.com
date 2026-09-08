@@ -1,5 +1,13 @@
 import { AUTHOR, GITHUB_URL, LINKEDIN_URL, SOURCE_CODE } from "./constants";
-import { EmailIcon, GitHubIcon, HouseIcon, LinkedInIcon, NewspaperIcon, RssIcon } from "./icons";
+import {
+  EmailIcon,
+  FolderKanbanIcon,
+  GitHubIcon,
+  HouseIcon,
+  LinkedInIcon,
+  NewspaperIcon,
+  RssIcon,
+} from "./icons";
 
 export const SOCIALS = [
   {
@@ -24,6 +32,11 @@ export const NAV_ITEMS = [
     href: "/",
     label: "Home",
     Icon: HouseIcon,
+  },
+  {
+    href: "/projects",
+    label: "Projects",
+    Icon: FolderKanbanIcon,
   },
   {
     href: "/blog",

@@ -1,11 +1,69 @@
 ---
-import Prose from "@/components/ui/Prose.astro";
-import { Content } from "@/content/home.mdx";
+import { Link } from "@/components/Link";
+import Projects from "@/components/projects/Projects.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getBlogPosts } from "@/lib/blog";
+import { getProjects } from "@/lib/projects";
 ---
 
 <Layout>
-  <Prose>
-    <Content />
-  </Prose>
+  <article class="mx-auto max-w-3xl space-y-12">
+    <header class="space-y-4 border-b border-border/60 pb-10">
+      <h1 class="text-4xl font-semibold tracking-tight">Welcome</h1>
+      <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
+        Hi! I'm Marcello. I'm a Software Engineer.
+      </p>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold tracking-tight">About Me</h2>
+
+      <div class="max-w-2xl space-y-4 leading-7 text-muted-foreground">
+        <p>
+          I have experience building native macOS and iOS applications, from
+          writing UI code to developing and maintaining shared libraries across
+          teams. I enjoy experimenting and working on new solutions to improve
+          both the developer and the user experience.
+        </p>
+        <p>
+          In my free time I enjoy playing games and working on fun projects.
+          I've written a few emulators as challenges to develop new skills and
+          learn new programming languages. I have also written this entire
+          website from the scratch as way to brush up my web development skills,
+          which still needs a ton of improvements, oops.
+        </p>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold tracking-tight">Projects</h2>
+      <Projects projects={getProjects()} />
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold tracking-tight">
+        Programming Languages And Tools
+      </h2>
+
+      <p class="leading-7 text-muted-foreground">
+        I have 4 years of professional experience writing Swift, but I can also
+        comfortably write Rust, C, C++ and JavaScript/TypeScript. I'll also play
+        with Python and other languages whenever they fit the situation.
+      </p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold tracking-tight">Blog Posts</h2>
+
+      <ul class="divide-y divide-border/60 border-y border-border/60">
+        {
+          getBlogPosts().map((post) => (
+            <li class="py-3 first:pt-3 last:pb-3">
+              <Link href={`/blog/${post.data.slug}`}>{post.data.title}</Link>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
 </Layout>

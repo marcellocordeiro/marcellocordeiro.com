@@ -8,7 +8,16 @@ const posts = getBlogPosts();
 ---
 
 <Layout title=`Blog | ${SITE_TITLE}`>
-  <div class="grid w-full grid-cols-1 gap-4">
-    {posts.map((post) => <PostCardLink post={post} />)}
+  <div class="space-y-8">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Blog</h1>
+      <p class="text-muted-foreground">
+        Notes on software, experiments, and things I'm learning.
+      </p>
+    </header>
+
+    <div class="grid w-full grid-cols-1 gap-4">
+      {posts.map((post) => <PostCardLink post={post} />)}
+    </div>
   </div>
 </Layout>
