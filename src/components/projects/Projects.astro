@@ -14,38 +14,36 @@ const { projects } = Astro.props;
 ---
 
 <div class="not-prose grid gap-3">
-  {
-    projects.map((project) => (
-      <Card size="sm">
-        <CardContent class="flex flex-wrap items-center gap-x-4 gap-y-1 py-1.5">
-          <div class="min-w-0 flex-1">
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-              <CardTitle>{project.data.title}</CardTitle>
-              <div class="flex shrink-0 gap-x-4 text-sm">
-                <Link href={project.data.repository}>GitHub</Link>
-                {project.data.demo && (
-                  <Link href={project.data.demo}>Live demo</Link>
-                )}
-              </div>
+  {projects.map((project) => (
+    <Card size="sm">
+      <CardContent class="flex flex-wrap items-center gap-x-4 gap-y-1 py-1.5">
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <CardTitle>{project.data.title}</CardTitle>
+            <div class="flex shrink-0 gap-x-4 text-sm">
+              <Link href={project.data.repository}>GitHub</Link>
+              {project.data.demo && (
+                <Link href={project.data.demo}>Live demo</Link>
+              )}
             </div>
-
-            <CardDescription class="mt-1">
-              {project.data.description}
-            </CardDescription>
-
-            <ul
-              class="mt-1.5 flex flex-wrap gap-1.5"
-              aria-label={`${project.data.title} technologies`}
-            >
-              {project.data.technologies.map((technology) => (
-                <li class="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-                  {technology}
-                </li>
-              ))}
-            </ul>
           </div>
-        </CardContent>
-      </Card>
-    ))
-  }
+
+          <CardDescription class="mt-1">
+            {project.data.description}
+          </CardDescription>
+
+          <ul
+            class="mt-1.5 flex flex-wrap gap-1.5"
+            aria-label={`${project.data.title} technologies`}
+          >
+            {project.data.technologies.map((technology) => (
+              <li class="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+                {technology}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
 </div>

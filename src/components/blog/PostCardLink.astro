@@ -20,13 +20,11 @@ const { post } = Astro.props;
       <CardDescription>{post.data.description}</CardDescription>
       <CardDescription>
         <time datetime={post.data.pubDate.toISOString()}>
-          {
-            post.data.pubDate.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          }
+          {post.data.pubDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
         </time>
       </CardDescription>
     </CardHeader>

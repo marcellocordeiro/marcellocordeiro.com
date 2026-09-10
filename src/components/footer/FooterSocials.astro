@@ -5,16 +5,14 @@ import { SOCIALS } from "@/config/navigation-items";
 ---
 
 <div class="flex items-center gap-1">
-  {
-    SOCIALS.map((item) => (
-      <Link
-        href={item.href}
-        aria-label={item.label}
-        showExternalLinkIcon={false}
-        className={buttonVariants({ variant: "ghost", size: "icon" })}
-      >
-        <item.Icon />
-      </Link>
-    ))
-  }
+  {SOCIALS.map((item) => (
+    <Link
+      href={item.href}
+      aria-label={item.label}
+      showExternalLinkIcon={false}
+      className={buttonVariants({ variant: "ghost", size: "icon" })}
+    >
+      <item.Icon />
+    </Link>
+  ))}
 </div>

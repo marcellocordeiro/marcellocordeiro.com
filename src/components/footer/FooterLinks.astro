@@ -3,24 +3,22 @@ import { Link } from "@/components/Link";
 import { FOOTER_ITEMS } from "@/config/navigation-items";
 ---
 
-{
-  Object.entries(FOOTER_ITEMS).map(([id, { label, items }]) => (
-    <nav aria-labelledby={id}>
-      <p id={id} class="text-sm font-medium">
-        {label}
-      </p>
-      <ul class="mt-3.5 space-y-1.5">
-        {items.map((link) => (
-          <li>
-            <Link
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              href={link.href}
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  ))
-}
+{Object.entries(FOOTER_ITEMS).map(([id, { label, items }]) => (
+  <nav aria-labelledby={id}>
+    <p id={id} class="text-sm font-medium">
+      {label}
+    </p>
+    <ul class="mt-3.5 space-y-1.5">
+      {items.map((link) => (
+        <li>
+          <Link
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </nav>
+))}

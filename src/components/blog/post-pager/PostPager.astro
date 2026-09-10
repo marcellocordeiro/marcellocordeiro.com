@@ -11,24 +11,22 @@ interface Props {
 const { previous, next } = Astro.props;
 ---
 
-{
-  (previous || next) && (
-    <nav class="grid grid-cols-2 gap-5">
-      {previous && (
-        <PostNavigatorLink
-          position="previous"
-          slug={previous.data.slug}
-          title={previous.data.title}
-        />
-      )}
+{(previous || next) && (
+  <nav class="grid grid-cols-2 gap-5">
+    {previous && (
+      <PostNavigatorLink
+        position="previous"
+        slug={previous.data.slug}
+        title={previous.data.title}
+      />
+    )}
 
-      {next && (
-        <PostNavigatorLink
-          position="next"
-          slug={next.data.slug}
-          title={next.data.title}
-        />
-      )}
-    </nav>
-  )
-}
+    {next && (
+      <PostNavigatorLink
+        position="next"
+        slug={next.data.slug}
+        title={next.data.title}
+      />
+    )}
+  </nav>
+)}

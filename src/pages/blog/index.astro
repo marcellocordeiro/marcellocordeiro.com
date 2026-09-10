@@ -17,7 +17,9 @@ const posts = getBlogPosts();
     </header>
 
     <div class="grid w-full grid-cols-1 gap-4">
-      {posts.map((post) => <PostCardLink post={post} />)}
+      {posts.map((post) => (
+        <PostCardLink post={post} />
+      ))}
     </div>
   </div>
 </Layout>

@@ -41,7 +41,9 @@ const { Content } = await render(current);
     <div>
       <div>
         <p>Tags:</p>
-        {current.data.tags.map((t) => <p>{t}</p>)}
+        {current.data.tags.map((t) => (
+          <p>{t}</p>
+        ))}
       </div>
 
       <PostPager previous={previous} next={next} />
