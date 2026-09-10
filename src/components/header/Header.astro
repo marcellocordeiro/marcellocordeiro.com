@@ -9,5 +9,5 @@ interface Props {
 const { pathname } = Astro.props;
 ---
 
-<DesktopHeader className="not-md:hidden" {pathname} />
-<MobileHeader className="md:hidden" {pathname} client:load />
+<DesktopHeader className="[grid-area:header] not-md:hidden" {pathname} />
+<MobileHeader className="[grid-area:header] md:hidden" {pathname} client:load />
