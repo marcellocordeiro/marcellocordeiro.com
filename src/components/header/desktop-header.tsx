@@ -1,7 +1,7 @@
 import { cn } from "cn";
 
-import { HeaderNavigationItems } from "@/components/header/HeaderNavigationItems";
-import { Link } from "@/components/Link";
+import { HeaderNavigationItems } from "@/components/header/header-navigation-items";
+import { Link } from "@/components/link";
 import { AUTHOR } from "@/config/constants";
 
 interface Props {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { MonitorIcon, MoonIcon, SunIcon } from "@/config/icons";
 
-import { ButtonGroup } from "../ui/button-group/ButtonGroup";
-import { Button } from "../ui/button/Button";
 import {
   DARK_MODE_MEDIA_QUERY,
   getSavedTheme,
@@ -39,13 +39,9 @@ export function ThemeToggle() {
   }, []);
 
   useEffect(() => {
-    let mounted = true;
     const mql = globalThis.matchMedia(DARK_MODE_MEDIA_QUERY);
-    const onChange = () => {
-      if (!mounted) {
-        return;
-      }
 
+    const onChange = () => {
       // Only update the DOM if the user did not set any preference
       if (currentTheme !== "system") {
         return;
@@ -58,10 +54,7 @@ export function ThemeToggle() {
 
     mql.addEventListener("change", onChange);
 
-    return () => {
-      mounted = false;
-      mql.removeEventListener("change", onChange);
-    };
+    return () => mql.removeEventListener("change", onChange);
   }, [currentTheme]);
 
   const handleThemeChange = (theme: Theme) => {

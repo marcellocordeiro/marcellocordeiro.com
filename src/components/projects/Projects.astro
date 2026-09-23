@@ -1,9 +1,11 @@
 ---
-import { Link } from "@/components/Link";
-import Card from "@/components/ui/card/Card.astro";
-import CardDescription from "@/components/ui/card/CardDescription.astro";
-import CardContent from "@/components/ui/card/CardContent.astro";
-import CardTitle from "@/components/ui/card/CardTitle.astro";
+import { Link } from "@/components/link";
+import {
+  Card,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 import type { Project } from "@/lib/projects";
 
 interface Props {
@@ -16,7 +18,7 @@ const { projects } = Astro.props;
 <div class="not-prose grid gap-3">
   {projects.map((project) => (
     <Card size="sm">
-      <CardContent class="flex flex-wrap items-center gap-x-4 gap-y-1 py-1.5">
+      <CardContent className="flex flex-wrap items-center gap-x-4 gap-y-1 py-1.5">
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
             <CardTitle>{project.data.title}</CardTitle>
@@ -28,7 +30,7 @@ const { projects } = Astro.props;
             </div>
           </div>
 
-          <CardDescription class="mt-1">
+          <CardDescription className="mt-1">
             {project.data.description}
           </CardDescription>
 

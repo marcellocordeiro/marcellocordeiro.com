@@ -1,9 +1,9 @@
 import { cn } from "cn";
 import { useState } from "react";
 
-import { HeaderNavigationItems } from "@/components/header/HeaderNavigationItems";
-import { Link } from "@/components/Link";
-import { Button } from "@/components/ui/button/Button";
+import { HeaderNavigationItems } from "@/components/header/header-navigation-items";
+import { Link } from "@/components/link";
+import { Button } from "@/components/ui/button";
 import { AUTHOR } from "@/config/constants";
 import { MenuClosedIcon, MenuOpenIcon } from "@/config/icons";
 

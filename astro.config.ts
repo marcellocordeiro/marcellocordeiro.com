@@ -14,7 +14,7 @@ import { mdastReadingTimePlugin } from "@/plugins/mdast/reading-time";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [mdx(), sitemap(), react({ compiler: true })],
   markdown: {
     processor: satteri({
       mdastPlugins: [mdastModifiedTimePlugin, mdastReadingTimePlugin],
