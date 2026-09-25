@@ -2,12 +2,12 @@
 import { render } from "astro:content";
 
 import PostPager from "@/components/blog/post-pager/PostPager.astro";
-import { Link } from "@/components/link";
-import { Separator } from "@/components/ui/separator";
+import Link from "@/components/Link.astro";
 import Prose from "@/components/ui/Prose.astro";
 import { SITE_TITLE } from "@/config/constants";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
+import Separator from "@/components/ui/Separator.astro";
 
 export function getStaticPaths() {
   const windows = getBlogPostWindows();

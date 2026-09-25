@@ -1,6 +1,10 @@
 ---
-import { DesktopHeader } from "./desktop-header";
-import { MobileHeader } from "./mobile-header";
+import { AUTHOR } from "@/config/constants";
+import { MenuIcon, CloseIcon } from "@/config/icons";
+import Button from "@/components/ui/button/Button.astro";
+import Link from "@/components/Link.astro";
+
+import HeaderNavigationItems from "./HeaderNavigationItems.astro";
 
 interface Props {
   pathname: string;
@@ -9,5 +13,56 @@ interface Props {
 const { pathname } = Astro.props;
 ---
 
-<DesktopHeader className="[grid-area:header] not-md:hidden" {pathname} />
-<MobileHeader className="[grid-area:header] md:hidden" {pathname} client:load />
+<astro-header>
+  <header class="border-b bg-background/80 backdrop-blur">
+    <div class="mx-auto flex max-w-3xl items-center justify-between py-4 px-4">
+      <Link class="text-lg font-semibold tracking-tight" href="/">
+        {AUTHOR.name}
+      </Link>
+
+      <nav class="hidden md:block">
+        <ul class="flex gap-4">
+          <HeaderNavigationItems pathname={pathname} />
+        </ul>
+      </nav>
+
+      <Button
+        id="menu-toggle"
+        class="transition-transform duration-200 group md:hidden aria-expanded:rotate-90 not-aria-expanded:rotate-0"
+        variant="outline"
+        size="icon"
+        aria-label={"Toggle menu"}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <MenuIcon class="group-aria-expanded:hidden" />
+        <CloseIcon class="hidden group-aria-expanded:block" />
+      </Button>
+    </div>
+
+    <nav id="mobile-nav" class="hidden border-t md:hidden">
+      <ul class="flex flex-col gap-1 px-4 py-3">
+        <HeaderNavigationItems pathname={pathname} />
+      </ul>
+    </nav>
+  </header>
+</astro-header>
+
+<script>
+  class AstroHeader extends HTMLElement {
+    connectedCallback() {
+      const toggleButton = this.querySelector("#menu-toggle");
+      const mobileNav = this.querySelector("#mobile-nav");
+
+      toggleButton?.addEventListener("click", () => {
+        const isExpanded =
+          toggleButton.getAttribute("aria-expanded") === "true";
+
+        toggleButton.setAttribute("aria-expanded", String(!isExpanded));
+        mobileNav?.classList.toggle("hidden");
+      });
+    }
+  }
+
+  customElements.define("astro-header", AstroHeader);
+</script>

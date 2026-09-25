@@ -1,6 +1,5 @@
 import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -14,7 +13,7 @@ import { mdastReadingTimePlugin } from "@/plugins/mdast/reading-time";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [mdx(), sitemap(), react({ compiler: true })],
+  integrations: [mdx(), sitemap()],
   markdown: {
     processor: satteri({
       mdastPlugins: [mdastModifiedTimePlugin, mdastReadingTimePlugin],
@@ -22,14 +21,14 @@ export default defineConfig({
     }),
   },
   vite: {
-    plugins: [tailwindcss(), Icons({ scale: 1, compiler: "jsx", jsx: "react" })],
+    plugins: [tailwindcss(), Icons({ scale: 1, compiler: "astro" })],
   },
   server: {
     port: 3000,
   },
-  // devToolbar: {
-  //   enabled: false,
-  // },
+  devToolbar: {
+    enabled: false,
+  },
   image: {
     responsiveStyles: true,
   },

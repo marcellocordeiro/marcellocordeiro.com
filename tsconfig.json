@@ -5,12 +5,10 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "verbatimModuleSyntax": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["unplugin-icons/types/react"],
+    "types": ["unplugin-icons/types/astro"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

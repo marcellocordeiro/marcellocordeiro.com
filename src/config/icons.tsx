@@ -4,8 +4,8 @@ export { default as ChevronUpIcon } from "~icons/lucide/chevron-down";
 export { default as ChevronDownIcon } from "~icons/lucide/chevron-down";
 
 export { default as EllipsisIcon } from "~icons/lucide/ellipsis";
-export { default as MenuClosedIcon } from "~icons/lucide/menu";
-export { default as MenuOpenIcon } from "~icons/lucide/x";
+export { default as MenuIcon } from "~icons/lucide/menu";
+export { default as CloseIcon } from "~icons/lucide/x";
 
 export { default as CheckIcon } from "~icons/lucide/check";
 export { default as XIcon } from "~icons/lucide/x";

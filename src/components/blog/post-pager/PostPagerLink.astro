@@ -2,14 +2,12 @@
 import { cva } from "class-variance-authority";
 import { cn } from "cn";
 
-import { Link } from "@/components/link";
+import Link from "@/components/Link.astro";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/config/icons";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import Card from "@/components/ui/card/Card.astro";
+import CardHeader from "@/components/ui/card/CardHeader.astro";
+import CardTitle from "@/components/ui/card/CardTitle.astro";
+import CardDescription from "@/components/ui/card/CardDescription.astro";
 
 interface Props {
   position: "previous" | "next";
@@ -66,10 +64,10 @@ const LABEL = {
 const { text, icon: Icon } = LABEL[position];
 ---
 
-<Link className={cn(navItemVariants({ position }))} href={`/blog/${slug}`}>
+<Link class={cn(navItemVariants({ position }))} href={`/blog/${slug}`}>
   <Card>
-    <CardHeader className={cn(cardHeaderVariants({ position }))}>
-      <CardTitle className={cn(labelVariants({ position }))}>
+    <CardHeader class={cn(cardHeaderVariants({ position }))}>
+      <CardTitle class={cn(labelVariants({ position }))}>
         <Icon />
         {text}
       </CardTitle>

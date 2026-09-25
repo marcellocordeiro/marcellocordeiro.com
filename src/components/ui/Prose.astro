@@ -7,6 +7,6 @@ type Props = HTMLAttributes<"article">;
 const { class: className } = Astro.props;
 ---
 
-<article class={cn("mx-auto prose dark:prose-invert", className)}>
+<article class={cn("typeset typeset-article max-w-[65ch]", className)}>
   <slot />
 </article>

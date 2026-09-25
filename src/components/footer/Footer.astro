@@ -1,24 +1,22 @@
 ---
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+import ThemeToggle from "@/components/theme/ThemeToggle.astro";
 import { COPYRIGHT } from "@/config/constants";
+import Link from "@/components/Link.astro";
 
-import FooterLinks from "./FooterLinks.astro";
 import FooterSocials from "./FooterSocials.astro";
 ---
 
 <footer class="border-t py-8">
   <div class="mx-auto max-w-3xl px-10">
-    <div class="flex flex-wrap justify-between gap-10 px-10">
-      <FooterLinks />
-    </div>
-
-    <div class="mt-10 flex flex-row flex-wrap items-center justify-between gap-4">
+    <div class="flex flex-row flex-wrap items-center justify-between gap-4">
       <div>
-        <p class="text-sm text-muted-foreground">{COPYRIGHT}</p>
+        <p class="text-sm text-muted-foreground">
+          {COPYRIGHT} · <Link href="/rss.xml">RSS</Link>
+        </p>
         <FooterSocials />
       </div>
 
-      <ThemeToggle client:load transition:persist />
+      <ThemeToggle />
     </div>
   </div>
 </footer>

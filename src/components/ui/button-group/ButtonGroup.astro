@@ -1,0 +1,21 @@
+---
+import { cn } from "cn";
+import type { VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from "astro/types";
+
+import { buttonGroupVariants } from "./variants";
+
+type Props = HTMLAttributes<"fieldset"> &
+  VariantProps<typeof buttonGroupVariants>;
+
+const { class: className, orientation, ...props } = Astro.props;
+---
+
+<fieldset
+  data-slot="button-group"
+  data-orientation={orientation}
+  class={cn(buttonGroupVariants({ orientation }), className)}
+  {...props}
+>
+  <slot />
+</fieldset>

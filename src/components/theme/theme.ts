@@ -5,11 +5,11 @@ export type SystemTheme = Exclude<Theme, "system">;
 
 // Assertions
 
-export function isTheme(value: string | null): value is Theme {
+export function isTheme(value: string | undefined | null): value is Theme {
   return value === "system" || value === "light" || value === "dark";
 }
 
-export function isSystemTheme(value: string | null): value is SystemTheme {
+export function isSystemTheme(value: string | undefined | null): value is SystemTheme {
   return value === "light" || value === "dark";
 }
 

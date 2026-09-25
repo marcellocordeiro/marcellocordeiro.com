@@ -1,0 +1,130 @@
+---
+import Button from "@/components/ui/button/Button.astro";
+import ButtonGroup from "@/components/ui/button-group/ButtonGroup.astro";
+import { MonitorIcon, MoonIcon, SunIcon } from "@/config/icons";
+
+const themes = [
+  {
+    theme: "light",
+    label: "Light",
+    Icon: SunIcon,
+  },
+  {
+    theme: "system",
+    label: "System",
+    Icon: MonitorIcon,
+  },
+  {
+    theme: "dark",
+    label: "Dark",
+    Icon: MoonIcon,
+  },
+] as const;
+---
+
+<astro-theme-toggle>
+  <ButtonGroup role="radiogroup">
+    {themes.map((item) => (
+      <Button
+        // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
+        role="radio"
+        variant="outline"
+        data-value={item.theme}
+        aria-label={`Switch theme to ${item.label}`}
+        aria-checked="false"
+      >
+        <item.Icon />
+      </Button>
+    ))}
+  </ButtonGroup>
+</astro-theme-toggle>
+
+<script>
+  import { cn } from "cn";
+  import {
+    DARK_MODE_MEDIA_QUERY,
+    getSavedTheme,
+    isTheme,
+    updateDOMTheme,
+    updateTheme,
+    type Theme,
+  } from "./theme";
+  import { buttonVariants } from "../ui/button/variants";
+
+  class ThemeToggle extends HTMLElement {
+    private mql: MediaQueryList | null = null;
+    private onMqlChange = this.handleMediaQueryChange.bind(this);
+
+    private currentTheme: Theme | null = null;
+
+    private buttons: NodeListOf<HTMLButtonElement> | null = null;
+
+    connectedCallback() {
+      this.currentTheme = getSavedTheme() ?? "system";
+      this.buttons = this.querySelectorAll("button[data-value]");
+
+      this.syncButtons(this.currentTheme);
+
+      this.buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const { value } = button.dataset;
+
+          if (!isTheme(value)) {
+            console.warn(`Invalid theme value: ${value}`);
+            return;
+          }
+
+          this.handleThemeChange(value);
+        });
+      });
+
+      this.mql = globalThis.matchMedia(DARK_MODE_MEDIA_QUERY);
+      this.mql.addEventListener("change", this.onMqlChange);
+    }
+
+    disconnectedCallback() {
+      this.mql?.removeEventListener("change", this.onMqlChange);
+    }
+
+    handleMediaQueryChange() {
+      if (!this.mql) {
+        console.warn("mql is not initialised.");
+        return;
+      }
+
+      // Only update the DOM if the user did not set any preference
+      if (this.currentTheme !== "system") {
+        return;
+      }
+
+      const theme = this.mql.matches ? "dark" : "light";
+
+      updateDOMTheme(theme);
+    }
+
+    handleThemeChange(selected: Theme) {
+      this.currentTheme = selected;
+      updateTheme(selected);
+      this.syncButtons(selected);
+    }
+
+    syncButtons(selected: Theme) {
+      this.buttons?.forEach((button) => {
+        const { value } = button.dataset;
+
+        button.className = cn(
+          buttonVariants({
+            variant: value === selected ? "default" : "outline",
+            size: "default",
+          }),
+        );
+        button.setAttribute(
+          "aria-checked",
+          String(button.dataset.value === selected),
+        );
+      });
+    }
+  }
+
+  customElements.define("astro-theme-toggle", ThemeToggle);
+</script>

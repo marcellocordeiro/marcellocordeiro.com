@@ -1,0 +1,36 @@
+---
+import { cn } from "cn";
+import type { HTMLAttributes } from "astro/types";
+
+import { ExternalLinkIcon } from "@/config/icons";
+import { parseHref } from "@/lib/href-parser";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  showExternalLinkIcon?: boolean;
+}
+
+const { class: className, showExternalLinkIcon, href, ...props } = Astro.props;
+
+const { isExternal, ...propsFromHref } = parseHref(href);
+const resolvedShowExternalLinkIcon = showExternalLinkIcon ?? isExternal;
+---
+
+<a
+  class={cn(
+    resolvedShowExternalLinkIcon && "inline-flex place-items-center gap-1",
+    className,
+  )}
+  href={href}
+  {...propsFromHref}
+  {...props}
+>
+  <slot />
+
+  {resolvedShowExternalLinkIcon && (
+    <>
+      <ExternalLinkIcon aria-hidden="true" />
+      <span class="sr-only">(opens in a new tab)</span>
+    </>
+  )}
+</a>
