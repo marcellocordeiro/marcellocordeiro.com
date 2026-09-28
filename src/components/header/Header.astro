@@ -13,7 +13,7 @@ interface Props {
 const { pathname } = Astro.props;
 ---
 
-<astro-header>
+<custom-header>
   <header class="border-b bg-background/80 backdrop-blur">
     <div class="mx-auto flex max-w-3xl items-center justify-between py-4 px-4">
       <Link class="text-lg font-semibold tracking-tight" href="/">
@@ -46,10 +46,16 @@ const { pathname } = Astro.props;
       </ul>
     </nav>
   </header>
-</astro-header>
+</custom-header>
+
+<style>
+  custom-header {
+    display: contents;
+  }
+</style>
 
 <script>
-  class AstroHeader extends HTMLElement {
+  class CustomHeader extends HTMLElement {
     connectedCallback() {
       const toggleButton = this.querySelector("#menu-toggle");
       const mobileNav = this.querySelector("#mobile-nav");
@@ -64,5 +70,5 @@ const { pathname } = Astro.props;
     }
   }
 
-  customElements.define("astro-header", AstroHeader);
+  customElements.define("custom-header", CustomHeader);
 </script>

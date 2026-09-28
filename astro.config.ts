@@ -35,16 +35,14 @@ export default defineConfig({
   fonts: [
     {
       name: "Inter",
-      cssVariable: "--font-sans",
-      fallbacks: ["sans-serif"],
-      provider: fontProviders.fontsource(),
+      cssVariable: "--font-inter",
+      provider: fontProviders.google(),
       weights: ["100 900"],
     },
     {
       name: "JetBrains Mono",
-      cssVariable: "--font-mono",
-      fallbacks: ["monospace"],
-      provider: fontProviders.fontsource(),
+      cssVariable: "--font-jetbrains-mono",
+      provider: fontProviders.google(),
       weights: ["100 800"],
     },
   ],
