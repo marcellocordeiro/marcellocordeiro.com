@@ -1,7 +1,13 @@
 export const SITE_URL = "https://marcellocordeiro.com";
-export const BLOG_URL = `${SITE_URL}/blog`;
-export const FAVICON_ICO_URL = `${SITE_URL}/favicon.ico`;
-export const RSS_URL = `${SITE_URL}/rss.xml`;
+
+export const BLOG_PATH = "/blog";
+export const BLOG_URL = `${SITE_URL}${BLOG_PATH}}`;
+
+export const FAVICON_ICO_PATH = "/favicon.ico";
+export const FAVICON_ICO_URL = `${SITE_URL}${FAVICON_ICO_PATH}`;
+
+export const RSS_PATH = "/rss.xml";
+export const RSS_URL = `${SITE_URL}${RSS_PATH}`;
 
 export const AUTHOR = {
   name: "Marcello Cordeiro",
