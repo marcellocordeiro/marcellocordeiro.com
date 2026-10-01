@@ -22,13 +22,14 @@ const themes = [
 ] as const;
 ---
 
-<astro-theme-toggle>
+<theme-toggle>
   <ButtonGroup role="radiogroup">
     {themes.map((item) => (
       <Button
         // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
         role="radio"
         variant="outline"
+        class="aria-checked:bg-primary aria-checked:text-primary-foreground aria-checked:hover:bg-primary/80"
         data-value={item.theme}
         aria-label={`Switch theme to ${item.label}`}
         aria-checked="false"
@@ -37,10 +38,15 @@ const themes = [
       </Button>
     ))}
   </ButtonGroup>
-</astro-theme-toggle>
+</theme-toggle>
+
+<style>
+  theme-toggle {
+    display: contents;
+  }
+</style>
 
 <script>
-  import { cn } from "cn";
   import {
     DARK_MODE_MEDIA_QUERY,
     getSavedTheme,
@@ -49,7 +55,6 @@ const themes = [
     updateTheme,
     type Theme,
   } from "./theme";
-  import { buttonVariants } from "../ui/button/variants";
 
   class ThemeToggle extends HTMLElement {
     private mql: MediaQueryList | null = null;
@@ -111,13 +116,9 @@ const themes = [
     syncButtons(selected: Theme) {
       this.buttons?.forEach((button) => {
         const { value } = button.dataset;
+        const variant = value === selected ? "default" : "outline";
 
-        button.className = cn(
-          buttonVariants({
-            variant: value === selected ? "default" : "outline",
-            size: "default",
-          }),
-        );
+        button.dataset.variant = variant;
         button.setAttribute(
           "aria-checked",
           String(button.dataset.value === selected),
@@ -126,5 +127,5 @@ const themes = [
     }
   }
 
-  customElements.define("astro-theme-toggle", ThemeToggle);
+  customElements.define("theme-toggle", ThemeToggle);
 </script>
