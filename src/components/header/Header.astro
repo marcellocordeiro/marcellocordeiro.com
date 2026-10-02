@@ -27,7 +27,7 @@ const { pathname } = Astro.props;
       </nav>
 
       <Button
-        id="menu-toggle"
+        id="mobile-menu-toggle"
         class="transition-transform duration-200 group md:hidden aria-expanded:rotate-90 not-aria-expanded:rotate-0"
         variant="outline"
         size="icon"
@@ -40,7 +40,7 @@ const { pathname } = Astro.props;
       </Button>
     </div>
 
-    <nav id="mobile-nav" class="hidden border-t md:hidden">
+    <nav id="mobile-menu" class="hidden border-t md:hidden">
       <ul class="flex flex-col gap-1 px-4 py-3">
         <HeaderNavigationItems pathname={pathname} />
       </ul>
@@ -57,15 +57,15 @@ const { pathname } = Astro.props;
 <script>
   class CustomHeader extends HTMLElement {
     connectedCallback() {
-      const toggleButton = this.querySelector("#menu-toggle");
-      const mobileNav = this.querySelector("#mobile-nav");
+      const toggleButton = this.querySelector("#mobile-menu-toggle");
+      const mobileMenu = this.querySelector("#mobile-menu");
 
       toggleButton?.addEventListener("click", () => {
         const isExpanded =
           toggleButton.getAttribute("aria-expanded") === "true";
 
         toggleButton.setAttribute("aria-expanded", String(!isExpanded));
-        mobileNav?.classList.toggle("hidden");
+        mobileMenu?.classList.toggle("hidden");
       });
     }
   }
