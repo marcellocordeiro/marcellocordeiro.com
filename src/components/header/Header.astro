@@ -13,62 +13,84 @@ interface Props {
 const { pathname } = Astro.props;
 ---
 
-<custom-header>
-  <header class="border-b bg-background/80 backdrop-blur">
-    <div class="mx-auto flex max-w-3xl items-center justify-between py-4 px-4">
-      <Link class="text-lg font-semibold tracking-tight" href="/">
-        {AUTHOR.name}
-      </Link>
+<header class="group/header border-b bg-background/80 backdrop-blur">
+  <div class="mx-auto flex max-w-3xl items-center justify-between p-4">
+    <Link class="text-lg font-semibold tracking-tight" href="/">
+      {AUTHOR.name}
+    </Link>
 
-      <nav class="hidden md:block">
-        <ul class="flex gap-4">
-          <HeaderNavigationItems pathname={pathname} />
-        </ul>
-      </nav>
+    <nav class="hidden md:block">
+      <ul class="flex gap-4">
+        <HeaderNavigationItems pathname={pathname} />
+      </ul>
+    </nav>
 
-      <Button
-        id="mobile-menu-toggle"
-        class="transition-transform duration-200 group md:hidden aria-expanded:rotate-90 not-aria-expanded:rotate-0"
-        variant="outline"
-        size="icon"
-        aria-label={"Toggle menu"}
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <MenuIcon class="group-aria-expanded:hidden" />
-        <CloseIcon class="hidden group-aria-expanded:block" />
-      </Button>
-    </div>
+    <Button
+      id="mobile-menu-toggle"
+      class="transition-transform duration-200 md:hidden group-has-[:popover-open]/header:rotate-90"
+      variant="outline"
+      size="icon"
+      aria-label="Toggle menu"
+      popovertarget="mobile-menu"
+    >
+      <MenuIcon
+        class="group-has-[:popover-open]/header:hidden"
+        aria-hidden="true"
+      />
+      <CloseIcon
+        class="hidden group-has-[:popover-open]/header:block"
+        aria-hidden="true"
+      />
+    </Button>
 
-    <nav id="mobile-menu" class="hidden border-t md:hidden">
+    <nav
+      id="mobile-menu"
+      class="inset-x-0 m-0 border-b w-auto md:hidden"
+      popover
+    >
       <ul class="flex flex-col gap-1 px-4 py-3">
         <HeaderNavigationItems pathname={pathname} />
       </ul>
     </nav>
-  </header>
-</custom-header>
+  </div>
+</header>
 
 <style>
-  custom-header {
-    display: contents;
+  header {
+    anchor-name: --header;
   }
-</style>
 
-<script>
-  class CustomHeader extends HTMLElement {
-    connectedCallback() {
-      const toggleButton = this.querySelector("#mobile-menu-toggle");
-      const mobileMenu = this.querySelector("#mobile-menu");
+  #mobile-menu {
+    position-anchor: --header;
+    top: anchor(bottom);
 
-      toggleButton?.addEventListener("click", () => {
-        const isExpanded =
-          toggleButton.getAttribute("aria-expanded") === "true";
+    /* https://web.dev/learn/css/popover-and-dialog#animating_popovers */
+    &[popover] {
+      /*  Opened styles  */
+      &:popover-open {
+        transform: translateY(0) scale(1);
+        opacity: 1;
 
-        toggleButton.setAttribute("aria-expanded", String(!isExpanded));
-        mobileMenu?.classList.toggle("hidden");
-      });
+        /* Start styles for the opening transition.
+       * Added to :popover-open, but after the opened styles.
+       */
+        @starting-style {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+      }
+
+      /* End styles for the closing transition. */
+      transform: translateY(-50px);
+      opacity: 0;
+
+      /* Enumerate transitioning properties, including display and overlay. */
+      transition:
+        transform,
+        opacity,
+        display allow-discrete,
+        overlay allow-discrete;
+      transition-duration: 200ms;
     }
   }
-
-  customElements.define("custom-header", CustomHeader);
-</script>
+</style>

@@ -10,14 +10,12 @@ default:
 [group("maintenance")]
 lint *ARGS:
     pnpm lint:eslint
-    pnpm lint:biome
     pnpm lint {{ ARGS }}
 
 # Format the project
 [group("maintenance")]
 format:
     pnpm format:prettier
-    # pnpm format:biome
     pnpm format
     just --fmt
 
