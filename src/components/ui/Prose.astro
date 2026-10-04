@@ -7,6 +7,6 @@ type Props = HTMLAttributes<"article">;
 const { class: className } = Astro.props;
 ---
 
-<article class={cn("typeset typeset-article max-w-[65ch]", className)}>
+<article class={cn("typeset typeset-article mx-auto max-w-[65ch]", className)}>
   <slot />
 </article>
