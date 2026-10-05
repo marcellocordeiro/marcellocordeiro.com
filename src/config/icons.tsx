@@ -24,3 +24,5 @@ export { default as ExternalLinkIcon } from "~icons/lucide/external-link";
 export { default as GitHubIcon } from "~icons/fa6-brands/github";
 export { default as LinkedInIcon } from "~icons/fa6-brands/linkedin-in";
 export { default as EmailIcon } from "~icons/fa6-solid/envelope";
+
+export { default as ClockIcon } from "~icons/lucide/clock";

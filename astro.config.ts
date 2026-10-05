@@ -46,4 +46,5 @@ export default defineConfig({
       weights: ["100 800"],
     },
   ],
+  prefetch: false,
 });

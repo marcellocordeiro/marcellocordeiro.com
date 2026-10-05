@@ -4,6 +4,9 @@
 @import "./theme-light-dark().css";
 @import "./typeset.css";
 
+@import "./button.css";
+@import "./button-group.css";
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
