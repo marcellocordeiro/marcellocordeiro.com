@@ -1,6 +1,5 @@
 ---
 import Link from "@/components/ui/link/Link.astro";
-import { buttonVariants } from "@/components/ui/button/variants";
 import { SOCIALS } from "@/config/navigation-items";
 ---
 
@@ -10,7 +9,9 @@ import { SOCIALS } from "@/config/navigation-items";
       href={item.href}
       aria-label={item.label}
       showExternalLinkIcon={false}
-      class={buttonVariants({ variant: "ghost", size: "icon" })}
+      class="button"
+      data-variant="ghost"
+      data-size="icon"
     >
       <item.Icon />
     </Link>
