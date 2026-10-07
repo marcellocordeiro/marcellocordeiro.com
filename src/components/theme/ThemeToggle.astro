@@ -22,7 +22,7 @@ const themes = [
 ] as const;
 ---
 
-<theme-toggle>
+<theme-toggle transition:persist>
   <ButtonGroup role="radiogroup">
     {themes.map((item) => (
       <Button
@@ -44,6 +44,17 @@ const themes = [
     display: contents;
   }
 </style>
+
+<script is:inline>
+  const selectedTheme = localStorage.getItem("theme") ?? "system";
+
+  document
+    .querySelectorAll(`button[data-value="${selectedTheme}"]`)
+    .forEach((button) => {
+      button.dataset.variant = "default";
+      button.setAttribute("aria-pressed", "true");
+    });
+</script>
 
 <script>
   import {
@@ -67,7 +78,8 @@ const themes = [
       this.currentTheme = getSavedTheme() ?? "system";
       this.buttons = this.querySelectorAll("button[data-value]");
 
-      this.syncButtons(this.currentTheme);
+      // We're first synchronising in the inline script above, but keep it here as a reminder
+      // this.syncButtons(this.currentTheme);
 
       this.buttons.forEach((button) => {
         button.addEventListener("click", () => {

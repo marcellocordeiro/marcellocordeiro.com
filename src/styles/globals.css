@@ -75,12 +75,16 @@
 
   html {
     @apply font-sans antialiased;
-    scroll-behavior: smooth;
     scrollbar-gutter: stable;
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
     @apply bg-background text-foreground;
+    min-block-size: 100svh;
   }
 
   button:not(:disabled),

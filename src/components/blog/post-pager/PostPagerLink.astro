@@ -1,7 +1,4 @@
 ---
-import { cva } from "class-variance-authority";
-import { cn } from "cn";
-
 import Link from "@/components/ui/link/Link.astro";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/config/icons";
 import Card from "@/components/ui/card/Card.astro";
@@ -17,59 +14,49 @@ interface Props {
 
 const { position, slug, title } = Astro.props;
 
-const navItemVariants = cva(
-  "group col-span-1 no-underline transition-opacity hover:opacity-80",
-  {
-    variants: {
-      position: {
-        previous: "col-start-1",
-        next: "col-start-2",
-      },
-    },
-  },
-);
-
-const cardHeaderVariants = cva("gap-1", {
-  variants: {
-    position: {
-      previous: "items-start",
-      next: "items-end text-right",
-    },
-  },
-});
-
-const labelVariants = cva(
-  "flex items-center gap-1 text-xs font-medium tracking-widest text-muted-foreground uppercase",
-  {
-    variants: {
-      position: {
-        previous: "flex-row",
-        next: "flex-row-reverse",
-      },
-    },
-  },
-);
-
-const LABEL = {
+const POSITION_CONFIG = {
   previous: {
-    text: "Previous",
+    linkClass: "col-start-1",
+    headerClass: "items-start",
+    labelClass: "flex-row",
+    label: "Previous",
     icon: ChevronLeftIcon,
   },
   next: {
-    text: "Next",
+    linkClass: "col-start-2",
+    headerClass: "items-end text-right",
+    labelClass: "flex-row-reverse",
+    label: "Next",
     icon: ChevronRightIcon,
   },
 } as const;
 
-const { text, icon: Icon } = LABEL[position];
+const {
+  linkClass,
+  headerClass,
+  labelClass,
+  label,
+  icon: Icon,
+} = POSITION_CONFIG[position];
 ---
 
-<Link class={cn(navItemVariants({ position }))} href={`/blog/${slug}`}>
+<Link
+  class:list={[
+    "group col-span-1 no-underline transition-opacity hover:opacity-80",
+    linkClass,
+  ]}
+  href={`/blog/${slug}`}
+>
   <Card>
-    <CardHeader class={cn(cardHeaderVariants({ position }))}>
-      <CardTitle class={cn(labelVariants({ position }))}>
+    <CardHeader class:list={["gap-1", headerClass]}>
+      <CardTitle
+        class:list={[
+          "flex flex-row items-center gap-1 text-xs font-medium tracking-widest text-muted-foreground uppercase",
+          labelClass,
+        ]}
+      >
         <Icon />
-        {text}
+        {label}
       </CardTitle>
       <CardDescription>{title}</CardDescription>
     </CardHeader>
