@@ -41,7 +41,7 @@ function makeSrSpan(): HastNode {
   };
 }
 
-export const hastExternalLinks = defineHastPlugin({
+export const hastExternalLinksPlugin = defineHastPlugin({
   name: "hast-external-links",
   element: {
     filter: ["a"],
