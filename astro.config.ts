@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import Icons from "unplugin-icons/vite";
 
-import { SITE_URL } from "@/config/constants";
+import { SITE_URL } from "@/config/site";
 import { markdownProcessor } from "@/plugins/markdown-processor";
 
 // https://astro.build/config

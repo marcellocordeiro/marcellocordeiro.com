@@ -1,4 +1,3 @@
-import { AUTHOR, GITHUB_URL, LINKEDIN_URL, SOURCE_CODE } from "./constants";
 import {
   EmailIcon,
   FolderKanbanIcon,
@@ -8,6 +7,7 @@ import {
   NewspaperIcon,
   RssIcon,
 } from "./icons";
+import { AUTHOR, GITHUB_URL, LINKEDIN_URL, SOURCE_CODE } from "./site";
 
 export const SOCIALS = [
   {

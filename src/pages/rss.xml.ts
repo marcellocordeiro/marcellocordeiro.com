@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/config/constants";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/config/site";
 import { getBlogPosts } from "@/lib/blog";
 
 export function GET(): Promise<Response> {
