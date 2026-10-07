@@ -1,9 +1,9 @@
 ---
 slug: first-post
-title: "First post"
-description: "Lorem ipsum dolor sit amet"
-pubDate: "2026-03-10"
-image: "assets/blog-placeholder.jpg"
+title: First post
+description: Lorem ipsum dolor sit amet
+pubDate: 2026-03-10
+image: assets/blog-placeholder.jpg
 tags:
   - test
   - Markdown
