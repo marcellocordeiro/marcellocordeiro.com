@@ -2,10 +2,8 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"button"> {
-  variant?:
-    "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
-  size?:
-    "default" | "sm" | "xs" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 }
 
 const {

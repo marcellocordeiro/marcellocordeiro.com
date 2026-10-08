@@ -1,0 +1,48 @@
+---
+import { ClockIcon } from "@/config/icons";
+import type { Post } from "@/lib/blog";
+
+interface Props {
+  post: Post;
+  extraMetadata: {
+    lastModified?: string;
+    minutesRead?: string;
+  };
+  showUpdated?: boolean;
+}
+
+const { post, extraMetadata, showUpdated = false } = Astro.props;
+
+const formatDate = (date: Date | string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<div class="flex flex-wrap flex-col gap-1 text-sm text-muted-foreground">
+  <span class="flex items-center gap-1">
+    <ClockIcon aria-hidden="true" />
+    <span>Published</span>
+    <time datetime={post.data.pubDate.toISOString()}>
+      {formatDate(post.data.pubDate)}
+    </time>
+  </span>
+
+  {((showUpdated && extraMetadata.lastModified) ||
+    extraMetadata.minutesRead) && (
+    <div class="flex flex-wrap gap-x-3 gap-y-1">
+      {showUpdated && extraMetadata.lastModified && (
+        <span>
+          Updated{" "}
+          <time datetime={extraMetadata.lastModified}>
+            {formatDate(extraMetadata.lastModified)}
+          </time>
+        </span>
+      )}
+
+      {extraMetadata.minutesRead && <span>{extraMetadata.minutesRead}</span>}
+    </div>
+  )}
+</div>

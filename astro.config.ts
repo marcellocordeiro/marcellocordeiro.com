@@ -34,10 +34,10 @@ export default defineConfig({
       weights: ["100 900"],
     },
     {
-      name: "JetBrains Mono",
-      cssVariable: "--font-jetbrains-mono",
+      name: "Fira Code",
+      cssVariable: "--font-fira-code",
       provider: fontProviders.google(),
-      weights: ["100 800"],
+      weights: ["300 700"],
     },
   ],
   prefetch: false,

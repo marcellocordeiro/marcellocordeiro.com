@@ -120,8 +120,9 @@ const themes = [
 
     handleThemeChange(selected: Theme) {
       this.currentTheme = selected;
-      updateTheme(selected);
       this.syncButtons(selected);
+
+      updateTheme(selected);
     }
 
     syncButtons(selected: Theme) {

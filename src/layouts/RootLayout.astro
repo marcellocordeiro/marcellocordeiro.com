@@ -2,13 +2,13 @@
 import "@/styles/globals.css";
 
 import type { ImageMetadata } from "astro";
-import Font from "astro/components/Font.astro";
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
 
 import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/site";
 import FallbackImage from "@/content/blog/assets/blog-placeholder.jpg";
 import CloudflareWorkaround from "@/lib/CloudflareWorkaround.astro";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -43,7 +43,7 @@ const {
 
     <!-- Font preloads -->
     <Font cssVariable="--font-inter" preload />
-    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-fira-code" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
@@ -68,8 +68,9 @@ const {
     <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
     <InitialThemeScript />
-    <CloudflareWorkaround />
+
     <ClientRouter />
+    <CloudflareWorkaround />
   </head>
 
   <body>

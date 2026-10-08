@@ -1,0 +1,26 @@
+---
+import { ClockIcon } from "@/config/icons";
+import type { Post } from "@/lib/blog";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+
+const formatDate = (date: Date | string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+<div class="text-sm text-muted-foreground">
+  <span class="flex items-center gap-1">
+    <ClockIcon aria-hidden="true" />
+    <time datetime={post.data.pubDate.toISOString()}>
+      {formatDate(post.data.pubDate)}
+    </time>
+  </span>
+</div>
