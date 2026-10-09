@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./shadcn.css";
-@import "./theme-light-dark().css";
+@import "./theme.css";
 @import "./typeset.css";
 
 @import "../components/ui/button/styles.css";

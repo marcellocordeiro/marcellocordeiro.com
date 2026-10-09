@@ -6,25 +6,18 @@ import Icons from "unplugin-icons/vite";
 
 import { SITE_URL } from "@/config/site";
 import { markdownProcessor } from "@/plugins/markdown-processor";
+import { shikiConfig } from "@/plugins/shiki-config";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
   integrations: [mdx(), sitemap()],
-  markdown: {
-    processor: markdownProcessor,
-  },
   vite: {
     plugins: [tailwindcss(), Icons({ scale: 1, compiler: "astro" })],
   },
-  server: {
-    port: 3000,
-  },
-  devToolbar: {
-    enabled: false,
-  },
-  image: {
-    responsiveStyles: true,
+  markdown: {
+    processor: markdownProcessor,
+    shikiConfig,
   },
   fonts: [
     {
@@ -47,4 +40,10 @@ export default defineConfig({
     },
   ],
   prefetch: false,
+  server: {
+    port: 3000,
+  },
+  devToolbar: {
+    enabled: false,
+  },
 });
