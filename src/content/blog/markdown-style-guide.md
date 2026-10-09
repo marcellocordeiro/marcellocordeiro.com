@@ -130,6 +130,16 @@ async function fetchUser(id: number): Promise<User> {
 ```
 ````
 
+```js title="line-markers.js" del={2} ins={3-4} {6}
+function demo() {
+  console.log('this line is marked as deleted')
+  // This line and the next one are marked as inserted
+  console.log('this is the second inserted line')
+
+  return 'this line uses the neutral default marker type'
+}
+```
+
 ### Output
 
 ```html

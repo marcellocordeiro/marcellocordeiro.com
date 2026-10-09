@@ -9,8 +9,8 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-  --font-heading: var(--font-inter);
-  --font-sans: var(--font-inter);
+  --font-heading: var(--font-montserrat);
+  --font-sans: var(--font-open-sans);
   --font-mono: var(--font-fira-code);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

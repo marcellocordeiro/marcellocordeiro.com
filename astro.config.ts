@@ -28,15 +28,21 @@ export default defineConfig({
   },
   fonts: [
     {
-      name: "Inter",
-      cssVariable: "--font-inter",
-      provider: fontProviders.google(),
+      name: "Open Sans",
+      cssVariable: "--font-open-sans",
+      provider: fontProviders.fontsource(),
+      weights: ["300 800"],
+    },
+    {
+      name: "Montserrat",
+      cssVariable: "--font-montserrat",
+      provider: fontProviders.fontsource(),
       weights: ["100 900"],
     },
     {
       name: "Fira Code",
       cssVariable: "--font-fira-code",
-      provider: fontProviders.google(),
+      provider: fontProviders.fontsource(),
       weights: ["300 700"],
     },
   ],
