@@ -1,0 +1,17 @@
+---
+import type { Post } from "@/lib/blog";
+
+import PostCardLink from "./PostCardLink.astro";
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="grid w-full grid-cols-1 gap-4">
+  {posts.map((post) => (
+    <PostCardLink post={post} />
+  ))}
+</div>
