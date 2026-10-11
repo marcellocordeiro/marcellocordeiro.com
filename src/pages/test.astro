@@ -1,0 +1,46 @@
+---
+import Button from "@/components/ui/button/Button.astro";
+import { SITE_TITLE } from "@/config/site";
+import { ClockIcon } from "@/config/icons";
+import Layout from "@/layouts/Layout.astro";
+
+const buttonVariants = [
+  "default",
+  "outline",
+  "secondary",
+  "ghost",
+  "destructive",
+  "link",
+] as const;
+
+const buttonSizes = [
+  "default",
+  "sm",
+  "xs",
+  "lg",
+  "icon",
+  "icon-xs",
+  "icon-sm",
+  "icon-lg",
+] as const;
+---
+
+<Layout title={`Tests | ${SITE_TITLE}`}>
+  <div class="space-y-8">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Button tests</h1>
+    </header>
+
+    {buttonVariants.map((variant) =>
+      buttonSizes.map((size) => (
+        <Button variant={variant} size={size}>
+          {size.startsWith("icon") ? (
+            <ClockIcon />
+          ) : (
+            `Variant: ${variant}, Size: ${size}`
+          )}
+        </Button>
+      )),
+    )}
+  </div>
+</Layout>

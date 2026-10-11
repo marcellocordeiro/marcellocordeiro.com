@@ -9,6 +9,7 @@ import Separator from "@/components/ui/Separator.astro";
 import { SITE_TITLE } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
+import { ChevronLeftIcon } from "@/config/icons";
 
 export function getStaticPaths() {
   const windows = getBlogPostWindows();
@@ -31,7 +32,10 @@ const { Content, remarkPluginFrontmatter } = await render(current);
 
 <Layout title=`${title} | ${SITE_TITLE}`>
   <Prose>
-    <Link href="/blog">{"<- Back"}</Link>
+    <Link class="group inline-flex items-center gap-1" href="/blog">
+      <ChevronLeftIcon class="size-4" aria-hidden="true" />
+      <span>Back</span>
+    </Link>
 
     <h1 class="mt-4">{title}</h1>
 

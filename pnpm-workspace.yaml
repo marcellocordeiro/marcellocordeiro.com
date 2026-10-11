@@ -1,5 +1,9 @@
 allowBuilds:
+  esbuild: true # For wrangler
   workerd: true # For wrangler
+
+lockfile:
+  includeResolutionSettings: true
 
 autoDedupe: true
 saveTypes: true

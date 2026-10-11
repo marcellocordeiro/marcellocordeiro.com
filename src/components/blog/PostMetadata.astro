@@ -42,7 +42,12 @@ const formatDate = (date: Date | string) =>
         </span>
       )}
 
-      {extraMetadata.minutesRead && <span>{extraMetadata.minutesRead}</span>}
+      {extraMetadata.minutesRead && (
+        <>
+          <span>·</span>
+          <span>{extraMetadata.minutesRead}</span>
+        </>
+      )}
     </div>
   )}
 </div>
