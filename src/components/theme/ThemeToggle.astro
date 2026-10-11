@@ -52,7 +52,7 @@ const themes = [
     .querySelectorAll(`button[data-value="${selectedTheme}"]`)
     .forEach((button) => {
       button.dataset.variant = "default";
-      button.setAttribute("aria-pressed", "true");
+      button.setAttribute("aria-checked", "true");
     });
 </script>
 
