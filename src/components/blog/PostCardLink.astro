@@ -1,8 +1,5 @@
 ---
-import Card from "@/components/ui/card/Card.astro";
-import CardDescription from "@/components/ui/card/CardDescription.astro";
-import CardHeader from "@/components/ui/card/CardHeader.astro";
-import CardTitle from "@/components/ui/card/CardTitle.astro";
+import Badge from "@/components/ui/badge/Badge.astro";
 import Link from "@/components/ui/link/Link.astro";
 import type { Post } from "@/lib/blog";
 
@@ -15,12 +12,26 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<Link href={`/blog/${post.data.slug}`}>
-  <Card>
-    <CardHeader>
-      <CardTitle>{post.data.title}</CardTitle>
-      <CardDescription>{post.data.description}</CardDescription>
-      <PostCardMetadata post={post} />
-    </CardHeader>
-  </Card>
+<Link
+  class="group/post grid gap-3 sm:grid-cols-[7rem_minmax(0,1fr)] sm:items-baseline sm:gap-6"
+  href={`/blog/${post.data.slug}`}
+>
+  <PostCardMetadata post={post} />
+
+  <div class="flex min-w-0 flex-col gap-2">
+    <h2 class="font-heading text-lg font-semibold tracking-tight transition-colors group-hover/post:text-primary">
+      {post.data.title}
+    </h2>
+
+    <p class="text-muted-foreground">{post.data.description}</p>
+    {post.data.tags.length > 0 && (
+      <ul class="flex flex-wrap gap-1.5" aria-label={`${post.data.title} tags`}>
+        {post.data.tags.map((tag) => (
+          <Badge as="li" variant="secondary">
+            {tag}
+          </Badge>
+        ))}
+      </ul>
+    )}
+  </div>
 </Link>
