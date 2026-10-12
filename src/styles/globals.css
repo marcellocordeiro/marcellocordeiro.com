@@ -3,6 +3,7 @@
 @import "./theme.css";
 @import "./typeset.css";
 
+@import "../components/ui/badge/styles.css";
 @import "../components/ui/button/styles.css";
 @import "../components/ui/button-group/styles.css";
 

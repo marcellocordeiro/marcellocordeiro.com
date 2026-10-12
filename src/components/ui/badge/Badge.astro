@@ -1,0 +1,23 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+  as: Tag;
+  variant?: BadgeVariant;
+}>;
+
+const {
+  as: Tag = "span",
+  class: className,
+  variant = "default",
+  ...props
+} = Astro.props;
+---
+
+<Tag
+  class:list={["group/badge badge", className]}
+  data-variant={variant}
+  {...props}
+>
+  <slot />
+</Tag>
