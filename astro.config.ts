@@ -11,7 +11,7 @@ import { shikiConfig } from "@/plugins/shiki-config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [mdx(), sitemap()],
+  integrations: [sitemap(), mdx()],
   vite: {
     plugins: [tailwindcss(), Icons({ scale: 1, compiler: "astro" })],
   },

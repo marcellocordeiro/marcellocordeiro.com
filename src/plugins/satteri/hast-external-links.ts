@@ -46,7 +46,7 @@ export const hastExternalLinksPlugin = defineHastPlugin({
   element: {
     filter: ["a"],
     visit(node, ctx) {
-      if (node.properties?.href === null || node.properties?.href === undefined) {
+      if (node.properties.href === undefined) {
         return;
       }
 

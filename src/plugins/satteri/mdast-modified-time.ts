@@ -11,6 +11,7 @@ export const mdastModifiedTimePlugin = defineMdastPlugin({
     }
 
     const filepath = fileURLToPath(ctx.fileURL);
+    // oxlint-disable-next-line node/no-sync
     const result = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`);
 
     if (ctx.data.astro !== undefined) {

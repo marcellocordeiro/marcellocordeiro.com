@@ -49,9 +49,9 @@ export function getBlogPostWindows(): {
   current: Post;
   next?: Post;
 }[] {
-  return posts.map((_, i) => ({
+  return posts.map((current, i) => ({
     previous: posts[i - 1],
-    current: posts[i],
+    current,
     next: posts[i + 1],
   }));
 }

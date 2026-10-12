@@ -2,6 +2,11 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
+const RouteSchema = z.union([
+  z.templateLiteral(["http://", z.string()]),
+  z.templateLiteral(["https://", z.string()]),
+]);
+
 const blog = defineCollection({
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
@@ -24,8 +29,8 @@ const projects = defineCollection({
       title: z.string(),
       description: z.string(),
       technologies: z.array(z.string()),
-      repository: z.url(),
-      demo: z.url().optional(),
+      repository: RouteSchema,
+      demo: RouteSchema.optional(),
       order: z.number().int(),
       dev: z.boolean().default(false),
     }),

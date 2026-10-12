@@ -1,7 +1,22 @@
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
-  plugins: ["eslint", "typescript", "unicorn", "react", "react-perf", "oxc", "import", "jsx-a11y"],
+  options: {
+    typeAware: true,
+  },
+  plugins: [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "react",
+    "react-perf",
+    "oxc",
+    "import",
+    "jsx-a11y",
+    "node",
+    "promise",
+    // "vitest", // Incorrectly parses Astro files
+  ],
   categories: {
     correctness: "error",
     suspicious: "warn",
@@ -34,6 +49,7 @@ export default defineConfig({
     "import/exports-last": "off",
     "import/group-exports": "off",
     "import/max-dependencies": "off",
+    "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
     "import/no-named-export": "off",
     "import/no-nodejs-modules": "off",
@@ -48,6 +64,8 @@ export default defineConfig({
     "react-perf/jsx-no-jsx-as-prop": "off",
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
+
+    "typescript/prefer-readonly-parameter-types": "off",
   },
   settings: {
     "jsx-a11y": {
