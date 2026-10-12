@@ -5,7 +5,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import Icons from "unplugin-icons/vite";
 
 import { SITE_URL } from "@/config/site";
-import { markdownProcessor } from "@/plugins/markdown-processor";
+import { markdownProcessor } from "@/plugins/satteri";
 import { shikiConfig } from "@/plugins/shiki-config";
 
 // https://astro.build/config

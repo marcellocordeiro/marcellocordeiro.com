@@ -39,10 +39,7 @@ const { Content, remarkPluginFrontmatter } = await render(current);
 
     <h1 class="mt-4">{title}</h1>
 
-    <PostMetadata
-      post={current}
-      extraMetadata={remarkPluginFrontmatter}
-    />
+    <PostMetadata post={current} extraMetadata={remarkPluginFrontmatter} />
 
     <Content />
 
