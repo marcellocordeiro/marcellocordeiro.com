@@ -1,12 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { cn } from "cn";
 
 type Props = HTMLAttributes<"article">;
 
 const { class: className } = Astro.props;
 ---
 
-<article class={cn("typeset typeset-article mx-auto max-w-[65ch]", className)}>
+<article class:list={["typeset typeset-article mx-auto max-w-[65ch]", className]}>
   <slot />
 </article>
