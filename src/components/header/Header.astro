@@ -1,7 +1,7 @@
 ---
 import Button from "@/components/ui/button/Button.astro";
 import Link from "@/components/ui/link/Link.astro";
-import { CloseIcon, MenuIcon } from "@/config/icons";
+import { XIcon, MenuIcon } from "@/config/icons";
 import { AUTHOR } from "@/config/site";
 
 import HeaderNavigationItems from "./HeaderNavigationItems.astro";
@@ -37,7 +37,7 @@ const { pathname } = Astro.props;
         class="group-has-[:popover-open]/header:hidden"
         aria-hidden="true"
       />
-      <CloseIcon
+      <XIcon
         class="hidden group-has-[:popover-open]/header:block"
         aria-hidden="true"
       />
@@ -45,7 +45,7 @@ const { pathname } = Astro.props;
 
     <nav
       id="mobile-menu"
-      class="inset-x-0 m-0 border-b w-auto md:hidden"
+      class="inset-x-0 m-0 border-b w-auto md:hidden bg-background/80 backdrop-blur"
       popover
     >
       <ul class="flex flex-col gap-1 px-4 py-3">

@@ -5,7 +5,6 @@ export { default as ChevronDownIcon } from "~icons/lucide/chevron-down";
 
 export { default as EllipsisIcon } from "~icons/lucide/ellipsis";
 export { default as MenuIcon } from "~icons/lucide/menu";
-export { default as CloseIcon } from "~icons/lucide/x";
 
 export { default as CheckIcon } from "~icons/lucide/check";
 export { default as XIcon } from "~icons/lucide/x";
@@ -19,10 +18,9 @@ export { default as HouseIcon } from "~icons/lucide/house";
 export { default as NewspaperIcon } from "~icons/lucide/newspaper";
 export { default as RssIcon } from "~icons/lucide/rss";
 
-export { default as ExternalLinkIcon } from "~icons/lucide/external-link";
+export { default as ArrowUpRightIcon } from "~icons/lucide/arrow-up-right";
+export { default as ClockIcon } from "~icons/lucide/clock";
 
 export { default as GitHubIcon } from "~icons/fa6-brands/github";
-export { default as LinkedInIcon } from "~icons/fa6-brands/linkedin-in";
+export { default as LinkedInIcon } from "~icons/fa6-brands/linkedin";
 export { default as EmailIcon } from "~icons/fa6-solid/envelope";
-
-export { default as ClockIcon } from "~icons/lucide/clock";
