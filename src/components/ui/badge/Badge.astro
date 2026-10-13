@@ -6,18 +6,9 @@ type Props<Tag extends HTMLTag> = Polymorphic<{
   variant?: BadgeVariant;
 }>;
 
-const {
-  as: Tag = "span",
-  class: className,
-  variant = "default",
-  ...props
-} = Astro.props;
+const { as: Tag = "span", class: className, variant = "default", ...props } = Astro.props;
 ---
 
-<Tag
-  class:list={["group/badge badge", className]}
-  data-variant={variant}
-  {...props}
->
+<Tag class:list={["group/badge badge", className]} data-variant={variant} {...props}>
   <slot />
 </Tag>

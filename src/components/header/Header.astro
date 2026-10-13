@@ -27,25 +27,19 @@ const { pathname } = Astro.props;
 
     <Button
       id="mobile-menu-toggle"
-      class="transition-transform duration-200 md:hidden group-has-[:popover-open]/header:rotate-90"
+      class="transition-transform duration-200 group-has-[:popover-open]/header:rotate-90 md:hidden"
       variant="outline"
       size="icon"
       aria-label="Toggle menu"
       popovertarget="mobile-menu"
     >
-      <MenuIcon
-        class="group-has-[:popover-open]/header:hidden"
-        aria-hidden="true"
-      />
-      <XIcon
-        class="hidden group-has-[:popover-open]/header:block"
-        aria-hidden="true"
-      />
+      <MenuIcon class="group-has-[:popover-open]/header:hidden" aria-hidden="true" />
+      <XIcon class="hidden group-has-[:popover-open]/header:block" aria-hidden="true" />
     </Button>
 
     <nav
       id="mobile-menu"
-      class="inset-x-0 m-0 border-b w-auto md:hidden bg-background/80 backdrop-blur"
+      class="inset-x-0 m-0 w-auto border-b bg-background/80 backdrop-blur md:hidden"
       popover
     >
       <ul class="flex flex-col gap-1 px-4 py-3">
@@ -72,8 +66,8 @@ const { pathname } = Astro.props;
         opacity: 1;
 
         /* Start styles for the opening transition.
-       * Added to :popover-open, but after the opened styles.
-       */
+         * Added to :popover-open, but after the opened styles.
+         */
         @starting-style {
           transform: translateY(-50px);
           opacity: 0;

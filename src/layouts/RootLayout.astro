@@ -1,9 +1,9 @@
 ---
-import "@/styles/globals.css";
-
 import type { ImageMetadata } from "astro";
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
+
+import "@/styles/globals.css";
 
 import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/site";
@@ -18,16 +18,12 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const {
-  title = SITE_TITLE,
-  description = SITE_DESCRIPTION,
-  image = FallbackImage,
-} = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = FallbackImage } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <!-- Global Metadata -->
+    {/* Global Metadata */}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -41,28 +37,28 @@ const {
     />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Font preloads -->
+    {/* Font preloads */}
     <Font cssVariable="--font-open-sans" />
     <Font cssVariable="--font-newsreader" />
     <Font cssVariable="--font-montserrat" />
     <Font cssVariable="--font-fira-code" />
 
-    <!-- Canonical URL -->
+    {/* Canonical URL */}
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Primary Meta Tags -->
+    {/* Primary Meta Tags */}
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
 
-    <!-- Open Graph / Facebook -->
+    {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image.src, Astro.url)} />
 
-    <!-- Twitter -->
+    {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />

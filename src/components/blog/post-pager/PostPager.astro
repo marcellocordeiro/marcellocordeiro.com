@@ -21,12 +21,6 @@ const { previous, next } = Astro.props;
       />
     )}
 
-    {next && (
-      <PostNavigatorLink
-        position="next"
-        slug={next.data.slug}
-        title={next.data.title}
-      />
-    )}
+    {next && <PostNavigatorLink position="next" slug={next.data.slug} title={next.data.title} />}
   </nav>
 )}

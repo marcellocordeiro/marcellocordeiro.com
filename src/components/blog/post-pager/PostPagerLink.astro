@@ -27,18 +27,12 @@ const POSITION_CONFIG = {
   },
 } as const;
 
-const {
-  linkClass,
-  headerClass,
-  labelClass,
-  label,
-  icon: Icon,
-} = POSITION_CONFIG[position];
+const { linkClass, headerClass, labelClass, label, icon: Icon } = POSITION_CONFIG[position];
 ---
 
 <Link
   class:list={[
-    "not-typeset group col-span-1 flex flex-col gap-2 no-underline transition-colors hover:text-primary",
+    "group col-span-1 flex flex-col gap-2 no-underline transition-colors hover:text-primary",
     headerClass,
     linkClass,
   ]}
@@ -53,7 +47,5 @@ const {
     <Icon class="size-4" />
     {label}
   </span>
-  <span class="font-heading text-base font-semibold tracking-tight">
-    {title}
-  </span>
+  <span class="font-heading text-base font-semibold tracking-tight">{title}</span>
 </Link>

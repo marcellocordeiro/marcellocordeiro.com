@@ -6,12 +6,7 @@ interface Props extends HTMLAttributes<"button"> {
   size?: ButtonSize;
 }
 
-const {
-  class: className,
-  variant = "default",
-  size = "default",
-  ...props
-} = Astro.props;
+const { class: className, variant = "default", size = "default", ...props } = Astro.props;
 ---
 
 <button

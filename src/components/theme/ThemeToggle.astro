@@ -1,6 +1,6 @@
 ---
-import Button from "@/components/ui/button/Button.astro";
 import ButtonGroup from "@/components/ui/button-group/ButtonGroup.astro";
+import Button from "@/components/ui/button/Button.astro";
 import { MonitorIcon, MoonIcon, SunIcon } from "@/config/icons";
 
 const themes = [
@@ -48,12 +48,10 @@ const themes = [
 <script is:inline>
   const selectedTheme = localStorage.getItem("theme") ?? "system";
 
-  document
-    .querySelectorAll(`button[data-value="${selectedTheme}"]`)
-    .forEach((button) => {
-      button.dataset.variant = "default";
-      button.setAttribute("aria-checked", "true");
-    });
+  document.querySelectorAll(`button[data-value="${selectedTheme}"]`).forEach((button) => {
+    button.dataset.variant = "default";
+    button.setAttribute("aria-checked", "true");
+  });
 </script>
 
 <script>
@@ -131,10 +129,7 @@ const themes = [
         const variant = value === selected ? "default" : "outline";
 
         button.dataset.variant = variant;
-        button.setAttribute(
-          "aria-checked",
-          String(button.dataset.value === selected),
-        );
+        button.setAttribute("aria-checked", String(button.dataset.value === selected));
       });
     }
   }

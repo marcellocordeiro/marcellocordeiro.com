@@ -1,26 +1,10 @@
 @layer components {
   .link {
-    @apply inline-flex shrink-0 items-center justify-center rounded-2xl border border-transparent bg-clip-padding whitespace-nowrap transition-all outline-none select-none;
-
-    &:focus-visible {
-      @apply border-ring ring-3 ring-ring/30;
-    }
+    @apply inline-flex items-center transition-all;
 
     &:active {
       &:not(*[aria-haspopup]) {
         @apply translate-y-px;
-      }
-    }
-
-    &:disabled {
-      @apply pointer-events-none opacity-50;
-    }
-
-    &[aria-invalid="true"] {
-      @apply border-destructive ring-3 ring-destructive/20;
-
-      @variant dark {
-        @apply border-destructive/50 ring-destructive/40;
       }
     }
 

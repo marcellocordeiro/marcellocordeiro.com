@@ -18,8 +18,6 @@ const resolvedShowExternalLinkIcon = showExternalLinkIcon ?? isExternal;
 <a class:list={["link", className]} href={href} {...propsFromHref} {...props}>
   <slot />
 
-  {resolvedShowExternalLinkIcon && (
-    <ArrowUpRightIcon data-icon="inline-end" aria-hidden="true" />
-  )}
+  {resolvedShowExternalLinkIcon && <ArrowUpRightIcon data-icon="inline-end" aria-hidden="true" />}
   {isExternal && <span class="sr-only">(opens in a new tab)</span>}
 </a>
