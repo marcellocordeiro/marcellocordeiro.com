@@ -1,10 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
 
-import Footer from "@/components/footer/Footer.astro";
-import Header from "@/components/header/Header.astro";
-import SkipToContent from "@/components/SkipToContent.astro";
-
 import RootLayout from "./RootLayout.astro";
 
 interface Props {
@@ -14,22 +10,8 @@ interface Props {
 }
 
 const { title, description, image } = Astro.props;
-const { pathname } = Astro.url;
 ---
 
 <RootLayout title={title} description={description} image={image}>
-  <SkipToContent />
-  <Header {pathname} />
-  <main id="main">
-    <div class="mx-auto max-w-3xl p-4">
-      <slot />
-    </div>
-  </main>
-  <Footer />
+  <slot />
 </RootLayout>
-
-<style>
-  main {
-    grid-area: main;
-  }
-</style>

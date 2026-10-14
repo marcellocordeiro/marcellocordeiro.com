@@ -15,7 +15,6 @@ lint *ARGS:
 # Format the project
 [group("maintenance")]
 format:
-    pnpm format:prettier
     pnpm format
     just --fmt
 
