@@ -14,9 +14,7 @@
     "format": "oxfmt",
     "lint:eslint": "eslint ."
   },
-  "dependencies": {
-    "dayjs": "^1.11.23"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/markdown-satteri": "^0.4.3",
@@ -31,6 +29,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.5",
     "astro": "^7.3.8",
+    "dayjs": "^1.11.23",
     "eslint": "^10.12.0",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-jsx-a11y-x": "^0.2.0",

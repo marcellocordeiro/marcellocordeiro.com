@@ -11,10 +11,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      dayjs:
-        specifier: ^1.11.23
-        version: 1.11.23
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.10
@@ -55,6 +51,9 @@ importers:
       astro:
         specifier: ^7.3.8
         version: 7.3.8(@types/node@26.6.5)(jiti@2.7.0)(yaml@2.9.1)
+      dayjs:
+        specifier: ^1.11.23
+        version: 1.11.23
       eslint:
         specifier: ^10.12.0
         version: 10.12.0(jiti@2.7.0)
