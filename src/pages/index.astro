@@ -45,7 +45,7 @@ import { getProjects } from "@/lib/projects";
     <section class="space-y-4">
       <h2 class="text-xl font-semibold tracking-tight">Blog Posts</h2>
 
-      <ul class="divide-y divide-border/60 border-y border-border/60">
+      <ul class="divide-y">
         {getBlogPosts().map((post) => (
           <li class="py-3 first:pt-3 last:pb-3">
             <Link href={`/blog/${post.data.slug}`}>{post.data.title}</Link>
