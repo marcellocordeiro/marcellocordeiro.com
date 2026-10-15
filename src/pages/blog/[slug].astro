@@ -1,15 +1,5 @@
 ---
-import { render } from "astro:content";
-
-import PostPager from "@/components/blog/post-pager/PostPager.astro";
-import PostMetadata from "@/components/blog/PostMetadata.astro";
-import Badge from "@/components/ui/badge/Badge.astro";
-import Link from "@/components/ui/link/Link.astro";
-import Prose from "@/components/ui/Prose.astro";
-import Separator from "@/components/ui/Separator.astro";
-import { ChevronLeftIcon } from "@/config/icons";
-import { SITE_TITLE } from "@/config/site";
-import Layout from "@/layouts/Layout.astro";
+import BlogPostLayout from "@/layouts/BlogPostLayout.astro";
 import { getBlogPostWindows, type Post } from "@/lib/blog";
 
 export function getStaticPaths() {
@@ -27,37 +17,6 @@ interface Props {
 }
 
 const { previous, current, next } = Astro.props;
-const { title } = current.data;
-const { Content, remarkPluginFrontmatter } = await render(current);
 ---
 
-<Layout title=`${title} | ${SITE_TITLE}`>
-  <Prose>
-    <Link class="group inline-flex items-center gap-1" href="/blog">
-      <ChevronLeftIcon class="size-4" aria-hidden="true" />
-      <span>Back</span>
-    </Link>
-
-    <h1 class="mt-4">{title}</h1>
-
-    <PostMetadata post={current} extraMetadata={remarkPluginFrontmatter} />
-
-    {current.data.tags.length > 0 && (
-      <ul class="not-typeset mt-5 flex flex-wrap gap-1.5" aria-label={`${current.data.title} tags`}>
-        {current.data.tags.map((tag) => (
-          <Badge as="li" variant="secondary">
-            {tag}
-          </Badge>
-        ))}
-      </ul>
-    )}
-
-    <Content />
-  </Prose>
-
-  <div class="flex flex-col gap-6">
-    <Separator class="mt-6" />
-
-    <PostPager previous={previous} next={next} />
-  </div>
-</Layout>
+<BlogPostLayout previous={previous} current={current} next={next} />

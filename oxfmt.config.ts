@@ -5,6 +5,6 @@ export default defineConfig({
   sortImports: true,
   sortTailwindcss: {
     functions: ["clsx", "cn", "cva", "tw"],
-    stylesheet: "src/styles/globals.css",
+    stylesheet: "src/styles/global.css",
   },
 });
