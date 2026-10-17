@@ -13,7 +13,12 @@ export default defineConfig({
   site: SITE_URL,
   integrations: [sitemap(), mdx()],
   vite: {
-    plugins: [tailwindcss(), Icons({ scale: 1, compiler: "astro" })],
+    plugins: [
+      // Vite's LightningCSS already does this,
+      // and optimises a little better
+      tailwindcss({ optimize: false }),
+      Icons({ scale: 1, compiler: "astro" }),
+    ],
   },
   markdown: {
     processor: markdownProcessor,
