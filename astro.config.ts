@@ -12,6 +12,10 @@ import { shikiConfig } from "@/plugins/shiki-config";
 export default defineConfig({
   site: SITE_URL,
   integrations: [sitemap(), mdx()],
+  markdown: {
+    processor: markdownProcessor,
+    shikiConfig,
+  },
   vite: {
     plugins: [
       // Vite's LightningCSS already does this,
@@ -19,10 +23,6 @@ export default defineConfig({
       tailwindcss({ optimize: false }),
       Icons({ scale: 1, compiler: "astro" }),
     ],
-  },
-  markdown: {
-    processor: markdownProcessor,
-    shikiConfig,
   },
   fonts: [
     {

@@ -1,0 +1,36 @@
+---
+import Badge from "@/components/ui/badge/Badge.astro";
+import Link from "@/components/ui/link/Link.astro";
+import type { Project } from "@/lib/projects";
+
+interface Props {
+  project: Project;
+}
+
+const {
+  project: {
+    data: { title, description, tags, repository, demo },
+  },
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-2">
+  <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+    <h2 class="font-heading text-lg font-semibold tracking-tight">{title}</h2>
+
+    <div class="space-x-4 text-sm">
+      <Link href={repository}>GitHub</Link>
+      {demo && <Link href={demo}>Browser version</Link>}
+    </div>
+  </div>
+
+  <p class="text-muted-foreground">{description}</p>
+
+  <ul class="space-y-1.5 space-x-1.5">
+    {tags.map((tag) => (
+      <Badge as="li" variant="secondary">
+        {tag}
+      </Badge>
+    ))}
+  </ul>
+</div>

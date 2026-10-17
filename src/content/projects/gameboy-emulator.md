@@ -2,7 +2,7 @@
 slug: gameboy-emulator
 title: "Game Boy emulator"
 description: "Game Boy/Game Boy Color emulator written in Rust, with desktop and browser support."
-technologies:
+tags:
   - Rust
   - WebAssembly
   - C

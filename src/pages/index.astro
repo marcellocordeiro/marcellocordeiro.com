@@ -1,5 +1,5 @@
 ---
-import Projects from "@/components/projects/Projects.astro";
+import ProjectList from "@/components/projects/ProjectList.astro";
 import Link from "@/components/ui/link/Link.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPosts } from "@/lib/blog";
@@ -7,7 +7,7 @@ import { getProjects } from "@/lib/projects";
 ---
 
 <Layout>
-  <article class="mx-auto max-w-3xl space-y-12">
+  <article class="space-y-12">
     <section class="space-y-4">
       <h2 class="text-xl font-semibold tracking-tight">About Me</h2>
 
@@ -29,7 +29,7 @@ import { getProjects } from "@/lib/projects";
 
     <section class="space-y-4">
       <h2 class="text-xl font-semibold tracking-tight">Projects</h2>
-      <Projects projects={getProjects()} />
+      <ProjectList projects={getProjects()} />
     </section>
 
     <section class="space-y-4">
@@ -45,9 +45,9 @@ import { getProjects } from "@/lib/projects";
     <section class="space-y-4">
       <h2 class="text-xl font-semibold tracking-tight">Blog Posts</h2>
 
-      <ul class="divide-y">
+      <ul class="divide-y [&>:not(:last-child)]:mb-3 [&>:not(:last-child)]:pb-3">
         {getBlogPosts().map((post) => (
-          <li class="py-3 first:pt-3 last:pb-3">
+          <li>
             <Link href={`/blog/${post.data.slug}`}>{post.data.title}</Link>
           </li>
         ))}
@@ -55,3 +55,19 @@ import { getProjects } from "@/lib/projects";
     </section>
   </article>
 </Layout>
+
+<style>
+  article {
+    @media (prefers-reduced-motion: no-preference) {
+      --_duration: 75ms;
+
+      opacity: 1;
+      transition: opacity var(--_duration) ease-out;
+      transition-delay: calc(sibling-index() * var(--_duration));
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+  }
+</style>

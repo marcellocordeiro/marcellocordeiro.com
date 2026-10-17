@@ -28,7 +28,7 @@ const projects = defineCollection({
       slug: z.string(),
       title: z.string(),
       description: z.string(),
-      technologies: z.array(z.string()),
+      tags: z.array(z.string()),
       repository: RouteSchema,
       demo: RouteSchema.optional(),
       order: z.number().int(),

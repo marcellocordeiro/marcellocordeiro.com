@@ -2,7 +2,7 @@
 slug: website
 title: "This website!"
 description: "Personal website with a blog and RSS feed, built from scratch and open source."
-technologies:
+tags:
   - Astro
   - React
   - TypeScript

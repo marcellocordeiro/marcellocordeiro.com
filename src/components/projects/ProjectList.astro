@@ -1,0 +1,35 @@
+---
+import { type Project } from "@/lib/projects";
+
+import ProjectCard from "./ProjectCard.astro";
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<ul class="divide-y [&>:not(:last-child)]:mb-5 [&>:not(:last-child)]:pb-5">
+  {projects.map((project) => (
+    <li class="project-item">
+      <ProjectCard project={project} />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .project-item {
+    @media (prefers-reduced-motion: no-preference) {
+      --_duration: 75ms;
+
+      opacity: 1;
+      transition: opacity var(--_duration) ease-out;
+      transition-delay: calc(sibling-index() * var(--_duration));
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+  }
+</style>

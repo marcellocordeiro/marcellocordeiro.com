@@ -46,9 +46,11 @@ const { Content, remarkPluginFrontmatter } = await render(current);
     <Content />
   </Prose>
 
-  <div class="flex flex-col gap-6">
-    <Separator class="mt-6" />
+  {(previous || next) && (
+    <div class="flex flex-col gap-6">
+      <Separator class="mt-6" />
 
-    <PostPager previous={previous} next={next} />
-  </div>
+      <PostPager previous={previous} next={next} />
+    </div>
+  )}
 </Layout>

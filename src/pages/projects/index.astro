@@ -1,5 +1,5 @@
 ---
-import Projects from "@/components/projects/Projects.astro";
+import ProjectList from "@/components/projects/ProjectList.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getProjects } from "@/lib/projects";
 
@@ -13,6 +13,6 @@ const projects = getProjects();
       <p class="text-muted-foreground">Some of the fun projects I've built.</p>
     </header>
 
-    <Projects projects={projects} />
+    <ProjectList projects={projects} />
   </div>
 </Layout>

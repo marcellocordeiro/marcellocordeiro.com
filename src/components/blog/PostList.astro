@@ -1,5 +1,4 @@
 ---
-import Separator from "@/components/ui/Separator.astro";
 import type { Post } from "@/lib/blog";
 
 import PostCardLink from "./PostCardLink.astro";
@@ -11,11 +10,26 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<div class="flex w-full flex-col gap-y-6">
-  {posts.map((post, index) => (
-    <>
+<ul class="divide-y [&>:not(:last-child)]:mb-5 [&>:not(:last-child)]:pb-5">
+  {posts.map((post) => (
+    <li class="post-item">
       <PostCardLink post={post} />
-      {index < posts.length - 1 && <Separator />}
-    </>
+    </li>
   ))}
-</div>
+</ul>
+
+<style>
+  .post-item {
+    @media (prefers-reduced-motion: no-preference) {
+      --_duration: 75ms;
+
+      opacity: 1;
+      transition: opacity var(--_duration) ease-out;
+      transition-delay: calc(sibling-index() * var(--_duration));
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+  }
+</style>
