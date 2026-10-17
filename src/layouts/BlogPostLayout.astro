@@ -8,7 +8,6 @@ import Link from "@/components/ui/link/Link.astro";
 import Prose from "@/components/ui/Prose.astro";
 import Separator from "@/components/ui/Separator.astro";
 import { ChevronLeftIcon } from "@/config/icons";
-import { SITE_TITLE } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
 import { type Post } from "@/lib/blog";
 
@@ -23,7 +22,7 @@ const { title } = current.data;
 const { Content, remarkPluginFrontmatter } = await render(current);
 ---
 
-<Layout title=`${title} | ${SITE_TITLE}`>
+<Layout title={title}>
   <Prose>
     <Link class="group inline-flex items-center gap-1" href="/blog">
       <ChevronLeftIcon class="size-4" aria-hidden="true" />

@@ -1,13 +1,12 @@
 ---
 import Projects from "@/components/projects/Projects.astro";
-import { SITE_TITLE } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
 import { getProjects } from "@/lib/projects";
 
 const projects = getProjects();
 ---
 
-<Layout title={`Projects | ${SITE_TITLE}`}>
+<Layout title="Projects">
   <div class="space-y-8">
     <header class="space-y-2">
       <h1 class="text-3xl font-semibold tracking-tight">Projects</h1>

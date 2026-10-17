@@ -1,13 +1,12 @@
 ---
 import PostList from "@/components/blog/PostList.astro";
-import { SITE_TITLE } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
 import { getBlogPosts } from "@/lib/blog";
 
 const posts = getBlogPosts();
 ---
 
-<Layout title=`Blog | ${SITE_TITLE}`>
+<Layout title="Blog">
   <div class="space-y-8">
     <header class="space-y-2">
       <h1 class="text-3xl font-semibold tracking-tight">Blog</h1>

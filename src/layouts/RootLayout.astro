@@ -10,7 +10,6 @@ import Header from "@/components/header/Header.astro";
 import SkipToContent from "@/components/SkipToContent.astro";
 import InitialThemeScript from "@/components/theme/InitialThemeScript.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/site";
-import FallbackImage from "@/content/blog/assets/blog-placeholder.jpg";
 import CloudflareWorkaround from "@/lib/CloudflareWorkaround.astro";
 
 interface Props {
@@ -19,9 +18,10 @@ interface Props {
   image?: ImageMetadata;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = FallbackImage } = Astro.props;
-
 const { pathname } = Astro.url;
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+
+const resolvedTitle = [title, SITE_TITLE].filter(Boolean).join(" | ");
 const canonicalURL = new URL(pathname, Astro.site);
 ---
 
@@ -51,23 +51,27 @@ const canonicalURL = new URL(pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
 
     {/* Primary Meta Tags */}
-    <title>{title}</title>
-    <meta name="title" content={title} />
+    <title>{resolvedTitle}</title>
+    <meta name="title" content={resolvedTitle} />
     <meta name="description" content={description} />
 
     {/* Open Graph / Facebook */}
+    {/*
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={resolvedTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image.src, Astro.url)} />
+    */}
 
     {/* Twitter */}
+    {/*
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
+    <meta property="twitter:title" content={resolvedTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+    */}
 
     <InitialThemeScript />
 
