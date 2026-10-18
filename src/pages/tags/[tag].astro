@@ -1,0 +1,31 @@
+---
+import PostList from "@/components/blog/PostList.astro";
+import Link from "@/components/ui/link/Link.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getBlogPostsByTag, getBlogPostsTags, type Post } from "@/lib/blog";
+
+export function getStaticPaths() {
+  return getBlogPostsTags().map((tag) => ({
+    params: { tag },
+    props: { posts: getBlogPostsByTag(tag) },
+  }));
+}
+
+interface Props {
+  posts: Post[];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={tag}>
+  <div class="space-y-8">
+    <header class="space-y-2">
+      <Link href="/tags">All tags</Link>
+      <h1 class="text-3xl font-semibold tracking-tight">{tag}</h1>
+    </header>
+
+    <PostList posts={posts} />
+  </div>
+</Layout>

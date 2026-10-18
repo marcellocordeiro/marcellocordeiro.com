@@ -10,23 +10,27 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const {
+  data: { slug, title, description, tags },
+} = post;
 ---
 
 <Link
   class="group/post grid gap-3 sm:grid-cols-[7rem_minmax(0,1fr)] sm:items-baseline sm:gap-6"
-  href={`/blog/${post.data.slug}`}
+  href={`/blog/${slug}`}
 >
   <PostCardMetadata post={post} />
 
-  <div class="flex min-w-0 flex-col gap-2">
+  <div class="flex flex-col gap-2">
     <h2 class="font-heading text-lg font-semibold tracking-tight transition-colors group-hover/post:text-primary">
-      {post.data.title}
+      {title}
     </h2>
 
-    <p class="text-muted-foreground">{post.data.description}</p>
-    {post.data.tags.length > 0 && (
-      <ul class="flex flex-wrap gap-1.5" aria-label={`${post.data.title} tags`}>
-        {post.data.tags.map((tag) => (
+    <p class="text-muted-foreground">{description}</p>
+
+    {tags.length > 0 && (
+      <ul class="space-y-1.5 space-x-1.5">
+        {tags.map((tag) => (
           <Badge as="li" variant="secondary">
             {tag}
           </Badge>

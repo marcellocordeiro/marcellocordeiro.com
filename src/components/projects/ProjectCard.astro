@@ -26,11 +26,13 @@ const {
 
   <p class="text-muted-foreground">{description}</p>
 
-  <ul class="space-y-1.5 space-x-1.5">
-    {tags.map((tag) => (
-      <Badge as="li" variant="secondary">
-        {tag}
-      </Badge>
-    ))}
-  </ul>
+  {tags.length > 0 && (
+    <ul class="space-y-1.5 space-x-1.5">
+      {tags.map((tag) => (
+        <Badge as="li" variant="secondary">
+          {tag}
+        </Badge>
+      ))}
+    </ul>
+  )}
 </div>

@@ -19,6 +19,14 @@ export function getBlogPosts(): Post[] {
   return posts;
 }
 
+export function getBlogPostsTags(): string[] {
+  return tags;
+}
+
+export function getBlogPostsByTag(tag: string): Post[] {
+  return posts.filter((post) => post.data.tags.includes(tag));
+}
+
 export function getBlogPost(slug: string): Post | undefined {
   return posts.find((p) => p.data.slug === slug);
 }
@@ -54,14 +62,6 @@ export function getBlogPostWindows(): {
     current,
     next: posts[i + 1],
   }));
-}
-
-export function getBlogPostsSlugs(): { slug: string }[] {
-  return posts.map(({ data: { slug } }) => ({ slug }));
-}
-
-export function getBlogPostsTags(): { tag: string }[] {
-  return tags.map((tag) => ({ tag }));
 }
 
 export type { Post };
