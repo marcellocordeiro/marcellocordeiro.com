@@ -33,7 +33,7 @@ export function getBlogPost(slug: string): Post | undefined {
 
 export function getAdjacentBlogPosts(
   slug: string,
-): { previous?: Post; current: Post; next?: Post } | undefined {
+): { previous: Post | undefined; current: Post; next: Post | undefined } | undefined {
   const index = posts.findIndex((p) => p.data.slug === slug);
 
   const current = posts[index];
@@ -53,9 +53,9 @@ export function getAdjacentBlogPosts(
 }
 
 export function getBlogPostWindows(): {
-  previous?: Post;
+  previous: Post | undefined;
   current: Post;
-  next?: Post;
+  next: Post | undefined;
 }[] {
   return posts.map((current, i) => ({
     previous: posts[i - 1],

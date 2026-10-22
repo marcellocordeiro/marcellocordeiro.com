@@ -13,9 +13,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@/config/site";
 import CloudflareWorkaround from "@/lib/CloudflareWorkaround.astro";
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: ImageMetadata;
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: ImageMetadata | undefined;
 }
 
 const { pathname } = Astro.url;

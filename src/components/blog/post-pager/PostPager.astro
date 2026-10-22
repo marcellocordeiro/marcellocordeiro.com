@@ -4,8 +4,8 @@ import type { Post } from "@/lib/blog";
 import PostNavigatorLink from "./PostPagerLink.astro";
 
 interface Props {
-  previous?: Post;
-  next?: Post;
+  previous: Post | undefined;
+  next: Post | undefined;
 }
 
 const { previous, next } = Astro.props;

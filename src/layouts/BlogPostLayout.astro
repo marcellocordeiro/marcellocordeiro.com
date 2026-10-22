@@ -12,9 +12,9 @@ import Layout from "@/layouts/Layout.astro";
 import { type Post } from "@/lib/blog";
 
 interface Props {
-  previous?: Post;
+  previous: Post | undefined;
   current: Post;
-  next?: Post;
+  next: Post | undefined;
 }
 
 const { previous, current, next } = Astro.props;
