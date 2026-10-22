@@ -1,15 +1,9 @@
-import { icons } from "@iconify-json/lucide";
 import { defineHastPlugin, type HastNode, type HastPluginInput } from "satteri";
 
 import { parseHref } from "@/lib/href-parser";
 
+// arrow-up-right from lucide
 function makeExternalLinkIcon(): HastNode {
-  const icon = icons.icons["arrow-up-right"];
-
-  if (icon === undefined) {
-    throw new Error("Icon not found");
-  }
-
   return {
     type: "element",
     tagName: "svg",
@@ -21,8 +15,17 @@ function makeExternalLinkIcon(): HastNode {
     },
     children: [
       {
-        type: "raw",
-        value: icon.body,
+        type: "element",
+        tagName: "path",
+        properties: {
+          fill: "none",
+          stroke: "currentColor",
+          "stroke-linecap": "round",
+          "stroke-linejoin": "round",
+          "stroke-width": "2",
+          d: "M7 7h10v10M7 17L17 7",
+        },
+        children: [],
       },
     ],
   };
