@@ -1,6 +1,4 @@
-// oxlint-disable unicorn/prefer-modern-dom-apis -- false positives, we're not in the browser
-
-import { defineHastPlugin, type HastPluginInput, type HastVisitorContext } from "satteri";
+import { defineHastPlugin, type HastPluginInput } from "satteri";
 
 import type { Element, ElementContent, Properties } from "../utils/types";
 
@@ -26,6 +24,45 @@ export function satteriHastAutolinkHeadings(
   const behavior = opts.behavior ?? "prepend";
   const test = opts.test ?? ["h1", "h2", "h3", "h4", "h5", "h6"];
 
+  type Method<T> = (
+    node: Readonly<Element>,
+    content: readonly ElementContent[],
+    headingProperties: Readonly<Properties>,
+    properties: Readonly<Properties>,
+  ) => T;
+
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
+  const wrap: Method<Element> = (node, content, headingProperties, properties) => {
+    const anchor = makeAnchor(properties, [...node.children, ...content]);
+    const heading = makeElement(node.tagName, { ...node.properties, ...headingProperties }, [
+      anchor,
+    ]);
+
+    return heading;
+  };
+
+  const inject: Method<Element> = (node, content, headingProperties, properties) => {
+    const anchor = makeAnchor(properties, content);
+    const heading = makeElement(
+      node.tagName,
+      { ...node.properties, ...headingProperties },
+      behavior === "prepend" ? [anchor, ...node.children] : [...node.children, anchor],
+    );
+
+    return heading;
+  };
+
+  const around: Method<ElementContent[]> = (node, content, headingProperties, properties) => {
+    const anchor = makeAnchor(properties, content);
+    const heading = makeElement(
+      node.tagName,
+      { ...node.properties, ...headingProperties },
+      node.children,
+    );
+
+    return behavior === "before" ? [anchor, heading] : [heading, anchor];
+  };
+
   return defineHastPlugin({
     name: "satteri-hast-autolink-headings",
     element: {
@@ -42,52 +79,27 @@ export function satteriHastAutolinkHeadings(
         const headingProperties = buildHeadingProperties(opts.headingProperties, node);
 
         if (behavior === "wrap") {
-          const anchor = makeAnchor(properties, [...node.children, ...content]);
-          const heading = makeElement(node.tagName, { ...node.properties, ...headingProperties }, [
-            anchor,
-          ]);
-
-          ctx.replaceNode(node, heading);
+          const result = wrap(node, content, headingProperties, properties);
+          ctx.replaceNode(node, result);
 
           return;
         }
 
         if (behavior === "prepend" || behavior === "append") {
-          const anchor = makeAnchor(properties, content);
-
-          applyPropertiesToCtx(ctx, node, headingProperties);
-
-          if (behavior === "prepend") {
-            ctx.prependChild(node, anchor);
-          } else {
-            ctx.appendChild(node, anchor);
-          }
+          const result = inject(node, content, headingProperties, properties);
+          ctx.replaceNode(node, result);
 
           return;
         }
 
         // oxlint-disable-next-line typescript/no-unnecessary-condition -- for readability
         if (behavior === "before" || behavior === "after") {
-          const anchor = makeAnchor(properties, content);
+          const nodes = around(node, content, headingProperties, properties);
 
           if (opts.group === undefined) {
-            applyPropertiesToCtx(ctx, node, headingProperties);
-
-            if (behavior === "before") {
-              ctx.insertBefore(node, anchor);
-            } else {
-              ctx.insertAfter(node, anchor);
-            }
+            ctx.replaceNode(node, nodes);
           } else {
             const group = buildAndCloneIfNeeded(opts.group, node);
-
-            const heading = makeElement(
-              node.tagName,
-              { ...node.properties, ...headingProperties },
-              node.children,
-            );
-
-            const nodes = behavior === "before" ? [anchor, heading] : [heading, anchor];
 
             ctx.replaceNode(node, {
               ...group,
@@ -158,10 +170,7 @@ function buildHeadingProperties(
 
 // Create elements
 
-function makeAnchor(
-  properties: Properties,
-  children: readonly ElementContent[],
-): Readonly<Element> {
+function makeAnchor(properties: Properties, children: readonly ElementContent[]): Element {
   return makeElement("a", properties, children);
 }
 
@@ -169,7 +178,7 @@ function makeElement(
   tagName: string,
   properties: Readonly<Properties>,
   children: readonly ElementContent[],
-): Readonly<Element> {
+): Element {
   return {
     type: "element",
     tagName,
@@ -179,16 +188,6 @@ function makeElement(
 }
 
 // Helpers
-
-function applyPropertiesToCtx(
-  ctx: HastVisitorContext,
-  node: Readonly<Element>,
-  properties: Readonly<Properties>,
-) {
-  for (const [key, value] of Object.entries(properties)) {
-    ctx.setProperty(node, key, value);
-  }
-}
 
 function buildAndCloneIfNeeded<T>(value: T | Builder<T>, node: Readonly<Element>): T {
   if (isBuilder(value)) {
