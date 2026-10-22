@@ -3,19 +3,21 @@ import { fileURLToPath } from "node:url";
 
 import { defineMdastPlugin } from "satteri";
 
-export const mdastModifiedTimePlugin = defineMdastPlugin({
-  name: "mdast-modified-time",
-  before(_root, ctx) {
-    if (!ctx.fileURL) {
-      return;
-    }
+export function satteriMdastModifiedTimePlugin() {
+  return defineMdastPlugin({
+    name: "satteri-mdast-modified-time",
+    before(_root, ctx) {
+      if (!ctx.fileURL) {
+        return;
+      }
 
-    const filepath = fileURLToPath(ctx.fileURL);
-    // oxlint-disable-next-line node/no-sync
-    const result = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`);
+      const filepath = fileURLToPath(ctx.fileURL);
+      // oxlint-disable-next-line node/no-sync
+      const result = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`);
 
-    if (ctx.data.astro !== undefined) {
-      ctx.data.astro.frontmatter.lastModified = result.toString();
-    }
-  },
-});
+      if (ctx.data.astro !== undefined) {
+        ctx.data.astro.frontmatter.lastModified = result.toString();
+      }
+    },
+  });
+}

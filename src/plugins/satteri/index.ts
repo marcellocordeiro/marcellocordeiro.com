@@ -1,10 +1,20 @@
 import { satteri } from "@astrojs/markdown-satteri";
 
-import { hastExternalLinksPlugin } from "./hast-external-links";
-import { mdastModifiedTimePlugin } from "./mdast-modified-time";
-import { mdastReadingTimePlugin } from "./mdast-reading-time";
+import { satteriHastAutolinkHeadings } from "./hast-autolink-headings";
+import { satteriHastExternalLinksPlugin } from "./hast-external-links";
+import { satteriHastSlug } from "./hast-slug";
+import { satteriMdastModifiedTimePlugin } from "./mdast-modified-time";
+import { satteriMdastReadingTimePlugin } from "./mdast-reading-time";
 
 export const markdownProcessor = satteri({
-  mdastPlugins: [mdastModifiedTimePlugin, mdastReadingTimePlugin],
-  hastPlugins: [hastExternalLinksPlugin],
+  mdastPlugins: [satteriMdastModifiedTimePlugin(), satteriMdastReadingTimePlugin()],
+  hastPlugins: [
+    satteriHastExternalLinksPlugin(),
+    satteriHastSlug(),
+    satteriHastAutolinkHeadings({
+      behavior: "prepend",
+      content: { type: "text", value: "#" },
+      properties: { className: ["heading-anchor"] },
+    }),
+  ],
 });

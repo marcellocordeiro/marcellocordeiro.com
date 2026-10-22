@@ -1,14 +1,19 @@
-import { defineHastPlugin, type HastNode } from "satteri";
+import { icons } from "@iconify-json/lucide";
+import { defineHastPlugin, type HastNode, type HastPluginInput } from "satteri";
 
 import { parseHref } from "@/lib/href-parser";
 
-// Copied straight from lucide check
 function makeExternalLinkIcon(): HastNode {
+  const icon = icons.icons["arrow-up-right"];
+
+  if (icon === undefined) {
+    throw new Error("Icon not found");
+  }
+
   return {
     type: "element",
     tagName: "svg",
     properties: {
-      className: [""],
       "aria-hidden": "true",
       viewBox: "0 0 24 24",
       width: "1em",
@@ -16,17 +21,8 @@ function makeExternalLinkIcon(): HastNode {
     },
     children: [
       {
-        type: "element",
-        tagName: "path",
-        properties: {
-          fill: "none",
-          stroke: "currentColor",
-          "stroke-linecap": "round",
-          "stroke-linejoin": "round",
-          "stroke-width": "2",
-          d: "M7 7h10v10M7 17L17 7",
-        },
-        children: [],
+        type: "raw",
+        value: icon.body,
       },
     ],
   };
@@ -41,23 +37,28 @@ function makeSrSpan(): HastNode {
   };
 }
 
-export const hastExternalLinksPlugin = defineHastPlugin({
-  name: "hast-external-links",
-  element: {
-    filter: ["a"],
-    visit(node, ctx) {
-      if (node.properties.href === undefined) {
-        return;
-      }
+export function satteriHastExternalLinksPlugin(): HastPluginInput {
+  const externalLinkIcon = makeExternalLinkIcon();
+  const srSpan = makeSrSpan();
 
-      const { isExternal, rel, target } = parseHref(node.properties.href);
+  return defineHastPlugin({
+    name: "satteri-hast-external-links",
+    element: {
+      filter: ["a"],
+      visit(node, ctx) {
+        if (node.properties.href === undefined) {
+          return;
+        }
 
-      if (isExternal) {
-        ctx.setProperty(node, "class", "inline-flex place-items-center gap-1");
-        ctx.setProperty(node, "rel", rel);
-        ctx.setProperty(node, "target", target);
-        ctx.appendChild(node, [makeExternalLinkIcon(), makeSrSpan()]);
-      }
+        const { isExternal, rel, target } = parseHref(node.properties.href);
+
+        if (isExternal) {
+          ctx.setProperty(node, "class", "inline-flex place-items-center gap-1");
+          ctx.setProperty(node, "rel", rel);
+          ctx.setProperty(node, "target", target);
+          ctx.appendChild(node, [externalLinkIcon, srSpan]);
+        }
+      },
     },
-  },
-});
+  });
+}
