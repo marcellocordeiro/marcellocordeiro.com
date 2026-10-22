@@ -2,10 +2,13 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
 
     "paths": {
       "@/*": ["./src/*"]

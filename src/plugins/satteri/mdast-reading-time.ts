@@ -11,7 +11,7 @@ export function satteriMdastReadingTimePlugin() {
       if (ctx.data.astro !== undefined) {
         // readingTime.text will give us minutes read as a friendly string,
         // i.e. "3 min read"
-        ctx.data.astro.frontmatter.minutesRead = readingTime.text;
+        ctx.data.astro.frontmatter["minutesRead"] = readingTime.text;
       }
     },
   });

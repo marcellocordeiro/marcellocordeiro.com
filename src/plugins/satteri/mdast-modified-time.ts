@@ -16,7 +16,7 @@ export function satteriMdastModifiedTimePlugin() {
       const result = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`);
 
       if (ctx.data.astro !== undefined) {
-        ctx.data.astro.frontmatter.lastModified = result.toString();
+        ctx.data.astro.frontmatter["lastModified"] = result.toString();
       }
     },
   });

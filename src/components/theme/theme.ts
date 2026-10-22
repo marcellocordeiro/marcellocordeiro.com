@@ -58,8 +58,8 @@ export function updateTheme(theme: Theme) {
 
 export function updateDOMTheme(systemTheme: SystemTheme | null) {
   if (systemTheme === null) {
-    delete document.documentElement.dataset.theme;
+    delete document.documentElement.dataset["theme"];
   } else {
-    document.documentElement.dataset.theme = systemTheme;
+    document.documentElement.dataset["theme"] = systemTheme;
   }
 }

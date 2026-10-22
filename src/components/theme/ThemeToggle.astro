@@ -128,8 +128,8 @@ const themes = [
         const { value } = button.dataset;
         const variant = value === selected ? "default" : "outline";
 
-        button.dataset.variant = variant;
-        button.setAttribute("aria-checked", String(button.dataset.value === selected));
+        button.dataset["variant"] = variant;
+        button.setAttribute("aria-checked", String(button.dataset["value"] === selected));
       });
     }
   }

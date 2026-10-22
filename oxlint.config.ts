@@ -90,6 +90,7 @@ export default defineConfig({
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
 
+    "typescript/consistent-return": "off", // TypeScript's noImplicitReturns has better coverage than this
     "typescript/prefer-readonly-parameter-types": "off",
   },
   overrides: [
