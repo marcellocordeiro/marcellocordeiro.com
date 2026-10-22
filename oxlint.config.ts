@@ -1,8 +1,34 @@
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
+  ignorePatterns: [],
   options: {
+    reportUnusedDisableDirectives: "warn",
     typeAware: true,
+  },
+  settings: {
+    "jsx-a11y": {
+      attributes: {},
+      components: {
+        Button: "button",
+        Link: "a",
+      },
+      polymorphicPropName: "as",
+    },
+    react: {
+      linkComponents: ["Link"],
+    },
+    vitest: {
+      typecheck: false,
+    },
+  },
+  categories: {
+    correctness: "error",
+    suspicious: "warn",
+    pedantic: "warn",
+    perf: "warn",
+    style: "warn",
+    nursery: "warn",
   },
   plugins: [
     "eslint",
@@ -15,15 +41,11 @@ export default defineConfig({
     "jsx-a11y",
     "node",
     "promise",
-    // "vitest", // Incorrectly parses Astro files
   ],
-  categories: {
-    correctness: "error",
-    suspicious: "warn",
-    pedantic: "warn",
-    perf: "warn",
-    style: "warn",
-    nursery: "warn",
+  env: {
+    builtin: true,
+    browser: true,
+    node: true,
   },
   rules: {
     "arrow-body-style": "off",
@@ -32,11 +54,13 @@ export default defineConfig({
     "id-length": "off",
     "max-lines-per-function": "off",
     "max-lines": "off",
+    "max-params": "off",
     "max-statements": "off",
     "new-cap": "off",
     "no-inline-comments": "off",
     "no-magic-numbers": "off",
     "no-ternary": "off",
+    "no-unreachable": "warn",
     "no-unused-vars": "warn",
     "one-var": "off",
     "sort-imports": "off", // Not very configurable yet
@@ -44,6 +68,7 @@ export default defineConfig({
 
     "unicorn/filename-case": "off",
     "unicorn/no-null": "off",
+    "unicorn/prefer-ternary": "off",
 
     "import/consistent-type-specifier-style": "off",
     "import/exports-last": "off",
@@ -67,50 +92,23 @@ export default defineConfig({
 
     "typescript/prefer-readonly-parameter-types": "off",
   },
-  settings: {
-    "jsx-a11y": {
-      // polymorphicPropName: null,
-      components: {
-        Link: "a",
-      },
-      attributes: {},
-    },
-    react: {
-      formComponents: [],
-      linkComponents: ["Link"],
-      // version: null,
-      componentWrapperFunctions: [],
-    },
-    jsdoc: {
-      ignorePrivate: false,
-      ignoreInternal: false,
-      ignoreReplacesDocs: true,
-      overrideReplacesDocs: true,
-      augmentsExtendsReplacesDocs: false,
-      implementsReplacesDocs: false,
-      exemptDestructuredRootsFromChecks: false,
-      tagNamePreference: {},
-    },
-    vitest: {
-      typecheck: false,
-    },
-  },
-  env: {
-    builtin: true,
-    browser: true,
-    node: true,
-    es2024: true,
-    astro: true,
-    svelte: true,
-  },
-  globals: {},
-  ignorePatterns: [],
   overrides: [
     {
-      files: ["**/*.svelte"],
+      files: ["**/*.astro"],
+      env: {
+        astro: true,
+      },
+    },
+    {
+      files: ["**/*.{spec,test}.ts"],
+      plugins: ["vitest"],
+      env: {
+        vitest: false, // We're importing vitest components
+      },
       rules: {
-        "prefer-const": "off",
-        "typescript/consistent-type-imports": "off",
+        "vitest/no-importing-vitest-globals": "off",
+        "vitest/prefer-expect-assertions": "off",
+        "vitest/prefer-expect-resolves": "off",
       },
     },
   ],
