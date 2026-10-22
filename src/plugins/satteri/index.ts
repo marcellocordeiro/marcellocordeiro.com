@@ -12,9 +12,9 @@ export const markdownProcessor = satteri({
     satteriHastExternalLinksPlugin(),
     satteriHastSlug(),
     satteriHastAutolinkHeadings({
-      behavior: "prepend",
       content: { type: "text", value: "#" },
       properties: { className: ["heading-anchor"] },
+      headingProperties: { className: ["relative"] },
     }),
   ],
 });

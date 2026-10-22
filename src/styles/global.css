@@ -116,3 +116,28 @@
   --typeset-leading: 1.75;
   --typeset-flow: 1.25em;
 }
+
+.heading-anchor {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -1.5em;
+  display: inline-flex;
+  align-items: center;
+  font-size: 75%;
+  opacity: 0.4;
+  transition: opacity 0.18s ease;
+  text-decoration: none;
+  padding-inline: 0.4em;
+
+  @media (hover: hover) {
+    h1:hover &,
+    h2:hover &,
+    h3:hover &,
+    h4:hover &,
+    h5:hover &,
+    h6:hover &,
+    &:focus-visible {
+      opacity: 1;
+    }
+  }
+}
