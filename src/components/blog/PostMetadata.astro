@@ -10,7 +10,12 @@ interface Props {
   };
 }
 
-const { post, extraMetadata } = Astro.props;
+const {
+  post: {
+    data: { pubDate },
+  },
+  extraMetadata: { lastModified, minutesRead },
+} = Astro.props;
 
 const formatDate = (date: Date | string) =>
   new Date(date).toLocaleDateString("en-US", {
@@ -24,24 +29,21 @@ const formatDate = (date: Date | string) =>
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
     <span>Published</span>
-    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
   </span>
 
-  {(extraMetadata.lastModified || extraMetadata.minutesRead) && (
+  {(lastModified || minutesRead) && (
     <div class="flex flex-wrap gap-x-3 gap-y-1">
-      {extraMetadata.lastModified && (
+      {lastModified && (
         <span>
-          Updated{" "}
-          <time datetime={extraMetadata.lastModified}>
-            {formatDate(extraMetadata.lastModified)}
-          </time>
+          Updated <time datetime={lastModified}>{formatDate(lastModified)}</time>
         </span>
       )}
 
-      {extraMetadata.minutesRead && (
+      {minutesRead && (
         <>
           <span aria-hidden="true">·</span>
-          <span>{extraMetadata.minutesRead}</span>
+          <span>{minutesRead}</span>
         </>
       )}
     </div>
