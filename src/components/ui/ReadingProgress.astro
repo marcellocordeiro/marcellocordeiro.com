@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = Pick<HTMLAttributes<"article">, "class">;
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["reading-progress", className]} aria-hidden="true" />
+
+<style>
+  /* "fallback" if the user's browser doesn't support scroll-driven animations */
+  .reading-progress {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .reading-progress {
+      /* fallback */
+      display: block;
+
+      position: fixed;
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      inline-size: 100%;
+      height: 4px;
+
+      background-color: var(--primary);
+
+      transform-origin: left center;
+      animation: expand linear;
+      animation-timeline: scroll();
+    }
+
+    @keyframes expand {
+      from {
+        transform: scaleX(0);
+      }
+    }
+  }
+</style>

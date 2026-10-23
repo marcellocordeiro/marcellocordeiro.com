@@ -3,9 +3,11 @@ import { render } from "astro:content";
 
 import PostPager from "@/components/blog/post-pager/PostPager.astro";
 import PostMetadata from "@/components/blog/PostMetadata.astro";
+import BackToTop from "@/components/ui/BackToTop.astro";
 import Badge from "@/components/ui/badge/Badge.astro";
 import Link from "@/components/ui/link/Link.astro";
 import Prose from "@/components/ui/Prose.astro";
+import ReadingProgress from "@/components/ui/ReadingProgress.astro";
 import Separator from "@/components/ui/Separator.astro";
 import { ChevronLeftIcon } from "@/config/icons";
 import Layout from "@/layouts/Layout.astro";
@@ -44,6 +46,7 @@ const { Content, remarkPluginFrontmatter } = await render(current);
     )}
 
     <Content />
+    <ReadingProgress />
   </Prose>
 
   {(previous || next) && (
@@ -53,4 +56,6 @@ const { Content, remarkPluginFrontmatter } = await render(current);
       <PostPager previous={previous} next={next} />
     </div>
   )}
+
+  <BackToTop />
 </Layout>

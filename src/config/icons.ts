@@ -1,6 +1,6 @@
 export { default as ChevronLeftIcon } from "~icons/lucide/chevron-left";
 export { default as ChevronRightIcon } from "~icons/lucide/chevron-right";
-export { default as ChevronUpIcon } from "~icons/lucide/chevron-down";
+export { default as ChevronUpIcon } from "~icons/lucide/chevron-up";
 export { default as ChevronDownIcon } from "~icons/lucide/chevron-down";
 
 export { default as EllipsisIcon } from "~icons/lucide/ellipsis";

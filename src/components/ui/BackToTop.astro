@@ -1,0 +1,48 @@
+---
+import { ChevronUpIcon } from "@/config/icons";
+
+import Button from "./button/Button.astro";
+---
+
+<Button
+  class="back-to-top"
+  variant="secondary"
+  size="icon-lg"
+  onclick="window.scrollTo({ top: 0 })"
+>
+  <ChevronUpIcon />
+</Button>
+
+<style>
+  /* "fallback" if the user's browser doesn't support scroll-driven animations */
+  .back-to-top {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .back-to-top {
+      /* fallback */
+      display: inline-flex;
+
+      position: fixed;
+      inset-block-end: 16px;
+      inset-inline-end: 16px;
+
+      animation: show linear both;
+      animation-timeline: scroll(root);
+      animation-range: 200px 300px;
+    }
+
+    @keyframes show {
+      from {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      to {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+</style>
