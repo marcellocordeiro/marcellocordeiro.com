@@ -28,8 +28,6 @@ import { ChevronUpIcon } from "@/config/icons";
       inset-inline-end: 16px;
 
       animation: show linear both;
-      animation-timeline: scroll(root);
-      animation-range: 200px 300px;
     }
 
     @keyframes show {
@@ -43,5 +41,11 @@ import { ChevronUpIcon } from "@/config/icons";
         visibility: visible;
       }
     }
+  }
+
+  .back-to-top {
+    /* https://github.com/parcel-bundler/lightningcss/issues/1283 */
+    animation-timeline: scroll(root);
+    animation-range: 200px 300px;
   }
 </style>

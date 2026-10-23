@@ -29,7 +29,6 @@ const { class: className } = Astro.props;
 
       transform-origin: left center;
       animation: expand linear;
-      animation-timeline: scroll();
     }
 
     @keyframes expand {
@@ -37,5 +36,10 @@ const { class: className } = Astro.props;
         transform: scaleX(0);
       }
     }
+  }
+
+  /* https://github.com/parcel-bundler/lightningcss/issues/1283 */
+  .reading-progress {
+    animation-timeline: scroll();
   }
 </style>
