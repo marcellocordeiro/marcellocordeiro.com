@@ -33,7 +33,7 @@ const { Content, remarkPluginFrontmatter } = await render(current);
 
     <h1 class="mt-4">{title}</h1>
 
-    <PostMetadata post={current} extraMetadata={remarkPluginFrontmatter} />
+    <PostMetadata post={current} pluginMetadata={remarkPluginFrontmatter} />
 
     {current.data.tags.length > 0 && (
       <ul class="not-typeset mt-5 flex flex-wrap gap-1.5" aria-label={`${current.data.title} tags`}>

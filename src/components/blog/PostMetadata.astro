@@ -4,8 +4,8 @@ import type { Post } from "@/lib/blog";
 
 interface Props {
   post: Post;
-  extraMetadata: {
-    lastModified?: string;
+  pluginMetadata: {
+    lastModified?: Date;
     minutesRead?: string;
   };
 }
@@ -14,11 +14,12 @@ const {
   post: {
     data: { pubDate },
   },
-  extraMetadata: { lastModified, minutesRead },
+  pluginMetadata: { lastModified, minutesRead },
 } = Astro.props;
 
-const formatDate = (date: Date | string) =>
-  new Date(date).toLocaleDateString("en-US", {
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -36,16 +37,13 @@ const formatDate = (date: Date | string) =>
     <div class="flex flex-wrap gap-x-3 gap-y-1">
       {lastModified && (
         <span>
-          Updated <time datetime={lastModified}>{formatDate(lastModified)}</time>
+          Updated <time datetime={lastModified.toISOString()}>{formatDate(lastModified)}</time>
         </span>
       )}
 
-      {minutesRead && (
-        <>
-          <span aria-hidden="true">·</span>
-          <span>{minutesRead}</span>
-        </>
-      )}
+      {lastModified && minutesRead && <span aria-hidden="true">·</span>}
+
+      {minutesRead && <span>{minutesRead}</span>}
     </div>
   )}
 </div>

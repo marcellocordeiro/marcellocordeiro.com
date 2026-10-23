@@ -6,10 +6,15 @@ interface Props {
   post: Post;
 }
 
-const { post } = Astro.props;
+const {
+  post: {
+    data: { pubDate },
+  },
+} = Astro.props;
 
-const formatDate = (date: Date | string) =>
-  new Date(date).toLocaleDateString("en-US", {
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -19,6 +24,6 @@ const formatDate = (date: Date | string) =>
 <div class="text-sm text-muted-foreground">
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
-    <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
   </span>
 </div>
