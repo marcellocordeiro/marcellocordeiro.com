@@ -1,93 +1,47 @@
 @layer components {
   .button-group {
-    @apply flex w-fit items-stretch;
+    @apply inline-flex w-fit items-stretch;
 
-    :is(& > *) {
+    & > .button-group-item {
+      @apply rounded-none;
+
       &:focus-visible {
         @apply relative z-10;
       }
     }
 
-    &:has(> [data-slot="button-group"]) {
-      @apply gap-2;
-    }
-
-    &:has(> [data-variant="outline"]) {
-      :is(& > *) {
-        &[data-slot="input-group"] {
-          @apply border-border;
-        }
-
-        &[data-slot="select-trigger"] {
-          @apply border-border;
-        }
-      }
-
-      & > [data-slot="input-group"]:has(:focus-visible) {
-        @apply border-ring;
-      }
-
-      & > [data-slot="select-trigger"]:focus-visible {
-        @apply border-ring;
-      }
-    }
-
-    &:has(*:is(select[aria-hidden="true"]:last-child)) {
-      & > [data-slot="select-trigger"]:last-of-type {
-        @apply rounded-r-2xl;
-      }
-    }
-
-    & > [data-slot="select-trigger"]:not([class*="w-"]) {
-      @apply w-fit;
-    }
-
-    & > input {
-      @apply flex-1;
-    }
-
-    &:has(> [data-variant="outline"]) {
-      & > input {
-        @apply border-border;
-      }
-
-      & > input:focus-visible {
-        @apply border-ring;
-      }
-    }
-
-    /* Variants */
+    /* Orientations */
     &[data-orientation="horizontal"] {
-      :is(& > *) {
-        &[data-slot] {
-          @apply rounded-r-none;
+      & > .button-group-item {
+        &:first-child {
+          @apply rounded-l-2xl;
         }
-      }
 
-      & > [data-slot]:not(:has(~ [data-slot])) {
-        @apply rounded-r-2xl!;
-      }
+        &:last-child {
+          @apply rounded-r-2xl;
+        }
 
-      & > [data-slot] ~ [data-slot] {
-        @apply rounded-l-none border-l-0;
+        & + .button-group-item {
+          @apply rounded-l-none border-l-0;
+        }
       }
     }
 
     &[data-orientation="vertical"] {
       @apply flex-col;
 
-      :is(& > *) {
-        &[data-slot] {
-          @apply rounded-b-none;
+      & > .button-group-item {
+        &:first-child {
+          @apply rounded-t-2xl;
         }
-      }
 
-      & > [data-slot]:not(:has(~ [data-slot])) {
-        @apply rounded-b-2xl!;
-      }
+        &:last-child {
+          @apply rounded-b-2xl;
+        }
 
-      & > [data-slot] ~ [data-slot] {
-        @apply rounded-t-none border-t-0;
+        & + .button-group-item {
+          @apply rounded-t-none border-t-0;
+        }
       }
     }
   }
