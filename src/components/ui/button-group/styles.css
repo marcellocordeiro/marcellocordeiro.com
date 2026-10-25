@@ -1,14 +1,94 @@
 @layer components {
   .button-group {
-    @apply flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2 has-[>[data-variant=outline]]:*:data-[slot=input-group]:border-border has-[>[data-variant=outline]]:*:data-[slot=select-trigger]:border-border has-[>[data-variant=outline]]:[&>[data-slot=input-group]:has(:focus-visible)]:border-ring has-[>[data-variant=outline]]:[&>[data-slot=select-trigger]:focus-visible]:border-ring has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-2xl [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[>[data-variant=outline]]:[&>input]:border-border has-[>[data-variant=outline]]:[&>input:focus-visible]:border-ring;
+    @apply flex w-fit items-stretch;
+
+    :is(& > *) {
+      &:focus-visible {
+        @apply relative z-10;
+      }
+    }
+
+    &:has(> [data-slot="button-group"]) {
+      @apply gap-2;
+    }
+
+    &:has(> [data-variant="outline"]) {
+      :is(& > *) {
+        &[data-slot="input-group"] {
+          @apply border-border;
+        }
+
+        &[data-slot="select-trigger"] {
+          @apply border-border;
+        }
+      }
+
+      & > [data-slot="input-group"]:has(:focus-visible) {
+        @apply border-ring;
+      }
+
+      & > [data-slot="select-trigger"]:focus-visible {
+        @apply border-ring;
+      }
+    }
+
+    &:has(*:is(select[aria-hidden="true"]:last-child)) {
+      & > [data-slot="select-trigger"]:last-of-type {
+        @apply rounded-r-2xl;
+      }
+    }
+
+    & > [data-slot="select-trigger"]:not([class*="w-"]) {
+      @apply w-fit;
+    }
+
+    & > input {
+      @apply flex-1;
+    }
+
+    &:has(> [data-variant="outline"]) {
+      & > input {
+        @apply border-border;
+      }
+
+      & > input:focus-visible {
+        @apply border-ring;
+      }
+    }
 
     /* Variants */
     &[data-orientation="horizontal"] {
-      @apply *:data-slot:rounded-r-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-r-2xl! [&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]]:border-l-0;
+      :is(& > *) {
+        &[data-slot] {
+          @apply rounded-r-none;
+        }
+      }
+
+      & > [data-slot]:not(:has(~ [data-slot])) {
+        @apply rounded-r-2xl!;
+      }
+
+      & > [data-slot] ~ [data-slot] {
+        @apply rounded-l-none border-l-0;
+      }
     }
 
     &[data-orientation="vertical"] {
-      @apply flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-2xl! [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:border-t-0;
+      @apply flex-col;
+
+      :is(& > *) {
+        &[data-slot] {
+          @apply rounded-b-none;
+        }
+      }
+
+      & > [data-slot]:not(:has(~ [data-slot])) {
+        @apply rounded-b-2xl!;
+      }
+
+      & > [data-slot] ~ [data-slot] {
+        @apply rounded-t-none border-t-0;
+      }
     }
   }
 }

@@ -65,73 +65,72 @@ const themes = [
   } from "./theme";
 
   class ThemeToggle extends HTMLElement {
-    private mql: MediaQueryList | null = null;
-    private onMqlChange = this.handleMediaQueryChange.bind(this);
-
-    private currentTheme: Theme | null = null;
-
-    private buttons: NodeListOf<HTMLButtonElement> | null = null;
+    #currentTheme: Theme = getSavedTheme() ?? "system";
+    #abortController: AbortController | null = null;
 
     connectedCallback() {
-      this.currentTheme = getSavedTheme() ?? "system";
-      this.buttons = this.querySelectorAll("button[data-value]");
+      this.#abortController = new AbortController();
+      const { signal } = this.#abortController;
+
+      const buttons = this.querySelectorAll<HTMLButtonElement>("button[data-value]");
 
       // We're first synchronising in the inline script above, but keep it here as a reminder
-      // this.syncButtons(this.currentTheme);
+      // this.syncButtons(this.currentTheme, buttons);
 
-      this.buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const { value } = button.dataset;
+      buttons.forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const { value } = button.dataset;
 
-          if (!isTheme(value)) {
-            console.warn(`Invalid theme value: ${value}`);
-            return;
-          }
+            if (!isTheme(value)) {
+              console.warn(`Invalid theme value: ${value}`);
+              return;
+            }
 
-          this.handleThemeChange(value);
-        });
+            this.#handleThemeChange(value, buttons);
+          },
+          { signal },
+        );
       });
 
-      this.mql = globalThis.matchMedia(DARK_MODE_MEDIA_QUERY);
-      this.mql.addEventListener("change", this.onMqlChange);
+      globalThis
+        .matchMedia(DARK_MODE_MEDIA_QUERY)
+        .addEventListener("change", this.#handleMediaQueryChange, { signal });
     }
 
     disconnectedCallback() {
-      this.mql?.removeEventListener("change", this.onMqlChange);
+      this.#abortController?.abort();
+      this.#abortController = null;
     }
 
-    handleMediaQueryChange() {
-      if (!this.mql) {
-        console.warn("mql is not initialised.");
-        return;
-      }
-
+    #handleMediaQueryChange = (event: MediaQueryListEvent) => {
       // Only update the DOM if the user did not set any preference
-      if (this.currentTheme !== "system") {
+      if (this.#currentTheme !== "system") {
         return;
       }
 
-      const theme = this.mql.matches ? "dark" : "light";
+      const theme = event.matches ? "dark" : "light";
 
       updateDOMTheme(theme);
-    }
+    };
 
-    handleThemeChange(selected: Theme) {
-      this.currentTheme = selected;
-      this.syncButtons(selected);
+    #handleThemeChange = (selected: Theme, buttons: NodeListOf<HTMLButtonElement>) => {
+      this.#currentTheme = selected;
+      this.#syncButtons(selected, buttons);
 
       updateTheme(selected);
-    }
+    };
 
-    syncButtons(selected: Theme) {
-      this.buttons?.forEach((button) => {
+    #syncButtons = (selected: Theme, buttons: NodeListOf<HTMLButtonElement>) => {
+      buttons.forEach((button) => {
         const { value } = button.dataset;
         const variant = value === selected ? "default" : "outline";
 
         button.dataset["variant"] = variant;
         button.setAttribute("aria-checked", String(button.dataset["value"] === selected));
       });
-    }
+    };
   }
 
   customElements.define("theme-toggle", ThemeToggle);
