@@ -101,6 +101,12 @@ export default defineConfig({
       },
     },
     {
+      files: ["**/*.svelte", "**/*.svelte.ts"],
+      env: {
+        svelte: true,
+      },
+    },
+    {
       files: ["**/*.{spec,test}.ts"],
       plugins: ["vitest"],
       env: {

@@ -1,5 +1,6 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import Icons from "unplugin-icons/vite";
@@ -11,16 +12,23 @@ import { shikiConfig } from "@/plugins/shiki-config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [sitemap(), mdx()],
+  integrations: [sitemap(), mdx(), svelte()],
   markdown: {
     processor: markdownProcessor,
     shikiConfig,
   },
   vite: {
+    resolve: {
+      alias: [
+        { find: "~icons:svelte", replacement: "~icons" },
+        { find: "~icons:astro", replacement: "~icons" },
+      ],
+    },
     plugins: [
       // Vite's LightningCSS already does this,
       // and optimises a little better
       tailwindcss({ optimize: false }),
+      Icons({ scale: 1, compiler: "svelte" }),
       Icons({ scale: 1, compiler: "astro" }),
     ],
   },

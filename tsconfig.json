@@ -10,16 +10,14 @@
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
 
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-
-    "types": ["unplugin-icons/types/astro"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
       }
-    ]
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["node_modules", "dist"]

@@ -1,10 +1,10 @@
-export interface Href {
+export interface AnchorProps {
   isExternal: boolean;
   rel?: string;
   target?: string;
 }
 
-export function parseHref(href: string): Href {
+export function parseHref(href: string): AnchorProps {
   if (href.startsWith("/") || href.startsWith("?") || href.startsWith("#")) {
     return {
       isExternal: false,
