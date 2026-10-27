@@ -45,15 +45,6 @@ const themes = [
   }
 </style>
 
-<script is:inline>
-  const selectedTheme = localStorage.getItem("theme") ?? "system";
-
-  document.querySelectorAll(`button[data-value="${selectedTheme}"]`).forEach((button) => {
-    button.dataset.variant = "default";
-    button.setAttribute("aria-checked", "true");
-  });
-</script>
-
 <script>
   import {
     DARK_MODE_MEDIA_QUERY,

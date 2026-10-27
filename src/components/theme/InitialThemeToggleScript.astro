@@ -1,0 +1,14 @@
+{/* Select the button corresponding to the selected theme */}
+<script is:inline>
+  function run() {
+    const selectedTheme = localStorage.getItem("theme") ?? "system";
+
+    document.querySelectorAll(`button[data-value="${selectedTheme}"]`).forEach((button) => {
+      button.dataset.variant = "default";
+      button.setAttribute("aria-checked", "true");
+    });
+  }
+
+  run();
+  // document.addEventListener("astro:after-swap", run);
+</script>

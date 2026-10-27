@@ -1,5 +1,6 @@
+{/* Apply the initial theme to the page */}
 <script is:inline>
-  function applyTheme() {
+  function run() {
     const selectedTheme = localStorage.getItem("theme") ?? "system";
     let theme = selectedTheme;
 
@@ -10,6 +11,6 @@
     document.documentElement.dataset.theme = theme;
   }
 
-  applyTheme();
-  document.addEventListener("astro:after-swap", applyTheme);
+  run();
+  document.addEventListener("astro:after-swap", run);
 </script>
