@@ -28,7 +28,6 @@ export function createThemeContext() {
     // Only update the DOM if the user did not set any preference,
     // and do not register the currentTheme as a dependency
     if (untrack(() => currentTheme !== "system")) {
-      console.log("should not update the dom");
       return;
     }
 

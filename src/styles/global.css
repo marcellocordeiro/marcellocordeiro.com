@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./theme.css";
-@import "./typeset.css";
+@import "./prose.css";
 
 @import "../components/ui/badge/styles.css";
 @import "../components/ui/button/styles.css";
@@ -107,13 +107,13 @@
   }
 }
 
-.typeset-article {
-  --typeset-font-body: var(--font-sans);
-  --typeset-font-heading: var(--font-heading);
-  --typeset-font-mono: var(--font-mono);
-  --typeset-size: 16px;
-  --typeset-leading: 1.75;
-  --typeset-flow: 1.25em;
+.prose-article {
+  --prose-font-body: var(--font-sans);
+  --prose-font-heading: var(--font-heading);
+  --prose-font-mono: var(--font-mono);
+  --prose-size: 16px;
+  --prose-leading: 1.75;
+  --prose-flow: 1.25em;
 }
 
 .heading-anchor {
