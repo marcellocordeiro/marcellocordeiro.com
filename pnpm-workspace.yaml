@@ -8,3 +8,14 @@ lockfile:
 autoDedupe: true
 saveTypes: true
 # minimumReleaseAge: 0
+minimumReleaseAgeExclude:
+  - "@astrojs/*"
+  - "@bruits/*"
+  - "@oxfmt/*"
+  - "@oxlint-tsgolint/*"
+  - "@oxlint/*"
+  - "astro"
+  - "oxfmt"
+  - "oxlint-tsgolint"
+  - "oxlint"
+  - "satteri"
