@@ -1,6 +1,7 @@
 import { defineConfig } from "oxfmt";
 
 export default defineConfig({
+  ignorePatterns: ["**/fixtures/**"],
   astro: true,
   svelte: true,
   sortImports: true,

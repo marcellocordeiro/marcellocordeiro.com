@@ -63,6 +63,7 @@ export default defineConfig({
     "no-unreachable": "warn",
     "no-unused-vars": "warn",
     "one-var": "off",
+    "require-unicode-regexp": "off",
     "sort-imports": "off", // Not very configurable yet
     "sort-keys": "off",
 
@@ -113,9 +114,12 @@ export default defineConfig({
         vitest: false, // We're importing vitest components
       },
       rules: {
+        "vitest/expect-expect": "off",
+        "vitest/no-commented-out-tests": "off",
         "vitest/no-importing-vitest-globals": "off",
         "vitest/prefer-expect-assertions": "off",
         "vitest/prefer-expect-resolves": "off",
+        "vitest/prefer-todo": "off",
       },
     },
   ],
