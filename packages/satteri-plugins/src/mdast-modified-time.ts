@@ -14,7 +14,7 @@ export function satteriMdastModifiedTime() {
       const filepath = fileURLToPath(ctx.fileURL);
       // %cI committer date, strict ISO 8601 format
       // %cs committer date, short format `YYYY-MM-DD`
-      const command = `git log -1 --pretty="format:%cs" "${filepath}"`;
+      const command = `git log -1 --pretty="format:%cI" "${filepath}"`;
 
       // oxlint-disable-next-line node/no-sync
       const result = execSync(command).toString().trim();

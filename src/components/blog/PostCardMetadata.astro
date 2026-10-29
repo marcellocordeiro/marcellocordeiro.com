@@ -2,6 +2,8 @@
 import { ClockIcon } from "@/config/icons";
 import type { Post } from "@/lib/blog";
 
+import PostDate from "./PostDate.svelte";
+
 interface Props {
   post: Post;
 }
@@ -11,19 +13,11 @@ const {
     data: { pubDate },
   },
 } = Astro.props;
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString("en-US", {
-    timeZone: "UTC",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
 ---
 
 <div class="text-sm text-muted-foreground">
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
-    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    <PostDate date={pubDate} client:load />
   </span>
 </div>
