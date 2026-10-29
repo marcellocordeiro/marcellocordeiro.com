@@ -1,21 +1,44 @@
+import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
+import {
+  satteriHastAutolinkHeadings,
+  satteriHastExternalLinksPlugin,
+  satteriHastSlug,
+  satteriMdastModifiedTimePlugin,
+  satteriMdastReadingTimePlugin,
+} from "@marcellocordeiro/satteri-plugins";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import Icons from "unplugin-icons/vite";
 
 import { SITE_URL } from "@/config/site";
-import { markdownProcessor } from "@/plugins/satteri";
-import { shikiConfig } from "@/plugins/shiki-config";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
   integrations: [sitemap(), mdx(), svelte()],
   markdown: {
-    processor: markdownProcessor,
-    shikiConfig,
+    processor: satteri({
+      mdastPlugins: [satteriMdastModifiedTimePlugin(), satteriMdastReadingTimePlugin()],
+      hastPlugins: [
+        satteriHastExternalLinksPlugin(),
+        satteriHastSlug(),
+        satteriHastAutolinkHeadings({
+          content: { type: "text", value: "#" },
+          properties: { className: ["heading-anchor"] },
+          headingProperties: { className: ["relative"] },
+        }),
+      ],
+    }),
+    shikiConfig: {
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha",
+      },
+      defaultColor: "light-dark()",
+    },
   },
   vite: {
     resolve: {
