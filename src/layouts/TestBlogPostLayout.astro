@@ -1,0 +1,39 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+
+import Badge from "@/components/ui/badge/Badge.astro";
+import Link from "@/components/ui/link/Link.astro";
+import { ChevronLeftIcon } from "@/config/icons";
+import Layout from "@/layouts/Layout.astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  tags: string[];
+}>;
+
+const { frontmatter } = Astro.props;
+const { title, tags } = frontmatter;
+---
+
+<Layout title={title}>
+  <article class="prose prose-article mx-auto max-w-[65ch]">
+    <Link class="group inline-flex items-center gap-1" href="/blog">
+      <ChevronLeftIcon class="size-4" aria-hidden="true" />
+      <span>Back</span>
+    </Link>
+
+    <h1 class="mt-4">{title}</h1>
+
+    {tags.length > 0 && (
+      <ul class="not-prose mt-5 flex flex-wrap gap-1.5">
+        {tags.map((tag) => (
+          <Badge as="li" variant="secondary">
+            {tag}
+          </Badge>
+        ))}
+      </ul>
+    )}
+
+    <slot />
+  </article>
+</Layout>
