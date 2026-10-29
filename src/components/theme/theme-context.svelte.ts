@@ -4,9 +4,9 @@ import { MediaQuery } from "svelte/reactivity";
 import {
   DARK_MODE_MEDIA_QUERY,
   getSavedTheme,
+  saveTheme,
   type Theme,
   updateDOMTheme,
-  updateTheme,
 } from "./theme";
 
 export function createThemeContext() {
@@ -36,9 +36,18 @@ export function createThemeContext() {
   });
 
   function handleUserSelection(value: Theme) {
-    currentTheme = value;
+    if (value === currentTheme) {
+      return;
+    }
 
-    updateTheme(value);
+    currentTheme = value;
+    saveTheme(value);
+
+    if (value === "system") {
+      updateDOMTheme(prefersDarkMode.current ? "dark" : "light");
+    } else {
+      updateDOMTheme(value);
+    }
   }
 
   return {

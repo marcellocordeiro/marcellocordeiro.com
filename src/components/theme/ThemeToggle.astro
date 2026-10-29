@@ -50,13 +50,14 @@ const themes = [
     DARK_MODE_MEDIA_QUERY,
     getSavedTheme,
     isTheme,
+    saveTheme,
     updateDOMTheme,
-    updateTheme,
     type Theme,
   } from "./theme";
 
   class ThemeToggle extends HTMLElement {
     #currentTheme: Theme = getSavedTheme() ?? "system";
+    #prefersDarkMode = matchMedia(DARK_MODE_MEDIA_QUERY);
     #abortController: AbortController | null = null;
 
     connectedCallback() {
@@ -85,9 +86,7 @@ const themes = [
         );
       });
 
-      globalThis
-        .matchMedia(DARK_MODE_MEDIA_QUERY)
-        .addEventListener("change", this.#handleMediaQueryChange, { signal });
+      this.#prefersDarkMode.addEventListener("change", this.#handleMediaQueryChange, { signal });
     }
 
     disconnectedCallback() {
@@ -107,10 +106,20 @@ const themes = [
     };
 
     #handleThemeChange = (selected: Theme, buttons: NodeListOf<HTMLButtonElement>) => {
+      if (selected === this.#currentTheme) {
+        return;
+      }
+
       this.#currentTheme = selected;
       this.#syncButtons(selected, buttons);
 
-      updateTheme(selected);
+      saveTheme(selected);
+
+      if (selected === "system") {
+        updateDOMTheme(this.#prefersDarkMode.matches ? "dark" : "light");
+      } else {
+        updateDOMTheme(selected);
+      }
     };
 
     #syncButtons = (selected: Theme, buttons: NodeListOf<HTMLButtonElement>) => {

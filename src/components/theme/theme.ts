@@ -36,6 +36,11 @@ export function getSavedTheme(): Theme | null {
 }
 
 export function saveTheme(theme: Theme) {
+  if (theme === "system") {
+    clearSavedTheme();
+    return;
+  }
+
   localStorage.setItem(localStorageKey, theme);
 }
 
@@ -44,17 +49,6 @@ export function clearSavedTheme() {
 }
 
 // Updates
-
-export function updateTheme(theme: Theme) {
-  if (theme === "system") {
-    theme = getSystemTheme();
-    clearSavedTheme();
-  } else {
-    saveTheme(theme);
-  }
-
-  updateDOMTheme(theme);
-}
 
 export function updateDOMTheme(systemTheme: SystemTheme | null) {
   if (systemTheme === null) {
