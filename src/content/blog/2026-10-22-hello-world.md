@@ -2,11 +2,11 @@
 slug: hello-world
 title: Hello, World!
 description: My first post, where I talk about why and how I wrote this website. Includes bad jokes.
-pubDate: 2026-10-28
+pubDate: 2026-10-29T20:29:00-03:00
 tags: [webdev, astro]
 ---
 
-Hello, world! I've always enjoyed researching, experimenting, discussing and sharing the progress and results with teammates and friends. I've done it a lot at work, it's always enjoyable seeing them make a difference and receiving feedback on what can be improved. However, one of the suggestions I've received was that I should "own" such accomplishments more, and that stuck with me. It was an excellent suggestion, and it was the nudge I needed to put my thoughts into a more permanent and digestible format and speak my mind through writing. However, I don't consider myself a creative person, be it as a designer or as a writer, but I'll do my best!
+Hello, world! I enjoy solving problems by researching, experimenting, discussing, and sharing my progress and results with teammates and friends. I've done it a lot at work, it's rewarding to make a difference and receiving feedback on what can be improved. However, one of the suggestions I've received was that I should "own" such accomplishments more, and that stuck with me. It was an excellent suggestion, and it was the nudge I needed to put my thoughts into a more permanent and digestible format and speak my mind through writing. However, I don't consider myself a creative person, be it as a designer or as a writer, but I'll do my best so I hope you enjoy your stay!
 
 ## Background
 
