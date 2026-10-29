@@ -2,7 +2,7 @@
 slug: hello-world
 title: Hello, World!
 description: My first post, where I talk about why and how I wrote this website. Includes bad jokes.
-pubDate: 2026-10-22
+pubDate: 2026-10-28
 tags: [webdev, astro]
 ---
 
@@ -438,4 +438,4 @@ It's not perfect, there are probably bugs in it, but it works and doesn't need a
 
 ## Conclusion
 
-Every post needs a "conclusion", there's enough here to digest and give you, the reader, an idea of some of my background, motivation and hurdles when trying to write a website from scratch while making a conscious and calculated decision every step. But it's been a fun experience and I still have a lot to learn and a lot to do here. I'll be updating this blog post if I think I have things or jokes to add (or subtract!), but feedback is always welcome!
+Well, I suppose every post needs a "conclusion", but enough here to digest and give you, the reader, an idea of some of my background, motivation and hurdles when coming up with this website, and the journey is far from over! It's been a fun experience and I still have a lot to learn and a lot to do here. I'll be updating this blog post if I think I have things or jokes to add.
