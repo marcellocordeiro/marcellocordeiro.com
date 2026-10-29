@@ -2,12 +2,10 @@ import { defineHastPlugin, type HastPluginInput } from "satteri";
 
 import type { Element, ElementContent, Properties } from "../utils/types";
 
-export type Behavior = "after" | "append" | "before" | "prepend" | "wrap";
-export type BuildProperties = (element: Readonly<Element>) => Readonly<Properties>;
-export type Build = (
-  element: Readonly<Element>,
-) => Readonly<ElementContent> | readonly ElementContent[];
-export type BuildGroup = (element: Readonly<Element>) => Readonly<Element>;
+type Behavior = "after" | "append" | "before" | "prepend" | "wrap";
+type BuildProperties = (element: Readonly<Element>) => Readonly<Properties>;
+type Build = (element: Readonly<Element>) => Readonly<ElementContent> | readonly ElementContent[];
+type BuildGroup = (element: Readonly<Element>) => Readonly<Element>;
 
 export interface SatteriHastAutolinkHeadingsOptions {
   behavior?: Behavior;

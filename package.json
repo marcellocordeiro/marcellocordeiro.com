@@ -12,7 +12,8 @@
     "lint": "oxlint",
     "format": "oxfmt",
     "lint:eslint": "eslint .",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {},
   "devDependencies": {
@@ -32,7 +33,7 @@
     "@marcellocordeiro/satteri-plugins": "workspace:*",
     "@primer/octicons": "^19.42.0",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/primer__octicons": "^19.21.0",
     "astro": "^7.4.4",
     "astro-expressive-code": "^0.44.3",

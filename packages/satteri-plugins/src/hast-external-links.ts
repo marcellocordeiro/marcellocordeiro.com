@@ -34,7 +34,7 @@ function makeSrSpan(): HastNode {
   };
 }
 
-export function satteriHastExternalLinksPlugin(): HastPluginInput {
+export function satteriHastExternalLinks(): HastPluginInput {
   const externalLinkIcon = makeExternalLinkIcon();
   const srSpan = makeSrSpan();
 

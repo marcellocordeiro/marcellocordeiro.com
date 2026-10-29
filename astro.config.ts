@@ -4,10 +4,10 @@ import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import {
   satteriHastAutolinkHeadings,
-  satteriHastExternalLinksPlugin,
+  satteriHastExternalLinks,
   satteriHastSlug,
-  satteriMdastModifiedTimePlugin,
-  satteriMdastReadingTimePlugin,
+  satteriMdastModifiedTime,
+  satteriMdastReadingTime,
 } from "@marcellocordeiro/satteri-plugins";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -21,9 +21,9 @@ export default defineConfig({
   integrations: [sitemap(), mdx(), svelte()],
   markdown: {
     processor: satteri({
-      mdastPlugins: [satteriMdastModifiedTimePlugin(), satteriMdastReadingTimePlugin()],
+      mdastPlugins: [satteriMdastModifiedTime(), satteriMdastReadingTime()],
       hastPlugins: [
-        satteriHastExternalLinksPlugin(),
+        satteriHastExternalLinks(),
         satteriHastSlug(),
         satteriHastAutolinkHeadings({
           content: { type: "text", value: "#" },

@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { defineMdastPlugin } from "satteri";
 
-export function satteriMdastModifiedTimePlugin() {
+export function satteriMdastModifiedTime() {
   return defineMdastPlugin({
     name: "satteri-mdast-modified-time",
     before(_root, ctx) {
