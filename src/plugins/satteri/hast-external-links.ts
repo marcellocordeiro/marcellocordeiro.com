@@ -1,34 +1,28 @@
+import { icons } from "@iconify-json/lucide";
+import { getIconData, iconToHTML, iconToSVG } from "@iconify/utils";
+import { fromHtml } from "hast-util-from-html";
 import { defineHastPlugin, type HastNode, type HastPluginInput } from "satteri";
 
 import { parseHref } from "@/lib/href-parser";
 
-// arrow-up-right from lucide
 function makeExternalLinkIcon(): HastNode {
-  return {
-    type: "element",
-    tagName: "svg",
-    properties: {
-      "aria-hidden": "true",
-      viewBox: "0 0 24 24",
-      width: "1em",
-      height: "1em",
-    },
-    children: [
-      {
-        type: "element",
-        tagName: "path",
-        properties: {
-          fill: "none",
-          stroke: "currentColor",
-          "stroke-linecap": "round",
-          "stroke-linejoin": "round",
-          "stroke-width": "2",
-          d: "M7 7h10v10M7 17L17 7",
-        },
-        children: [],
-      },
-    ],
-  };
+  // lucide:arrow-up-right
+  const iconData = getIconData(icons, "arrow-up-right");
+
+  if (!iconData) {
+    throw new Error("Icon does not exist");
+  }
+
+  const renderData = iconToSVG(iconData);
+  const svg = iconToHTML(renderData.body, renderData.attributes);
+
+  const hastNode = fromHtml(svg, { fragment: true, space: "svg" }).children[0];
+
+  if (!hastNode) {
+    throw new Error("Unable to create hast node from icon");
+  }
+
+  return hastNode;
 }
 
 function makeSrSpan(): HastNode {
