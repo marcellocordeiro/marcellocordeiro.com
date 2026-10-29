@@ -1,0 +1,10 @@
+{
+  "behavior": "before",
+  "group": {
+    "type": "element",
+    "tagName": "div",
+    "properties": {
+      "className": ["heading-group"]
+    }
+  }
+}
