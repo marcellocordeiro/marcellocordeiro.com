@@ -22,7 +22,7 @@ const themes = [
 ] as const;
 ---
 
-<theme-toggle transition:persist>
+<theme-switcher transition:persist>
   <ButtonGroup role="radiogroup">
     {themes.map((item) => (
       <Button
@@ -37,10 +37,10 @@ const themes = [
       </Button>
     ))}
   </ButtonGroup>
-</theme-toggle>
+</theme-switcher>
 
 <style>
-  theme-toggle {
+  theme-switcher {
     display: contents;
   }
 </style>
@@ -55,7 +55,7 @@ const themes = [
     type Theme,
   } from "./theme";
 
-  class ThemeToggle extends HTMLElement {
+  class ThemeSwitcher extends HTMLElement {
     #currentTheme: Theme = getSavedTheme() ?? "system";
     #prefersDarkMode = matchMedia(DARK_MODE_MEDIA_QUERY);
     #abortController: AbortController | null = null;
@@ -133,5 +133,5 @@ const themes = [
     };
   }
 
-  customElements.define("theme-toggle", ThemeToggle);
+  customElements.define("theme-switcher", ThemeSwitcher);
 </script>

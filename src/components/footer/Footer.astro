@@ -1,6 +1,6 @@
 ---
-import InitialThemeToggleScript from "@/components/theme/InitialThemeToggleScript.astro";
-import ThemeToggle from "@/components/theme/ThemeToggle.svelte";
+import InitialThemeSwitcherScript from "@/components/theme/InitialThemeSwitcherScript.astro";
+import ThemeSwitcher from "@/components/theme/ThemeSwitcher.astro";
 import Link from "@/components/ui/link/Link.astro";
 import { COPYRIGHT } from "@/config/site";
 
@@ -17,8 +17,8 @@ import FooterSocials from "./FooterSocials.astro";
         <FooterSocials />
       </div>
 
-      <ThemeToggle client:load transition:persist />
-      <InitialThemeToggleScript />
+      <ThemeSwitcher transition:persist />
+      <InitialThemeSwitcherScript />
     </div>
   </div>
 </footer>

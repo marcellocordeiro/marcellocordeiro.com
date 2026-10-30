@@ -1,0 +1,10 @@
+{/* Select the button corresponding to the selected theme */}
+{/* We don't need to worry about Astro's lifecycle events here because we're using transition:persist */}
+<script is:inline>
+  const selectedTheme = localStorage.getItem("theme") ?? "system";
+
+  document.querySelectorAll(`button[data-value="${selectedTheme}"]`).forEach((button) => {
+    button.dataset.variant = "default";
+    button.setAttribute("aria-checked", "true");
+  });
+</script>
