@@ -7,7 +7,7 @@ import PostDate from "./PostDate.astro";
 interface Props {
   post: Post;
   pluginMetadata: {
-    lastModified?: Date;
+    lastModified?: string;
     minutesRead?: string;
   };
 }
@@ -31,7 +31,7 @@ const {
     <div class="flex flex-wrap gap-x-3 gap-y-1">
       {lastModified && (
         <span>
-          Updated <PostDate date={lastModified} />
+          Updated <PostDate date={new Date(lastModified)} />
         </span>
       )}
 

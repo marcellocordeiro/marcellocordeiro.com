@@ -26,7 +26,7 @@ export function satteriMdastModifiedTime() {
       const date = new Date(result);
 
       if (ctx.data.astro !== undefined) {
-        ctx.data.astro.frontmatter["lastModified"] = date;
+        ctx.data.astro.frontmatter["lastModified"] = date.toISOString();
       }
     },
   });
