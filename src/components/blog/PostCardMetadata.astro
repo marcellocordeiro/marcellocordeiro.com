@@ -2,7 +2,7 @@
 import { ClockIcon } from "@/config/icons";
 import type { Post } from "@/lib/blog";
 
-import PostDate from "./PostDate.svelte";
+import PostDate from "./PostDate.astro";
 
 interface Props {
   post: Post;
@@ -18,6 +18,6 @@ const {
 <div class="text-sm text-muted-foreground">
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
-    <PostDate date={pubDate} client:load />
+    <PostDate date={pubDate} />
   </span>
 </div>

@@ -1,0 +1,47 @@
+---
+import { formatFullUtcDateTime, formatMediumUtcDate } from "@/lib/date";
+
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+
+const utcFormattedTitle = formatFullUtcDateTime(date);
+const utcFormattedValue = formatMediumUtcDate(date);
+
+const isoString = date.toISOString();
+---
+
+<time datetime={isoString} title={utcFormattedTitle} data-pending-date-adjustment>
+  {utcFormattedValue}
+</time>
+
+<script>
+  import { formatFullLocalDateTime, formatMediumLocalDate } from "@/lib/date";
+
+  function run() {
+    document
+      .querySelectorAll<HTMLTimeElement>("time[data-pending-date-adjustment]")
+      .forEach((element) => {
+        const datetime = element.getAttribute("datetime");
+
+        if (!datetime) {
+          console.warn("No datetime attribute found on time element", element);
+          return;
+        }
+
+        const date = new Date(datetime);
+
+        const localFormattedTitle = formatFullLocalDateTime(date);
+        const localFormattedValue = formatMediumLocalDate(date);
+
+        element.setAttribute("title", localFormattedTitle);
+        element.textContent = localFormattedValue;
+        delete element.dataset["pendingDateAdjustment"];
+      });
+  }
+
+  run();
+  document.addEventListener("astro:page-load", run);
+</script>

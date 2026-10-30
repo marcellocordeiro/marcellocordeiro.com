@@ -2,7 +2,7 @@
 import { ClockIcon } from "@/config/icons";
 import type { Post } from "@/lib/blog";
 
-import PostDate from "./PostDate.svelte";
+import PostDate from "./PostDate.astro";
 
 interface Props {
   post: Post;
@@ -24,14 +24,14 @@ const {
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
     <span>Published</span>
-    <PostDate date={pubDate} client:load />
+    <PostDate date={pubDate} />
   </span>
 
   {(lastModified || minutesRead) && (
     <div class="flex flex-wrap gap-x-3 gap-y-1">
       {lastModified && (
         <span>
-          Updated <PostDate date={lastModified} client:load />
+          Updated <PostDate date={lastModified} />
         </span>
       )}
 

@@ -34,6 +34,12 @@ const localDateFormatterFull = new Intl.DateTimeFormat("en-US", {
   dateStyle: "full",
 });
 
+const utcDateTimeFormatterFull = new Intl.DateTimeFormat("en-US", {
+  timeZone: "UTC",
+  dateStyle: "full",
+  timeStyle: "long",
+});
+
 const localDateTimeFormatterFull = new Intl.DateTimeFormat("en-US", {
   dateStyle: "full",
   timeStyle: "long",
@@ -69,6 +75,10 @@ export function formatFullUtcDate(date: Date): string {
 
 export function formatFullLocalDate(date: Date): string {
   return localDateFormatterFull.format(date);
+}
+
+export function formatFullUtcDateTime(date: Date): string {
+  return utcDateTimeFormatterFull.format(date);
 }
 
 export function formatFullLocalDateTime(date: Date): string {
