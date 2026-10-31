@@ -1,7 +1,7 @@
 export const SITE_URL = "https://marcellocordeiro.com";
 
 export const BLOG_PATH = "/blog";
-export const BLOG_URL = `${SITE_URL}${BLOG_PATH}}`;
+export const BLOG_URL = `${SITE_URL}${BLOG_PATH}`;
 
 export const FAVICON_ICO_PATH = "/favicon.ico";
 export const FAVICON_ICO_URL = `${SITE_URL}${FAVICON_ICO_PATH}`;

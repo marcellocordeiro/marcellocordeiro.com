@@ -13,8 +13,8 @@ interface Props {
 const { pathname } = Astro.props;
 ---
 
-<header class="group/header border-b bg-background/80 backdrop-blur">
-  <div class="mx-auto flex max-w-3xl items-center justify-between p-4">
+<header class="group/header sticky top-0 z-40 border-b bg-background/70 backdrop-blur">
+  <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
     <Link class="text-lg font-semibold tracking-tight" href="/">
       {AUTHOR.name}
     </Link>
@@ -27,7 +27,7 @@ const { pathname } = Astro.props;
 
     <Button
       id="mobile-menu-toggle"
-      class="transition-transform duration-200 group-has-[:popover-open]/header:rotate-90 md:hidden"
+      class="size-9 transition-transform duration-200 group-has-[:popover-open]/header:rotate-90 md:hidden"
       variant="outline"
       size="icon"
       aria-label="Toggle menu"
@@ -39,7 +39,7 @@ const { pathname } = Astro.props;
 
     <nav
       id="mobile-menu"
-      class="inset-x-0 m-0 w-auto border-b bg-background/80 backdrop-blur md:hidden"
+      class="inset-x-0 m-0 w-auto border-b bg-background/70 backdrop-blur md:hidden"
       popover
     >
       <ul class="flex flex-col gap-1 px-4 py-3">

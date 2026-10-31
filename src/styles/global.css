@@ -82,6 +82,7 @@
   html {
     @apply font-sans antialiased;
     scrollbar-gutter: stable;
+    scroll-padding-block-start: 5rem;
 
     @media (prefers-reduced-motion: no-preference) {
       scroll-behavior: smooth;
