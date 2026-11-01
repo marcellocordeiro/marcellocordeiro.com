@@ -19,7 +19,7 @@ const { pathname } = Astro.props;
       {AUTHOR.name}
     </Link>
 
-    <nav class="desktop-menu">
+    <nav class="desktop-menu" aria-label="Main">
       <ul>
         <HeaderNavigationItems pathname={pathname} />
       </ul>
@@ -37,7 +37,7 @@ const { pathname } = Astro.props;
       <XIcon class="hidden group-has-[:popover-open]/header:block" aria-hidden="true" />
     </Button>
 
-    <nav id="mobile-menu" class="mobile-menu" popover>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Main" popover>
       <ul>
         <HeaderNavigationItems pathname={pathname} />
       </ul>

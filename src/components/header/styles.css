@@ -20,27 +20,19 @@
     }
 
     &:has(.mobile-menu:popover-open) {
-      @apply bg-background;
+      @apply border-b-transparent bg-background;
     }
 
     .mobile-menu {
-      @apply inset-x-0 m-0 w-auto border-b bg-background md:hidden;
+      @apply w-auto border-b bg-background md:hidden;
 
       position-anchor: --header;
-      inset-block-start: anchor(end, var(--_header-h));
+      inset-block-start: anchor(end);
       inset-inline: 0;
+      margin: 0;
 
       > ul {
         @apply flex flex-col gap-1 px-4 py-3;
-      }
-
-      &::backdrop {
-        @apply bg-black/25;
-
-        position-anchor: --header;
-        inset-block-start: anchor(end, var(--_header-h));
-        inset-block-end: 0;
-        inset-inline: 0;
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -73,5 +65,9 @@
         }
       }
     }
+  }
+
+  body:has(.header .mobile-menu:popover-open) {
+    overflow: hidden;
   }
 }
