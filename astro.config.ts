@@ -85,7 +85,9 @@ export default defineConfig({
       optimizedFallbacks: false,
     },
   ],
-  prefetch: false,
+  devToolbar: {
+    enabled: false,
+  },
   server: {
     port: 3000,
   },

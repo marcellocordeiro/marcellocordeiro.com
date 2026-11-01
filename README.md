@@ -10,3 +10,8 @@ My website :D
   - Ran into bugs when changing the configuration, the server would not emit the css until I cleared the `.astro` file and restarted the server
 - Should I make sure the dates are presented in the user's timezone?
 - [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts), aka callouts or admonitions
+
+## Known issues
+
+- Tables won't shrink, causing text to shrink instead
+- External link icons will break once the text line wraps

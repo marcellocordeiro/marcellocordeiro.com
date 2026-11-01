@@ -38,7 +38,7 @@
     "astro": "^7.4.4",
     "astro-expressive-code": "^0.44.3",
     "dayjs": "^1.11.23",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-jsx-a11y-x": "^0.2.0",
     "eslint-plugin-svelte": "^3.23.1",

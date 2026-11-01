@@ -1,6 +1,6 @@
 {/* Apply the initial theme to the page */}
 <script is:inline>
-  function run() {
+  function init() {
     const selectedTheme = localStorage.getItem("theme") ?? "system";
     let theme = selectedTheme;
 
@@ -8,9 +8,9 @@
       theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
 
-    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset["theme"] = theme;
   }
 
-  run();
-  document.addEventListener("astro:after-swap", run);
+  init();
 </script>
+{/* Use document.addEventListener("astro:after-swap", init); if using the ClientRouter */}
