@@ -4,7 +4,7 @@
 
     anchor-name: --header;
 
-    @apply sticky top-0 z-40 border-b bg-background/70 backdrop-blur;
+    @apply border-b bg-background;
 
     > .header-inner {
       @apply mx-auto flex max-w-3xl items-center justify-between gap-4 px-4;
