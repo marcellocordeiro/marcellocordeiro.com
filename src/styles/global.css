@@ -7,6 +7,7 @@
 @import "../components/ui/button/styles.css";
 @import "../components/ui/button-group/styles.css";
 @import "../components/ui/link/styles.css";
+@import "../components/header/styles.css";
 
 @custom-variant dark {
   &:where([data-theme="dark"], [data-theme="dark"] *) {
