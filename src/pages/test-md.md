@@ -4,7 +4,6 @@ title: Markdown Style Guide2
 description: Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
 pubDate: 2026-03-10
 tags: [markdown, astro]
-dev: true
 layout: ../layouts/TestBlogPostLayout.astro
 ---
 

@@ -3,11 +3,11 @@ import { type CollectionEntry, getCollection } from "astro:content";
 type Post = CollectionEntry<"blog">;
 
 const { posts, tags } = await (async () => {
-  const isDev = process.env["NODE_ENV"] === "development";
+  const isDev = import.meta.env.DEV;
 
   const collection = await getCollection("blog");
   const sortedPosts = collection
-    .filter((p) => isDev || !p.data.dev)
+    .filter((p) => isDev || !p.data.draft)
     .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   const sortedTags = [...new Set(sortedPosts.flatMap((p) => p.data.tags))].toSorted();

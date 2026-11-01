@@ -3,11 +3,11 @@ import { getCollection, type CollectionEntry } from "astro:content";
 type Project = CollectionEntry<"projects">;
 
 const { projects } = await (async () => {
-  const isDev = process.env["NODE_ENV"] === "development";
+  const isDev = import.meta.env.DEV;
 
   const collection = await getCollection("projects");
   const sortedProjects = collection
-    .filter((p) => isDev || !p.data.dev)
+    .filter((p) => isDev || !p.data.draft)
     .toSorted((a, b) => a.data.order - b.data.order);
 
   // const sortedTechnologies = [
