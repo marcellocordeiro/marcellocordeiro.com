@@ -1,7 +1,6 @@
 import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import svelte from "@astrojs/svelte";
 import {
   satteriHastAutolinkHeadings,
   satteriHastExternalLinks,
@@ -19,7 +18,7 @@ import { SITE_URL } from "@/config/site";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [sitemap(), mdx(), svelte()],
+  integrations: [sitemap(), mdx()],
   markdown: {
     processor: satteri({
       features: {
@@ -53,7 +52,6 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: [
-        { find: "~icons:svelte", replacement: "~icons" },
         { find: "~icons:astro", replacement: "~icons" },
       ],
     },
@@ -61,7 +59,6 @@ export default defineConfig({
       // Vite's LightningCSS already does this,
       // and optimises a little better
       tailwindcss({ optimize: false }),
-      Icons({ scale: 1, compiler: "svelte" }),
       Icons({ scale: 1, compiler: "astro" }),
     ],
   },

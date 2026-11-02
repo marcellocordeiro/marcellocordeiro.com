@@ -3,7 +3,6 @@ import { defineConfig } from "oxfmt";
 export default defineConfig({
   ignorePatterns: ["**/fixtures/**"],
   astro: true,
-  svelte: true,
   sortImports: true,
   sortTailwindcss: {
     functions: ["clsx", "cn", "cva", "tw"],
