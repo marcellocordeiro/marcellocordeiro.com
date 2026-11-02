@@ -350,6 +350,11 @@
       caption-side: bottom;
     }
 
+    /* GitHub alerts */
+    &:where(.markdown-alert) {
+      margin-block-start: var(--prose-flow);
+    }
+
     /* Tables. Separators sit on cells, not tr:last-child: append-safe.
        Bare tables stay real tables (keep their semantics) and wrap to fit. */
     &:where(table) {

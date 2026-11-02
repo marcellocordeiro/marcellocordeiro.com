@@ -16,9 +16,9 @@ When I was close to graduating from university all that was left was an internsh
 2. Two multiplatform mobile apps written in React Native
 3. A few embedded system firmwares for the ESP8266, written in C++, using the MQTT protocol for uploading data into a Firebase database
 
-<!-- add info box here -->
-
-For context, React is an UI library for building websites with reusable components in a more ergonomic way, with just JavaScript. React Native is an entire framework for building (mostly) mobile apps using React components.
+> [!NOTE]
+>
+> React is an UI library for building websites with reusable components in a more ergonomic way, with just JavaScript. React Native is an entire framework for building (mostly) mobile apps using React components.
 
 I had no trouble picking up the third, as I had a reasonable amount of C++ and systems programming experience under my belt from writing [CHIP-8](https://github.com/marcellocordeiro/chip8-emulator) and [NES](https://github.com/marcellocordeiro/nes-emulator) emulators. I had _heard_ about React Native before, or rather that React was the hotness at the time, but learning the frameworks and upgrading the mobile apps to modern React Native using the latest libraries and TypeScript was a fun challenge. When it was time to do maintenance on the dashboard I felt it was going to be a different story, because the website's code had a ton of raw, unchecked and potentially unsafe HTML injected by the JavaScript code, and those patterns went completely against what I expected coming from React Native.
 
@@ -39,9 +39,9 @@ Fast forward a few years, I yolo-ed and bought this domain. I was dedicated to w
 3. Articles: Markdown and MDX files
 4. Content collections: lol
 
-<!-- add info box here -->
-
-For context, [Next.js](https://nextjs.org/) is a React framework to build server side rendered web apps. In a few words, it attempts to send as much HTML as possible to the user, and then send the JavaScript code to _hydrate_ the page (add interactive elements and finish rendering what the server couldn't). [Mantine](https://mantine.dev/) is a component library to spare poor souls from having to write a ton of CSS. [MDX](https://mdxjs.com/) is sort of an extension to Markdown that allows you to use JSX components in it, basically allowing you to mix Markdown with React.
+> [!NOTE]
+>
+> [Next.js](https://nextjs.org/) is a React framework to build server side rendered web apps. In a few words, it attempts to send as much HTML as possible to the user, and then send the JavaScript code to _hydrate_ the page (add interactive elements and finish rendering what the server couldn't). [Mantine](https://mantine.dev/) is a component library to spare poor souls from having to write a ton of CSS. [MDX](https://mdxjs.com/) is sort of an extension to Markdown that allows you to use JSX components in it, basically allowing you to mix Markdown with React.
 
 What could go wrong? Well, first of all, I'm _still_ no designer, so I was having a lot of trouble coming up with a design I wanted, especially after looking into dozens of portfolios and blogs, and I was never happy with whatever I'd came up with. Second, making Next.js generate fully static pages in `{ output: "static" }` mode was difficult if I wanted to maintain a good developer experience, due to limitations from having to go "against the grain". The developer experience is very important to me because I enjoy building solid foundations to avoid having headaches or too much manual labour when iterating over it.
 

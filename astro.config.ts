@@ -6,6 +6,7 @@ import {
   satteriHastAutolinkHeadings,
   satteriHastExternalLinks,
   satteriHastSlug,
+  satteriMdastAlerts,
   satteriMdastModifiedTime,
   satteriMdastReadingTime,
 } from "@marcellocordeiro/satteri-plugins";
@@ -21,7 +22,11 @@ export default defineConfig({
   integrations: [sitemap(), mdx(), svelte()],
   markdown: {
     processor: satteri({
-      mdastPlugins: [satteriMdastModifiedTime(), satteriMdastReadingTime()],
+      mdastPlugins: [
+        satteriMdastAlerts({ properties: { className: [""] } }),
+        satteriMdastModifiedTime(),
+        satteriMdastReadingTime(),
+      ],
       hastPlugins: [
         satteriHastExternalLinks(),
         satteriHastSlug(),

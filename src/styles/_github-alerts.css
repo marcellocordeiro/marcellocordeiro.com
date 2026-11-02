@@ -1,0 +1,85 @@
+/* Mostly based on GitHub */
+.markdown-alert {
+  /* GitHub values */
+  --borderColor-default: light-dark(#d1d9e0, #3d444d);
+
+  --borderColor-accent-emphasis: light-dark(#0969da, #1f6feb);
+  --borderColor-success-emphasis: light-dark(#1a7f37, #238636);
+  --borderColor-done-emphasis: light-dark(#8250df, #8957e5);
+  --borderColor-attention-emphasis: light-dark(#9a6700, #9e6a03);
+  --borderColor-danger-emphasis: light-dark(#cf222e, #da3633);
+
+  --fgColor-accent: light-dark(#0969da, #4493f8);
+  --fgColor-success: light-dark(#1a7f37, #3fb950);
+  --fgColor-done: light-dark(#8250df, #ab7df8);
+  --fgColor-attention: light-dark(#9a6700, #d29922);
+  --fgColor-danger: light-dark(#d1242f, #f85149);
+
+  --base-size-8: 0.5rem;
+  --base-size-16: 1rem;
+
+  --base-text-weight-medium: 500;
+
+  padding: var(--base-size-8) var(--base-size-16);
+  margin-bottom: var(--base-size-16);
+  color: inherit;
+  border-left: 0.25em solid var(--borderColor-default);
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  .markdown-alert-title {
+    font-weight: var(--base-text-weight-medium, 500);
+    align-items: center;
+    line-height: 1;
+    display: flex;
+
+    /* Added */
+    margin-bottom: var(--base-size-16);
+  }
+
+  &.markdown-alert-note {
+    border-left-color: var(--borderColor-accent-emphasis);
+
+    .markdown-alert-title {
+      color: var(--fgColor-accent);
+    }
+  }
+
+  &.markdown-alert-tip {
+    border-left-color: var(--borderColor-success-emphasis);
+
+    .markdown-alert-title {
+      color: var(--fgColor-success);
+    }
+  }
+
+  &.markdown-alert-important {
+    border-left-color: var(--borderColor-done-emphasis);
+
+    .markdown-alert-title {
+      color: var(--fgColor-done);
+    }
+  }
+
+  &.markdown-alert-warning {
+    border-left-color: var(--borderColor-attention-emphasis);
+
+    .markdown-alert-title {
+      color: var(--fgColor-attention);
+    }
+  }
+
+  &.markdown-alert-caution {
+    border-left-color: var(--borderColor-danger-emphasis);
+
+    .markdown-alert-title {
+      color: var(--fgColor-danger);
+    }
+  }
+}

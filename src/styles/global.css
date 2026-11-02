@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-@import "./theme.css";
+@import "./github-alerts.css";
 @import "./prose.css";
+@import "./theme.css";
 
 @import "../components/ui/badge/styles.css";
 @import "../components/ui/button/styles.css";
@@ -120,7 +121,7 @@
   --prose-font-mono: var(--font-mono);
   --prose-size: 16px;
   --prose-leading: 1.75;
-  --prose-flow: 1.25em;
+  --prose-flow: 1em;
 }
 
 .heading-anchor {
