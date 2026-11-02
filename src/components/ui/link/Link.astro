@@ -19,5 +19,5 @@ const resolvedShowExternalLinkIcon = showExternalLinkIcon ?? isExternal;
   <slot />
 
   {resolvedShowExternalLinkIcon && <ArrowUpRightIcon data-icon="inline-end" aria-hidden="true" />}
-  {isExternal && <span class="sr-only">(opens in a new tab)</span>}
+  {isExternal && <span class="sr-only"> (opens in a new tab)</span>}
 </a>

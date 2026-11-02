@@ -23,6 +23,6 @@
   {/if}
 
   {#if isExternal}
-    <span class="sr-only">(opens in a new tab)</span>
+    <span class="sr-only"> (opens in a new tab)</span>
   {/if}
 </a>
