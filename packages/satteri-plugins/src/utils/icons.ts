@@ -9,7 +9,7 @@ interface Options {
   properties?: Readonly<Properties>;
 }
 
-export function makeHastIcon(
+export function makeHastElement(
   iconsData: IconifyJSON,
   iconName: string,
   { customisations, properties }: Options = {},

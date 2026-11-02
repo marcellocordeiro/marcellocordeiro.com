@@ -3,7 +3,7 @@ import { defineHastPlugin, type HastNode, type HastPluginInput } from "satteri";
 
 import { parseHref } from "@/lib/href-parser";
 
-import { makeHastIcon } from "./utils/icons";
+import { makeHastElement } from "./utils/icons";
 
 function makeSrSpan(): HastNode {
   return {
@@ -16,7 +16,7 @@ function makeSrSpan(): HastNode {
 
 export function satteriHastExternalLinks(): HastPluginInput {
   // lucide:arrow-up-right
-  const externalLinkIcon = makeHastIcon(icons, "arrow-up-right", {
+  const externalLinkIcon = makeHastElement(icons, "arrow-up-right", {
     properties: { "aria-hidden": "true" },
   });
   const srSpan = makeSrSpan();
