@@ -20,11 +20,13 @@ const {
 } = Astro.props;
 ---
 
+{/* TODO: these spans are causing issues in reader mode, e.g., why are the strings glued with the spans? */}
 <div class="flex flex-col flex-wrap gap-1 text-sm text-muted-foreground">
   <span class="flex items-center gap-1">
     <ClockIcon aria-hidden="true" />
-    <span>Published</span>
-    <PostDate date={pubDate} />
+    <span>
+      Published <PostDate date={pubDate} />
+    </span>
   </span>
 
   {(lastModified || minutesRead) && (

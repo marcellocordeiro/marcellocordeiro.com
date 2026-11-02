@@ -20,6 +20,9 @@
     font-weight: 500;
     line-height: 1;
     color: var(--alert-color);
+
+    /* Added */
+    @apply mbe-4;
   }
 
   &.markdown-alert-note {

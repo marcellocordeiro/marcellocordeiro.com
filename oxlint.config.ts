@@ -63,6 +63,7 @@ export default defineConfig({
     "no-unreachable": "warn",
     "no-unused-vars": "warn",
     "no-useless-return": "off",
+    "no-warning-comments": "off",
     "one-var": "off",
     "prefer-destructuring": "off",
     "require-unicode-regexp": "off",

@@ -9,6 +9,39 @@ layout: ../layouts/TestBlogPostLayout.astro
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
 
+GitHub checklists below
+
+- [ ] Foo
+- [ ] Bar
+  - [ ] Baz
+  - [x] Completed
+
+Definitions list below (requires enabling satteri's `definitionList` feature )
+
+<strong>Lower cost</strong>
+: The new version of this product costs significantly less than the previous one!
+
+<strong>Easier to use</strong>
+: We've changed the product so that it's much easier to use!
+
+<strong>Safe for kids</strong>
+: You can leave your kids alone in a room with this product and they
+won't get hurt (not a guarantee).
+
+<!-- can this be done without inline html? -->
+
+definitions list with inline html
+
+<dl>
+  <dt><strong>Lower cost</strong></dt>
+  <dd>The new version of this product costs significantly less than the previous one!</dd>
+  <dt><strong>Easier to use</strong></dt>
+  <dd>We've changed the product so that it's much easier to use!</dd>
+  <dt><strong>Safe for kids</strong></dt>
+  <dd>You can leave your kids alone in a room with this product and they
+      won't get hurt (not a guarantee).</dd>
+</dl>
+
 Blockquote below
 
 > [!NOTE]
@@ -25,6 +58,20 @@ Blockquote below
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+
+With inline code: `let mut x = 0;` after inline code
+
+Divider
+
+---
+
+## Heading + `inline code` + divider
+
+---
+
+test
+
+This sentence uses `$` delimiters to show math inline: $\sqrt{3x-1}+(1+x)^2$
 
 ## Headings
 

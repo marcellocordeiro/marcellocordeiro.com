@@ -22,6 +22,11 @@ export default defineConfig({
   integrations: [sitemap(), mdx(), svelte()],
   markdown: {
     processor: satteri({
+      features: {
+        // TODO: support inline math
+        // math: true,
+        // definitionList: true,
+      },
       mdastPlugins: [
         satteriMdastAlerts({ properties: { className: [""] } }),
         satteriMdastModifiedTime(),

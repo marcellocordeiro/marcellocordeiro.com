@@ -2,6 +2,7 @@
 
 @import "./github-alerts.css";
 @import "./prose.css";
+/* @import "./prose-shadcn.css"; */
 @import "./theme.css";
 
 @import "../components/ui/badge/styles.css";
@@ -84,7 +85,6 @@
   html {
     @apply font-sans antialiased;
     scrollbar-gutter: stable;
-    scroll-padding-block-start: 5rem;
 
     @media (prefers-reduced-motion: no-preference) {
       scroll-behavior: smooth;
@@ -113,15 +113,6 @@
   p {
     text-wrap: pretty;
   }
-}
-
-.prose-article {
-  --prose-font-body: var(--font-sans);
-  --prose-font-heading: var(--font-heading);
-  --prose-font-mono: var(--font-mono);
-  --prose-size: 16px;
-  --prose-leading: 1.75;
-  --prose-flow: 1em;
 }
 
 .heading-anchor {

@@ -1,7 +1,4 @@
-/*
- * shadcn/typeset
- * https://ui.shadcn.com/docs/typeset.
- */
+/* WIP */
 
 @layer components {
   .prose {
@@ -10,7 +7,7 @@
     --prose-font-mono: var(--font-mono);
     --prose-size: 1em;
     --prose-leading: 1.75;
-    --prose-flow: 1.25em;
+    --prose-flow: 1em;
   }
 }
 
@@ -30,47 +27,50 @@
     --prose-rule: var(--color-border, color-mix(in oklab, currentColor 20%, transparent));
   }
 
+  .prose > * + :not(:where(.not-prose, .not-prose *)) {
+    margin-block-start: var(--prose-flow);
+    /* @apply border-2 border-red-700; */
+  }
+
   /* Don't select elements with the .not-prose class or any of its descendants */
   .prose *:not(:where(.not-prose, .not-prose *)) {
-    /* Paragraphs. */
-    &:where(p) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
+    /* Anchors */
+    &:where([id]) {
+      scroll-margin-block-start: var(--prose-flow);
     }
 
-    /* Headings. */
+    /* Headings */
     &:where(h1, h2, h3, h4, h5, h6) {
       color: var(--color-foreground, currentColor);
       font-family: var(--prose-font-heading);
       font-weight: 600;
-      margin-block-end: 0;
     }
     &:where(h1) {
       font-size: 1.75em;
       line-height: 1.3;
-      margin-block-start: var(--prose-flow);
+      /* margin-block-start: var(--prose-flow); */
     }
     &:where(h2) {
       font-size: 1.25em;
       line-height: 1.4;
-      margin-block-start: calc(var(--prose-flow) * 1.4);
+      /* margin-block-start: calc(var(--prose-flow) * 1.4); */
     }
     &:where(h3) {
       font-size: 1.125em;
       line-height: 1.45;
-      margin-block-start: var(--prose-flow);
+      /* margin-block-start: var(--prose-flow); */
     }
     &:where(h4) {
       font-size: 1em;
       line-height: 1.5;
-      margin-block-start: var(--prose-flow);
+      /* margin-block-start: var(--prose-flow); */
     }
     &:where(h5) {
       font-size: 0.875em;
       line-height: 1.5;
       font-weight: 500;
       color: var(--prose-muted);
-      margin-block-start: calc(var(--prose-flow) / 0.875);
+      /* margin-block-start: calc(var(--prose-flow) / 0.875); */
     }
     &:where(h6) {
       font-size: 0.8125em;
@@ -79,41 +79,34 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--prose-muted);
-      margin-block-start: calc(var(--prose-flow) / 0.8125);
-    }
-    /* Anchors. */
-    &:where([id]) {
-      scroll-margin-block-start: var(--prose-flow);
-    }
-
-    /* Headings own the space below them. */
-    &:where(h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + *) {
-      margin-block-start: 1em;
+      /* margin-block-start: calc(var(--prose-flow) / 0.8125); */
     }
     &:where(:is(h1, h2, h3, h4) :is(code)) {
       font-size: 0.9em;
     }
 
-    /* Links. */
+    /* Links */
     &:where(a) {
       color: inherit;
       font-weight: 500;
       text-decoration-line: underline;
       text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
-    }
-    &:where(a:hover) {
-      text-decoration-color: currentColor;
-    }
-    &:where(a:focus-visible) {
-      outline: 2px solid var(--color-ring, currentColor);
-      outline-offset: 2px;
-      border-radius: 0.125em;
+
+      &:hover {
+        text-decoration-color: currentColor;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-ring, currentColor);
+        outline-offset: 2px;
+        border-radius: 0.125em;
+      }
     }
     &:where(:is(h1, h2, h3, h4, h5, h6) :is(a)) {
       font-weight: inherit;
     }
 
-    /* Inline semantics. */
+    /* Inline semantics */
     &:where(strong, b) {
       font-weight: 600;
     }
@@ -153,7 +146,18 @@
       font-weight: 500;
     }
 
-    /* Lists. */
+    /* Keyboard keys */
+    &:where(kbd) {
+      font-family: inherit;
+      font-size: 0.85em;
+      font-weight: 500;
+      border: 1px solid var(--prose-rule);
+      border-block-end-width: 2px;
+      border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
+      padding: 0.0625em 0.35em;
+    }
+
+    /* Lists */
     &:where(ul) {
       list-style-type: disc;
     }
@@ -179,13 +183,13 @@
       list-style-type: upper-roman;
     }
     &:where(ul, ol) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
       padding-inline-start: 1.5em;
     }
     &:where(li) {
-      margin-block-start: 0.5em;
       padding-inline-start: 0.4em;
+    }
+    &:where(li + li) {
+      margin-block-start: 0.5em;
     }
     &:where(li > p, li > ul, li > ol) {
       margin-block-start: 0.5em;
@@ -197,52 +201,21 @@
       color: var(--prose-muted);
     }
 
-    /* GFM task lists. */
+    /* GFM task lists */
+    /* TODO: improve it */
     &:where(ul.contains-task-list) {
       list-style-type: none;
       padding-inline-start: 0.25em;
     }
     &:where(li.task-list-item > input[type="checkbox"]) {
       margin-inline-end: 0.5em;
-      vertical-align: -0.1em;
       accent-color: var(--color-primary, currentColor);
     }
 
-    /* Disclosures. */
-    &:where(details) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-    }
-    &:where(summary) {
-      cursor: pointer;
-      font-weight: 500;
-    }
-    &:where(summary)::marker {
-      color: var(--prose-muted);
-    }
-
-    /* Keyboard keys. */
-    &:where(kbd) {
-      font-family: inherit;
-      font-size: 0.85em;
-      font-weight: 500;
-      border: 1px solid var(--prose-rule);
-      border-block-end-width: 2px;
-      border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
-      padding: 0.0625em 0.35em;
-    }
-
-    /* Definition lists. */
-    &:where(dl) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-    }
+    /* Definition lists */
     &:where(dt) {
       font-weight: 500;
       margin-block-start: 1em;
-    }
-    &:where(dt + dt) {
-      margin-block-start: 0.25em;
     }
     &:where(dd) {
       margin-block-start: 0.25em;
@@ -251,7 +224,13 @@
       color: var(--prose-muted);
     }
 
-    /* Inline code. */
+    /* Blockquote */
+    &:where(blockquote) {
+      border-inline-start: 2px solid var(--prose-rule);
+      padding-inline-start: 1em;
+    }
+
+    /* Inline code */
     &:where(:not(pre) > code) {
       background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
       font-family: var(--prose-font-mono);
@@ -260,9 +239,9 @@
       padding: 0.125em 0.3em;
     }
 
-    /* Code blocks. */
+    /* Code blocks */
     &:where(pre) {
-      background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
+      /* background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent)); */
       font-family: var(--prose-font-mono);
       font-size: 0.875em;
       line-height: 1.5;
@@ -271,9 +250,9 @@
       border-radius: var(--radius, 0.5em);
       padding: 0.75em 1em;
       overflow-x: auto;
-      margin-block-start: calc(var(--prose-flow) / 0.875);
-      margin-block-end: 0;
     }
+    /* Is this needed? */
+    /*
     &:where(pre code) {
       background-color: transparent;
       font-family: inherit;
@@ -281,32 +260,15 @@
       padding: 0;
       border-radius: 0;
     }
-    &:where(.expressive-code) {
-      margin-block-start: calc(var(--prose-flow) / 0.875);
-      margin-block-end: 0;
-    }
+    */
 
-    /* Blockquote. */
-    &:where(blockquote) {
-      border-inline-start: 2px solid var(--prose-rule);
-      padding-inline-start: 1em;
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-      margin-inline: 0;
-    }
-
-    /* Dividers. */
+    /* Dividers */
     &:where(hr) {
       border: 0;
       border-block-start: 1px solid var(--prose-rule);
-      margin-block-start: calc(var(--prose-flow) * 2.4);
-      margin-block-end: 0;
-    }
-    &:where(hr + h1, hr + h2, hr + h3, hr + h4) {
-      margin-block-start: var(--prose-flow);
     }
 
-    /* GFM footnotes. */
+    /* GFM footnotes */
     &:where(.footnotes, [data-footnotes]) {
       margin-block-start: calc(var(--prose-flow) * 2);
       border-block-start: 1px solid var(--prose-rule);
@@ -315,48 +277,9 @@
       color: var(--prose-muted);
     }
 
-    /* Math. */
-    &:where(math[display="block"]) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding-block: 0.25em;
-    }
-
-    /* Media. */
-    &:where(img, video) {
-      border-radius: var(--radius, 0.5em);
-      max-width: 100%;
-      height: auto;
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-    }
-    &:where(p img) {
-      margin-block-start: 0;
-    }
-    &:where(figure) {
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
-      margin-inline: 0;
-    }
-    &:where(figcaption, caption) {
-      color: var(--prose-muted);
-      font-size: 0.875em;
-      text-align: center;
-      margin-block-start: calc(0.75em / 0.875);
-    }
-    &:where(caption) {
-      caption-side: bottom;
-    }
-
-    /* GitHub alerts */
-    &:where(.markdown-alert) {
-      margin-block-start: var(--prose-flow);
-    }
-
     /* Tables. Separators sit on cells, not tr:last-child: append-safe.
-       Bare tables stay real tables (keep their semantics) and wrap to fit. */
+     * Bare tables stay real tables (keep their semantics) and wrap to fit.
+     */
     &:where(table) {
       max-width: 100%;
       font-size: 1em;
@@ -365,19 +288,14 @@
       border-collapse: separate;
       border-spacing: 0;
       border-block-end: 1px solid var(--prose-rule);
-      margin-block-start: var(--prose-flow);
-      margin-block-end: 0;
     }
 
-    /* Horizontal scroll for any wide block. Wrap it and the wrapper owns the
-       flow margin. Tables shrink to fit, so widen the table to make it scroll
-       instead of compress. */
+    /* Horizontal scroll for any wide block.
+     * Wrap it and the wrapper owns the flow margin.
+     * Tables shrink to fit, so widen the table to make it scroll instead of compress.
+     */
     &:where(.prose-scroll) {
       overflow-x: auto;
-      margin-block-start: var(--prose-flow);
-    }
-    &:where(.prose-scroll > *) {
-      margin-block-start: 0;
     }
     &:where(.prose-scroll table) {
       width: max-content;
@@ -409,13 +327,16 @@
     }
 
     /* Blocks inside list items keep the list's tighter rhythm. */
+    /*
     &:where(li > blockquote, li > table, li > figure) {
       margin-block-start: 0.5em;
     }
     &:where(li > pre) {
       margin-block-start: calc(0.5em / 0.875);
     }
+    */
 
+    /* TODO: test these */
     @media print {
       &:where(pre, table, blockquote, figure) {
         break-inside: avoid;
@@ -431,21 +352,5 @@
         border: 1px solid;
       }
     }
-  }
-
-  /* First child adds no space above. Last so it wins ties. */
-  .prose > :where(:first-child):not(:where(.not-prose, .not-prose *)),
-  .prose > :where(:first-child) > :where(:first-child):not(:where(.not-prose, .not-prose *)),
-  .prose
-    :where(
-      li > :first-child,
-      blockquote > :first-child,
-      td > :first-child,
-      th > :first-child,
-      dd > :first-child,
-      figure > :first-child,
-      figure > picture > img
-    ):not(:where(.not-prose, .not-prose *)) {
-    margin-block-start: 0;
   }
 }
