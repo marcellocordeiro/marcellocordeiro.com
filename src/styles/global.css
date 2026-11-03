@@ -1,13 +1,12 @@
 @import "tailwindcss";
 
-@import "./github-alerts.css";
 @import "./prose.css";
-/* @import "./prose-shadcn.css"; */
 @import "./theme.css";
 
 @import "../components/ui/badge/styles.css";
 @import "../components/ui/button/styles.css";
 @import "../components/ui/button-group/styles.css";
+@import "../components/ui/github-alert/styles.css";
 @import "../components/ui/link/styles.css";
 @import "../components/header/styles.css";
 

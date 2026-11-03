@@ -51,9 +51,7 @@ export default defineConfig({
   },
   vite: {
     resolve: {
-      alias: [
-        { find: "~icons:astro", replacement: "~icons" },
-      ],
+      alias: [{ find: "~icons:astro", replacement: "~icons" }],
     },
     plugins: [
       // Vite's LightningCSS already does this,

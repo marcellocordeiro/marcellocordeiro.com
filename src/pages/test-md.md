@@ -58,6 +58,12 @@ Blockquote below
 
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
+>
+> Another line
+>
+> Aaaaand another line
+>
+> Yes
 
 With inline code: `let mut x = 0;` after inline code
 

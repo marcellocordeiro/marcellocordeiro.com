@@ -24,3 +24,9 @@ export { default as ClockIcon } from "~icons:astro/lucide/clock";
 export { default as GitHubIcon } from "~icons:astro/fa6-brands/github";
 export { default as LinkedInIcon } from "~icons:astro/fa6-brands/linkedin";
 export { default as EmailIcon } from "~icons:astro/fa6-solid/envelope";
+
+export { default as OcticonInfoIcon } from "~icons:astro/octicon/info-16";
+export { default as OcticonLightBulbIcon } from "~icons:astro/octicon/light-bulb-16";
+export { default as OcticonReportIcon } from "~icons:astro/octicon/report-16";
+export { default as OcticonAlertIcon } from "~icons:astro/octicon/alert-16";
+export { default as OcticonStopIcon } from "~icons:astro/octicon/stop-16";

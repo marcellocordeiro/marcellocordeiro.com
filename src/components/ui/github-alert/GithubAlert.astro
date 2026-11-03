@@ -1,0 +1,20 @@
+---
+import { githubAlertMappings, type GithubAlertType } from "./mappings";
+
+interface Props {
+  type: GithubAlertType;
+  class?: string;
+  titleClass?: string;
+}
+
+const { type, class: divClass, titleClass } = Astro.props;
+const { className, title, Icon } = githubAlertMappings[type];
+---
+
+<div class:list={[className, divClass]}>
+  <p class:list={["markdown-alert-title", titleClass]}>
+    <Icon class=`octicon octicon-${type} mr-2` />
+    {title}
+  </p>
+  <slot />
+</div>

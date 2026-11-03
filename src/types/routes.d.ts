@@ -2,7 +2,6 @@ type RootRoute = "/";
 type BlogRoute = "/blog" | `/blog/${string}`;
 type TagsRoute = "/tags" | `/tags/${string}`;
 type ProjectsRoute = "/projects" | `/projects/${string}`;
-type TestRoute = "/test";
 type RssRoute = "/rss.xml";
 type AnchorRoute = `#${string}`;
 
@@ -14,8 +13,10 @@ type Route =
   | BlogRoute
   | TagsRoute
   | ProjectsRoute
-  | TestRoute
+  | TestRoutes
   | RssRoute
   | AnchorRoute
   | ExternalRoute
   | MailtoRoute;
+
+type TestRoutes = "/test" | "/test-md" | "/test-mdx";
