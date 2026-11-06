@@ -1,5 +1,5 @@
 import { icons } from "@iconify-json/octicon";
-import { defineMdastPlugin, type MdastPluginDefinition } from "satteri";
+import { defineMdastPlugin, type MdastPluginEntry } from "satteri";
 
 import { makeHastElement } from "../utils/icons";
 import type { Properties } from "../utils/types";
@@ -14,7 +14,7 @@ export interface SatteriMdastGithubAlertsOptions {
 // Also known as callouts or admonitions
 export function satteriMdastGithubAlerts(
   opts: SatteriMdastGithubAlertsOptions = {},
-): MdastPluginDefinition | undefined {
+): MdastPluginEntry {
   if (opts.passthrough ?? false) {
     return undefined;
   }
@@ -56,7 +56,7 @@ export function satteriMdastGithubAlerts(
       if (wholeMatch === firstText) {
         context.removeNode(firstChild);
       } else {
-        context.setProperty(firstParagraphChild, "value", firstText.replace(wholeMatch, ""));
+        context.setField(firstParagraphChild, "value", firstText.replace(wholeMatch, ""));
       }
 
       context.prependChild(node, {

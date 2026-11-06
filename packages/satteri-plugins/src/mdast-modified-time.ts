@@ -1,9 +1,9 @@
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-import { defineMdastPlugin } from "satteri";
+import { defineMdastPlugin, type MdastPluginEntry } from "satteri";
 
-export function satteriMdastModifiedTime() {
+export function satteriMdastModifiedTime(): MdastPluginEntry {
   return defineMdastPlugin({
     name: "satteri-mdast-modified-time",
     before(_root, ctx) {

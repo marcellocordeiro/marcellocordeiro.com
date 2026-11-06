@@ -1,5 +1,5 @@
 import { icons } from "@iconify-json/lucide";
-import { defineHastPlugin, type HastNode, type HastPluginInput } from "satteri";
+import { defineHastPlugin, type HastNode, type HastPluginEntry } from "satteri";
 
 import { parseHref } from "@/lib/href-parser";
 
@@ -14,7 +14,7 @@ function makeSrSpan(): HastNode {
   };
 }
 
-export function satteriHastExternalLinks(): HastPluginInput {
+export function satteriHastExternalLinks(): HastPluginEntry {
   // lucide:arrow-up-right
   const externalLinkIcon = makeHastElement(icons, "arrow-up-right", {
     properties: { "aria-hidden": "true" },

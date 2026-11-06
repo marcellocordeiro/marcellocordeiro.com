@@ -1,7 +1,7 @@
 import type { IconifyJSON } from "@iconify/types";
 import { getIconData, iconToHTML, iconToSVG, type IconifyIconCustomisations } from "@iconify/utils";
-import { fromHtml } from "hast-util-from-html";
 
+import { htmlStringToHastElement } from "./hast";
 import type { Element, Properties } from "./types";
 
 interface Options {
@@ -23,13 +23,9 @@ export function makeHastElement(
   const renderData = iconToSVG(iconData, customisations);
   const svg = iconToHTML(renderData.body, renderData.attributes);
 
-  const hastNode = fromHtml(svg, { fragment: true, space: "svg" }).children[0];
+  const hastNode = htmlStringToHastElement(svg, { fragment: true, space: "svg" });
 
-  if (!hastNode) {
-    throw new Error("Unable to create hast node from icon");
-  }
-
-  if (hastNode.type !== "element" || hastNode.tagName !== "svg") {
+  if (hastNode.tagName !== "svg") {
     throw new Error("Hast node is not an SVG element");
   }
 

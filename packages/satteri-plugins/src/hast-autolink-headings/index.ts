@@ -1,4 +1,4 @@
-import { defineHastPlugin, type HastPluginInput } from "satteri";
+import { defineHastPlugin, type HastPluginEntry } from "satteri";
 
 import type { Element, ElementContent, Properties } from "../utils/types";
 
@@ -18,7 +18,7 @@ export interface SatteriHastAutolinkHeadingsOptions {
 
 export function satteriHastAutolinkHeadings(
   opts: SatteriHastAutolinkHeadingsOptions = {},
-): HastPluginInput {
+): HastPluginEntry {
   const behavior = opts.behavior ?? "prepend";
   const test = opts.test ?? ["h1", "h2", "h3", "h4", "h5", "h6"];
 

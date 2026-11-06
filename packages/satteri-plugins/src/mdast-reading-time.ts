@@ -1,7 +1,7 @@
 import getReadingTime from "reading-time";
-import { defineMdastPlugin } from "satteri";
+import { defineMdastPlugin, type MdastPluginEntry } from "satteri";
 
-export function satteriMdastReadingTime() {
+export function satteriMdastReadingTime(): MdastPluginEntry {
   return defineMdastPlugin({
     name: "satteri-mdast-reading-time",
     after(root, ctx) {

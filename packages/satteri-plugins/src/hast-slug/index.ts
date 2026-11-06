@@ -1,11 +1,11 @@
 import GithubSlugger from "github-slugger";
-import { defineHastPlugin, type HastPluginInput } from "satteri";
+import { defineHastPlugin, type HastPluginEntry } from "satteri";
 
 export interface SatteriHastSlugOptions {
   prefix?: string;
 }
 
-export function satteriHastSlug(opts: SatteriHastSlugOptions = {}): HastPluginInput {
+export function satteriHastSlug(opts: SatteriHastSlugOptions = {}): HastPluginEntry {
   const prefix = opts.prefix ?? "";
 
   return () => {

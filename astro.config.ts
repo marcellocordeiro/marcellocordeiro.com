@@ -5,7 +5,7 @@ import {
   satteriHastAutolinkHeadings,
   satteriHastExternalLinks,
   satteriHastSlug,
-  satteriMdastAlerts,
+  satteriMdastGithubAlerts,
   satteriMdastModifiedTime,
   satteriMdastReadingTime,
 } from "@marcellocordeiro/satteri-plugins";
@@ -27,11 +27,12 @@ export default defineConfig({
         // definitionList: true,
       },
       mdastPlugins: [
-        satteriMdastAlerts({ properties: { className: [""] } }),
+        satteriMdastGithubAlerts({ properties: { className: [""] } }),
         satteriMdastModifiedTime(),
         satteriMdastReadingTime(),
       ],
       hastPlugins: [
+        satteriHastTableScroller(),
         satteriHastExternalLinks(),
         satteriHastSlug(),
         satteriHastAutolinkHeadings({
