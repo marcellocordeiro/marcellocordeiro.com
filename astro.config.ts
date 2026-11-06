@@ -8,6 +8,7 @@ import {
   satteriMdastGithubAlerts,
   satteriMdastModifiedTime,
   satteriMdastReadingTime,
+  satteriHastTableScroller,
   satteriMdastMath,
 } from "@marcellocordeiro/satteri-plugins";
 import tailwindcss from "@tailwindcss/vite";
