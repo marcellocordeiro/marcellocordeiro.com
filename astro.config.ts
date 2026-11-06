@@ -8,6 +8,7 @@ import {
   satteriMdastGithubAlerts,
   satteriMdastModifiedTime,
   satteriMdastReadingTime,
+  satteriMdastMath,
 } from "@marcellocordeiro/satteri-plugins";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -22,11 +23,11 @@ export default defineConfig({
   markdown: {
     processor: satteri({
       features: {
-        // TODO: support inline math
-        // math: true,
+        math: true,
         // definitionList: true,
       },
       mdastPlugins: [
+        satteriMdastMath(),
         satteriMdastGithubAlerts({ properties: { className: [""] } }),
         satteriMdastModifiedTime(),
         satteriMdastReadingTime(),

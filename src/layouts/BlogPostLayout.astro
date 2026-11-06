@@ -12,6 +12,8 @@ import { ChevronLeftIcon } from "@/config/icons";
 import Layout from "@/layouts/Layout.astro";
 import { type Post } from "@/lib/blog";
 
+import katexStylesheet from "katex/dist/katex.min.css?url";
+
 interface Props {
   previous: Post | undefined;
   current: Post;
@@ -21,9 +23,14 @@ interface Props {
 const { previous, current, next } = Astro.props;
 const { title } = current.data;
 const { Content, remarkPluginFrontmatter } = await render(current);
+
+const hasMath = remarkPluginFrontmatter["hasMath"] === true;
 ---
 
 <Layout title={title}>
+  {/* Only load the KaTeX stylesheet if the current post has math expressions */}
+  {hasMath && <link rel="stylesheet" href={katexStylesheet} slot="head" />}
+
   <article class="prose mx-auto max-w-prose">
     <Link class="group inline-flex items-center gap-1" href="/blog">
       <ChevronLeftIcon class="size-4" aria-hidden="true" />

@@ -78,6 +78,8 @@ const canonicalURL = new URL(pathname, Astro.site);
     <ClientRouter />
     <CloudflareWorkaround />
      */}
+
+    <slot name="head" />
   </head>
 
   <body>
