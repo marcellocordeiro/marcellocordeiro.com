@@ -8,6 +8,7 @@ import {
   satteriMdastGithubAlerts,
   satteriMdastModifiedTime,
   satteriMdastReadingTime,
+  satteriMdastMermaid,
   satteriHastTableScroller,
   satteriMdastMath,
 } from "@marcellocordeiro/satteri-plugins";
@@ -28,15 +29,17 @@ export default defineConfig({
         // definitionList: true,
       },
       mdastPlugins: [
-        satteriMdastMath(),
-        satteriMdastGithubAlerts({ properties: { className: [""] } }),
         satteriMdastModifiedTime(),
         satteriMdastReadingTime(),
+        satteriMdastMermaid(),
+        satteriMdastMath(),
+        satteriMdastGithubAlerts({ properties: { className: [""] } }),
       ],
       hastPlugins: [
         satteriHastTableScroller(),
         satteriHastExternalLinks(),
-        satteriHastSlug(),
+
+        satteriHastSlug(), // Needs to run before autolink-headings
         satteriHastAutolinkHeadings({
           content: { type: "text", value: "#" },
           properties: { className: ["heading-anchor"] },

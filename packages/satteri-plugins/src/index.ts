@@ -10,3 +10,9 @@ export {
   satteriMdastGithubAlerts,
   type SatteriMdastGithubAlertsOptions,
 } from "./mdast-github-alerts";
+export { satteriMdastMermaid, type SatteriMdastMermaidOptions } from "./mdast-mermaid";
+export {
+  satteriHastTableScroller,
+  type SatteriHastTableScrollerOptions,
+} from "./hast-table-scroller";
+export { satteriMdastMath, type SatteriMdastMathOptions } from "./mdast-math";
