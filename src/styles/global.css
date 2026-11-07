@@ -109,7 +109,10 @@
     text-wrap: balance;
   }
 
-  p {
+  p,
+  li,
+  dd,
+  blockquote {
     text-wrap: pretty;
   }
 }

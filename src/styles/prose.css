@@ -7,9 +7,7 @@
     --prose-leading: 1.75;
     --prose-flow: 1em;
   }
-}
 
-@layer components {
   .prose {
     font-family: var(--prose-font-body);
     font-size: var(--prose-size);
@@ -25,16 +23,12 @@
     --prose-rule: var(--color-border, color-mix(in oklab, currentColor 20%, transparent));
   }
 
-  .prose > :where(* + *) {
+  /* Includes direct children with .not-prose */
+  :where(.prose > * + *) {
     margin-block-start: var(--prose-flow);
   }
 
   @scope (.prose) to (.not-prose) {
-    /* Anchors */
-    [id] {
-      scroll-margin-block-start: var(--prose-flow);
-    }
-
     /* Headings */
     h1,
     h2,
@@ -49,29 +43,24 @@
     h1 {
       font-size: 1.75em;
       line-height: 1.3;
-      margin-block-start: var(--prose-flow);
     }
     h2 {
       font-size: 1.25em;
       line-height: 1.4;
-      margin-block-start: calc(var(--prose-flow) * 1.4);
     }
     h3 {
       font-size: 1.125em;
       line-height: 1.45;
-      margin-block-start: var(--prose-flow);
     }
     h4 {
       font-size: 1em;
       line-height: 1.5;
-      margin-block-start: var(--prose-flow);
     }
     h5 {
       font-size: 0.875em;
       line-height: 1.5;
       font-weight: 500;
       color: var(--prose-muted);
-      margin-block-start: calc(var(--prose-flow) / 0.875);
     }
     h6 {
       font-size: 0.8125em;
@@ -80,10 +69,11 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--prose-muted);
-      margin-block-start: calc(var(--prose-flow) / 0.8125);
     }
-    :is(h1, h2, h3, h4) :is(code) {
-      font-size: 0.9em;
+
+    /* Anchors */
+    [id] {
+      scroll-margin-block-start: var(--prose-flow);
     }
 
     /* Links */
@@ -110,9 +100,6 @@
     /* Inline semantics */
     strong,
     b {
-      font-weight: 600;
-    }
-    :is(h1, h2, h3, h4) :is(strong, b) {
       font-weight: 600;
     }
     mark {
@@ -165,25 +152,30 @@
     ul {
       list-style-type: disc;
     }
-    ol {
-      list-style-type: decimal;
-    }
     ul ul {
       list-style-type: circle;
     }
     ul ul ul {
       list-style-type: square;
     }
-    ol[type="a" i] {
+    ol,
+    ol[type="1"] {
+      list-style-type: decimal;
+    }
+    ol[type="a" s] {
+      /* "a" case-sensitive */
       list-style-type: lower-alpha;
     }
-    ol[type="i" i] {
-      list-style-type: lower-roman;
-    }
     ol[type="A" s] {
+      /* "A" case-sensitive */
       list-style-type: upper-alpha;
     }
+    ol[type="i" s] {
+      /* "i" case-sensitive */
+      list-style-type: lower-roman;
+    }
     ol[type="I" s] {
+      /* "I" case-sensitive */
       list-style-type: upper-roman;
     }
     ul,
@@ -218,6 +210,9 @@
       list-style-type: none;
       padding-inline-start: 0.25em;
     }
+    li ul.contains-task-list {
+      padding-inline-start: 1.5em;
+    }
     li.task-list-item > input[type="checkbox"] {
       margin-inline-end: 0.5em;
       accent-color: var(--color-primary, currentColor);
@@ -239,6 +234,10 @@
     blockquote {
       border-inline-start: 2px solid var(--prose-rule);
       padding-inline-start: 1em;
+
+      > blockquote {
+        margin-block: var(--prose-flow);
+      }
     }
 
     /* Inline code */
@@ -251,8 +250,8 @@
     }
 
     /* Code blocks */
-    pre {
-      /* background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent)); */
+    pre:has(> code) {
+      background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
       font-family: var(--prose-font-mono);
       font-size: 0.875em;
       line-height: 1.5;
@@ -272,6 +271,13 @@
       border-radius: 0;
     }
     */
+
+    /* Math */
+    math[display="block"] {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-block: 0.25em;
+    }
 
     /* Dividers */
     hr {
@@ -297,9 +303,10 @@
       font-size: 1em;
       line-height: 1.5;
       font-variant-numeric: tabular-nums;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-block-end: 1px solid var(--prose-rule);
+      /* border-collapse: separate; */
+      border-collapse: collapse;
+      /* border-spacing: 0; */
+      /* border-block-end: 1px solid var(--prose-rule); */
     }
 
     /* Horizontal scroll for any wide block.
@@ -317,21 +324,16 @@
       font-weight: 500;
       text-align: start;
       white-space: nowrap;
-      padding: 0.65em 1em;
+      padding: 0.5em 1em;
     }
     :is(tbody, tfoot) :is(td, th) {
-      padding: 0.75em 1em;
+      padding: 0.5em 1em;
       text-align: start;
       vertical-align: top;
-      border-block-start: 1px solid var(--prose-rule);
     }
     tbody th,
     tfoot th {
       font-weight: 500;
-    }
-    th:first-child,
-    td:first-child {
-      padding-inline-start: 0;
     }
     th[align="center"],
     td[align="center"] {
@@ -341,9 +343,12 @@
     td[align="right"] {
       text-align: end;
     }
+    table th,
+    table td {
+      border: 1px solid var(--prose-rule);
+    }
 
     /* Blocks inside list items keep the list's tighter rhythm. */
-    /*
     li > blockquote,
     li > table,
     li > figure {
@@ -352,7 +357,39 @@
     li > pre {
       margin-block-start: calc(0.5em / 0.875);
     }
-    */
+
+    /* Media */
+    img,
+    video {
+      border-radius: var(--radius, 0.5em);
+    }
+    figcaption,
+    caption {
+      color: var(--prose-muted);
+      font-size: 0.875em;
+      text-align: center;
+      margin-block-start: calc(0.75em / 0.875);
+    }
+    caption {
+      caption-side: bottom;
+    }
+
+    /* Disclosures */
+    details {
+      background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
+      border-radius: var(--radius, 0.5em);
+
+      padding: 1em;
+
+      :where(summary) {
+        cursor: pointer;
+        font-weight: 500;
+
+        &::marker {
+          color: var(--prose-muted);
+        }
+      }
+    }
 
     /* TODO: test these */
     @media print {
