@@ -1,6 +1,6 @@
 # marcellocordeiro.com
 
-My website :D
+My website :)
 
 ## TODO
 
@@ -12,6 +12,7 @@ My website :D
 - [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts), aka callouts or admonitions
 - Mermaid diagrams
 - Math expressions
+- Use `light-dark()` for dark mode support and drop the media query listener?
 
 ## Known issues
 
