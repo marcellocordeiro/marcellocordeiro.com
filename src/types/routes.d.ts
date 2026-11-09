@@ -19,4 +19,4 @@ type Route =
   | ExternalRoute
   | MailtoRoute;
 
-type TestRoutes = "/test" | "/test-md" | "/test-mdx";
+type TestRoutes = `/tests/${string}`;

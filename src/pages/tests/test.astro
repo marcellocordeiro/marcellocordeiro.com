@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/ui/button/Button.astro";
 import { ClockIcon } from "@/config/icons";
+import blogPlaceholder from "@/content/blog/assets/blog-placeholder.jpg";
 import Layout from "@/layouts/Layout.astro";
 
 const buttonVariants = ["default", "outline", "secondary", "ghost", "destructive", "link"] as const;
@@ -22,4 +23,11 @@ const buttonSizes = ["default", "sm", "xs", "lg", "icon", "icon-xs", "icon-sm", 
       )),
     )}
   </div>
+
+  <article class="prose">
+    <figure>
+      <img src={blogPlaceholder.src} alt="Description for screen readers" />
+      <figcaption>Fig. 1: This is your figure caption text.</figcaption>
+    </figure>
+  </article>
 </Layout>
