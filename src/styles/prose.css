@@ -12,7 +12,6 @@
     line-height: var(--prose-leading);
     color: var(--color-foreground, currentColor);
     overflow-wrap: break-word;
-    margin-trim: block-start;
 
     --prose-muted: var(
       --color-muted-foreground,
@@ -27,6 +26,11 @@
   }
 
   @scope (.prose) to (.not-prose) {
+    /* Keep the rhythm within nested blocks */
+    :is(blockquote, details) > * + * {
+      margin-block-start: var(--prose-flow);
+    }
+
     /* Headings */
     h1,
     h2,
@@ -79,7 +83,8 @@
       color: inherit;
       font-weight: 500;
       text-decoration-line: underline;
-      text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+      text-underline-offset: 0.16em;
+      text-decoration-color: color-mix(in oklab, currentColor 60%, transparent);
 
       @media (hover: hover) {
         &:hover {
@@ -116,9 +121,11 @@
       text-underline-offset: 0.2em;
       cursor: help;
     }
-    del,
-    s {
+    del {
       color: var(--prose-muted);
+      text-decoration-line: line-through;
+    }
+    s {
       text-decoration-line: line-through;
     }
     sup,
@@ -205,12 +212,7 @@
         margin-block-start: 0.5em;
       }
     }
-    ul > li {
-      &::marker {
-        color: var(--prose-muted);
-      }
-    }
-    ol > li {
+    :is(ul, ol) > li {
       &::marker {
         color: var(--prose-muted);
       }
@@ -246,10 +248,6 @@
     blockquote {
       border-inline-start: 2px solid var(--prose-rule);
       padding-inline-start: 1em;
-
-      > blockquote {
-        margin-block: var(--prose-flow);
-      }
     }
 
     /* Inline code */
@@ -273,16 +271,6 @@
       padding: 0.75em 1em;
       overflow-x: auto;
     }
-    /* Is this needed? */
-    /*
-    pre code {
-      background-color: transparent;
-      font-family: inherit;
-      font-size: inherit;
-      padding: 0;
-      border-radius: 0;
-    }
-    */
 
     /* Math */
     math[display="block"] {
@@ -336,10 +324,6 @@
         }
       }
 
-      tbody tr:not(:last-child) {
-        border-block-end: 1px solid var(--prose-rule);
-      }
-
       th,
       td {
         padding: 0.5em 1em;
@@ -386,7 +370,7 @@
 
     /* Blocks inside list items keep the list's tighter rhythm. */
     li {
-      > :is(blockquote, table, figure) {
+      > :is(blockquote, table, .prose-scroll, figure) {
         margin-block-start: 0.5em;
       }
 
