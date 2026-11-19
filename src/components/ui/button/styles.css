@@ -24,7 +24,7 @@
       }
     }
 
-    & svg {
+    svg {
       @apply pointer-events-none shrink-0;
 
       &:not([class*="size-"]) {

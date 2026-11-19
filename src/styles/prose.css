@@ -104,10 +104,10 @@
       }
     }
 
-    /* Inline semantics */
-    strong,
-    b {
-      font-weight: 600;
+    /* Inline elements */
+    b,
+    strong {
+      font-weight: bolder;
     }
     mark {
       background-color: color-mix(in oklab, oklch(0.86 0.17 95) 40%, transparent);
@@ -128,12 +128,15 @@
     s {
       text-decoration-line: line-through;
     }
-    sup,
-    sub {
-      font-size: 0.75em;
+    sub,
+    sup {
+      font-size: 75%;
       line-height: 0;
       position: relative;
       vertical-align: baseline;
+    }
+    sub {
+      bottom: -0.25em;
     }
     sup {
       top: -0.5em;
@@ -142,9 +145,6 @@
         text-decoration-line: none;
         font-weight: 500;
       }
-    }
-    sub {
-      bottom: -0.25em;
     }
 
     /* Keyboard keys */
