@@ -1,14 +1,9 @@
 @import "tailwindcss";
 
-@import "./prose.css";
 @import "./theme.css";
+@import "./base.css" layer(base);
 
-@import "../components/ui/badge/styles.css";
-@import "../components/ui/button/styles.css";
-@import "../components/ui/button-group/styles.css";
-@import "../components/ui/github-alert/styles.css";
-@import "../components/ui/link/styles.css";
-@import "../components/header/styles.css";
+@import "./components.css" layer(components);
 
 @custom-variant dark {
   &:where([data-theme="dark"], [data-theme="dark"] *) {
@@ -74,73 +69,5 @@
 
   &[data-theme="dark"] {
     color-scheme: dark;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-    /* Breaks a bunch of stuff */
-    /* text-box: trim-both cap alphabetic; */
-  }
-
-  html {
-    @apply font-sans antialiased;
-    scrollbar-gutter: stable;
-
-    @media (prefers-reduced-motion: no-preference) {
-      scroll-behavior: smooth;
-    }
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    min-block-size: 100svb;
-  }
-
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-wrap: balance;
-  }
-
-  p,
-  li,
-  dd,
-  blockquote {
-    text-wrap: pretty;
-  }
-}
-
-.heading-anchor {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: -1.5em;
-  display: inline-flex;
-  align-items: center;
-  font-size: 75%;
-  opacity: 0.4;
-  transition: opacity 0.18s ease;
-  text-decoration: none;
-  padding-inline: 0.4em;
-
-  @media (hover: hover) {
-    &:focus-visible,
-    h1:hover &,
-    h2:hover &,
-    h3:hover &,
-    h4:hover &,
-    h5:hover &,
-    h6:hover & {
-      opacity: 1;
-    }
   }
 }

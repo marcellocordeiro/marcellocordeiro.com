@@ -1,47 +1,45 @@
-@layer components {
-  .button-group {
-    @apply inline-flex w-fit items-stretch;
+.button-group {
+  @apply inline-flex w-fit items-stretch;
+
+  & > .button-group-item {
+    @apply rounded-none;
+
+    &:focus-visible {
+      @apply relative z-10;
+    }
+  }
+
+  /* Orientations */
+  &[data-orientation="horizontal"] {
+    & > .button-group-item {
+      &:first-child {
+        @apply rounded-l-2xl;
+      }
+
+      &:last-child {
+        @apply rounded-r-2xl;
+      }
+
+      & + .button-group-item {
+        @apply rounded-l-none border-l-0;
+      }
+    }
+  }
+
+  &[data-orientation="vertical"] {
+    @apply flex-col;
 
     & > .button-group-item {
-      @apply rounded-none;
-
-      &:focus-visible {
-        @apply relative z-10;
+      &:first-child {
+        @apply rounded-t-2xl;
       }
-    }
 
-    /* Orientations */
-    &[data-orientation="horizontal"] {
-      & > .button-group-item {
-        &:first-child {
-          @apply rounded-l-2xl;
-        }
-
-        &:last-child {
-          @apply rounded-r-2xl;
-        }
-
-        & + .button-group-item {
-          @apply rounded-l-none border-l-0;
-        }
+      &:last-child {
+        @apply rounded-b-2xl;
       }
-    }
 
-    &[data-orientation="vertical"] {
-      @apply flex-col;
-
-      & > .button-group-item {
-        &:first-child {
-          @apply rounded-t-2xl;
-        }
-
-        &:last-child {
-          @apply rounded-b-2xl;
-        }
-
-        & + .button-group-item {
-          @apply rounded-t-none border-t-0;
-        }
+      & + .button-group-item {
+        @apply rounded-t-none border-t-0;
       }
     }
   }

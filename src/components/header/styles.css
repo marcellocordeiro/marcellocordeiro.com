@@ -1,73 +1,71 @@
-@layer components {
-  .header {
-    --_header-h: 4rem;
+.header {
+  --_header-h: 4rem;
 
-    anchor-name: --header;
+  anchor-name: --header;
 
-    @apply border-b bg-background;
+  @apply border-b bg-background;
 
-    > .header-inner {
-      @apply mx-auto flex max-w-3xl items-center justify-between gap-4 px-4;
-      height: var(--_header-h);
+  > .header-inner {
+    @apply mx-auto flex max-w-3xl items-center justify-between gap-4 px-4;
+    height: var(--_header-h);
+  }
+
+  .desktop-menu {
+    @apply hidden md:block;
+
+    > ul {
+      @apply flex gap-4;
+    }
+  }
+
+  &:has(.mobile-menu:popover-open) {
+    @apply border-b-transparent bg-background;
+  }
+
+  .mobile-menu {
+    @apply w-auto border-b bg-background md:hidden;
+
+    position-anchor: --header;
+    inset-block-start: anchor(end);
+    inset-inline: 0;
+    margin: 0;
+
+    > ul {
+      @apply flex flex-col gap-1 px-4 py-3;
     }
 
-    .desktop-menu {
-      @apply hidden md:block;
+    @media (prefers-reduced-motion: no-preference) {
+      &[popover] {
+        /*  Opened styles  */
+        &:popover-open {
+          transform: translateY(0) scale(1);
+          opacity: 1;
 
-      > ul {
-        @apply flex gap-4;
-      }
-    }
-
-    &:has(.mobile-menu:popover-open) {
-      @apply border-b-transparent bg-background;
-    }
-
-    .mobile-menu {
-      @apply w-auto border-b bg-background md:hidden;
-
-      position-anchor: --header;
-      inset-block-start: anchor(end);
-      inset-inline: 0;
-      margin: 0;
-
-      > ul {
-        @apply flex flex-col gap-1 px-4 py-3;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        &[popover] {
-          /*  Opened styles  */
-          &:popover-open {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-
-            /* Start styles for the opening transition.
+          /* Start styles for the opening transition.
              * Added to :popover-open, but after the opened styles.
              */
-            @starting-style {
-              transform: translateY(-50px);
-              opacity: 0;
-            }
+          @starting-style {
+            transform: translateY(-50px);
+            opacity: 0;
           }
-
-          /* End styles for the closing transition. */
-          transform: translateY(-50px);
-          opacity: 0;
-
-          /* Enumerate transitioning properties, including display and overlay. */
-          transition:
-            transform,
-            opacity,
-            display allow-discrete,
-            overlay allow-discrete;
-          transition-duration: 200ms;
         }
+
+        /* End styles for the closing transition. */
+        transform: translateY(-50px);
+        opacity: 0;
+
+        /* Enumerate transitioning properties, including display and overlay. */
+        transition:
+          transform,
+          opacity,
+          display allow-discrete,
+          overlay allow-discrete;
+        transition-duration: 200ms;
       }
     }
   }
+}
 
-  body:has(.header .mobile-menu:popover-open) {
-    overflow: hidden;
-  }
+body:has(.header .mobile-menu:popover-open) {
+  overflow: hidden;
 }

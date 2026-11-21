@@ -76,7 +76,7 @@ for (const entry of Object.entries(iconStringSets)) {
     const svg = iconToHTML(renderData.body, renderData.attributes);
 
     const file = join(outDir, prefix, `${name}.svg`);
-    writeFileSync(file, svg, "utf8");
+    writeFileSync(file, `${svg}\n`, "utf8");
   }
 }
 

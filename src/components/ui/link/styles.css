@@ -1,19 +1,39 @@
-@layer components {
-  .link {
-    @apply inline-flex items-center transition-all;
+.link {
+  @apply transition-all;
 
-    &:active {
-      &:not(*[aria-haspopup]) {
-        @apply translate-y-px;
-      }
+  &:active {
+    &:not(*[aria-haspopup]) {
+      @apply translate-y-px;
+    }
+  }
+
+  &.external-link {
+    &::after {
+      content: "" / "(opens in a new tab)";
     }
 
-    & svg {
-      @apply pointer-events-none shrink-0;
+    &:not(.link-icon)::after {
+      display: inline-block;
+      height: 1em;
+      width: 1em;
 
-      &:not([class*="size-"]) {
-        @apply size-4;
-      }
+      margin-inline-start: 0.125em;
+      vertical-align: middle;
+
+      background-color: currentColor;
+
+      mask-image: url("../../../assets/icons/lucide/arrow-up-right.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+    }
+  }
+
+  svg {
+    @apply pointer-events-none shrink-0;
+
+    &:not([class*="size-"]) {
+      @apply size-4;
     }
   }
 }

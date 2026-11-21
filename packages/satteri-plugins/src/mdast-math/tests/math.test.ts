@@ -24,11 +24,13 @@ function expectToBeDefined<T>(value: T | undefined): asserts value is T {
 }
 
 describe("satteri-math fixtures", () => {
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const configs = import.meta.glob("./fixtures/*/config.json", {
-    import: "default",
-    eager: true,
-  }) as Record<string, SatteriMdastMathOptions>;
+  const configs: Record<string, SatteriMdastMathOptions> = import.meta.glob(
+    "./fixtures/*/config.json",
+    {
+      import: "default",
+      eager: true,
+    },
+  );
 
   const inputs = import.meta.glob("./fixtures/*/input.md", {
     query: "?raw",

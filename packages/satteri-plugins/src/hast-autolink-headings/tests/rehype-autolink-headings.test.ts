@@ -25,11 +25,13 @@ function expectToBeDefined<T>(value: T | undefined): asserts value is T {
 }
 
 describe("satteri-hast-autolink-headings rehype-autolink-headings", () => {
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const configs = import.meta.glob("./fixtures/*/config.json", {
-    import: "default",
-    eager: true,
-  }) as Record<string, SatteriHastAutolinkHeadingsOptions>;
+  const configs: Record<string, SatteriHastAutolinkHeadingsOptions> = import.meta.glob(
+    "./fixtures/*/config.json",
+    {
+      import: "default",
+      eager: true,
+    },
+  );
 
   const inputs = import.meta.glob("./fixtures/*/input.md", {
     query: "?raw",
